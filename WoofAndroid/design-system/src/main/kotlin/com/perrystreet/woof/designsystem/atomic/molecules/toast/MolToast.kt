@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.AtomIcon
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
@@ -20,14 +21,14 @@ import com.perrystreet.woof.resources.R
 
 @Composable
 fun MolToast(text: String) {
-    val shape = RoundedCornerShape(Theme.sizing.radiusL)
+    val shape = RoundedCornerShape(Theme.radius.l)
     Row(
         modifier = Modifier
-            .shadow(elevation = Theme.sizing.radiusS, shape = shape)
+            .shadow(elevation = Theme.radius.s, shape = shape)
             .background(color = Theme.colors.surfaceContainer, shape = shape)
             .padding(
-                horizontal = Theme.padding.elementExpanded,
-                vertical = Theme.padding.elementRelaxed,
+                horizontal = PaddingRoles.Element.Expanded.dp,
+                vertical = PaddingRoles.Element.Relaxed.dp,
             ),
         horizontalArrangement = Arrangement.spacedBy(SpacingRoles.Component.Cozy.dp),
         verticalAlignment = Alignment.CenterVertically,

@@ -32,9 +32,9 @@ class UIComponentsDoNotUseHardcodedValues : BehaviorSpec() {
         private val DpMessage = LintRuleMessage(
             rule = "Composables never hardcode dp values.",
             why = "Spacing, sizing, and radii are tokens tuned in one place. A literal dp bypasses that and drifts between components.",
-            howToFix = "Use Theme.padding.*, Theme.sizing.*, SpacingRoles.*, or SizingRoles.* instead of the literal.",
+            howToFix = "Use PaddingRoles.*, SpacingRoles.*, SizingRoles.*, or Theme.radius.* instead of the literal.",
             badExample = "Modifier.padding(16.dp)",
-            goodExample = "Modifier.padding(Theme.padding.elementRegular)",
+            goodExample = "Modifier.padding(PaddingRoles.Element.Regular.dp)",
         )
 
         private val ColorMessage = LintRuleMessage(

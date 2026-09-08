@@ -2,18 +2,23 @@ package com.perrystreet.woof.designsystem.atomic.organisms.header
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic.molecules.button.MolIconButton
 import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.IconButtonRole
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuButton
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuItem
-import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
 fun OrgNavigationHeaderOverlay(
@@ -26,9 +31,9 @@ fun OrgNavigationHeaderOverlay(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .statusBarsPadding()
-            .height(Theme.sizing.interactionHeightComfort)
-            .padding(horizontal = Theme.padding.elementCompact),
+            .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
+            .height(SizingRoles.InteractionHeight.Comfort.dp)
+            .padding(horizontal = PaddingRoles.Element.Compact.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         MolIconButton(role = IconButtonRole.Back, onTap = onBackTap, isOnScrim = true)

@@ -7,11 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.molecules.button.MolIconButton
 import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.IconButtonRole
 import com.perrystreet.woof.designsystem.atomic.molecules.typebar.MolTypeBar
-import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
 fun OrgTypeBarWithAction(
@@ -28,8 +28,8 @@ fun OrgTypeBarWithAction(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = Theme.padding.elementRelaxed,
-                vertical = Theme.padding.elementRegular,
+                horizontal = PaddingRoles.Element.Relaxed.dp,
+                vertical = PaddingRoles.Element.Regular.dp,
             ),
         horizontalArrangement = Arrangement.spacedBy(SpacingRoles.Component.Compact.dp),
         verticalAlignment = Alignment.CenterVertically,

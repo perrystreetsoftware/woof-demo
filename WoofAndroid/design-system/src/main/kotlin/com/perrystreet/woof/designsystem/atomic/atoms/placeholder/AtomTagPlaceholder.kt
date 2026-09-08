@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
@@ -19,11 +20,11 @@ fun AtomTagPlaceholder(text: String) {
         modifier = Modifier
             .background(
                 color = Theme.colors.placeholder,
-                shape = RoundedCornerShape(Theme.sizing.radiusXL),
+                shape = RoundedCornerShape(Theme.radius.xl),
             )
             .padding(
-                horizontal = Theme.padding.elementRelaxed,
-                vertical = Theme.padding.elementCompact,
+                horizontal = PaddingRoles.Element.Relaxed.dp,
+                vertical = PaddingRoles.Element.Compact.dp,
             )
             .alpha(0f)
             .clearAndSetSemantics {},

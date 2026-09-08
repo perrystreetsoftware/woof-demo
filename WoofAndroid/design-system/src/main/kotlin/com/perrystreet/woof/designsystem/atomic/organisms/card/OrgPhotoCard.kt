@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.background.AtomHeroScrim
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
@@ -30,7 +31,7 @@ fun OrgPhotoCard(
     Box(
         modifier = modifier
             .aspectRatio(Theme.aspectRatios.gridCell)
-            .clip(RoundedCornerShape(Theme.sizing.radiusS))
+            .clip(RoundedCornerShape(Theme.radius.s))
             .background(Theme.colors.placeholder)
             .clickable(onClick = onTap),
     ) {
@@ -47,7 +48,7 @@ fun OrgPhotoCard(
             maxLines = 1,
             modifier = Modifier
                 .align(Alignment.BottomStart)
-                .padding(Theme.padding.elementRegular),
+                .padding(PaddingRoles.Element.Regular.dp),
         )
     }
 }

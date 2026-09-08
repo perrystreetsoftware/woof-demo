@@ -17,6 +17,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.loading.AtomCircularProgressIndicator
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
@@ -38,7 +39,7 @@ fun MolButton(
         role = role,
         state = state,
         modifier = modifier.fillMaxWidth(),
-        minHeight = Theme.sizing.interactionHeightComfort,
+        minHeight = SizingRoles.InteractionHeight.Comfort.dp,
         textFontRole = TextFontRole.DisplayH4,
     )
 }
@@ -57,7 +58,7 @@ fun MolButtonCompact(
         role = role,
         state = state,
         modifier = modifier,
-        minHeight = Theme.sizing.interactionHeightDefault,
+        minHeight = SizingRoles.InteractionHeight.Default.dp,
         textFontRole = TextFontRole.DisplayH5,
     )
 }
@@ -72,7 +73,7 @@ private fun MolButtonContent(
     minHeight: androidx.compose.ui.unit.Dp,
     textFontRole: TextFontRole,
 ) {
-    val shape = RoundedCornerShape(Theme.sizing.radiusM)
+    val shape = RoundedCornerShape(Theme.radius.m)
     Box(
         modifier = modifier
             .defaultMinSize(minHeight = minHeight)
@@ -81,7 +82,7 @@ private fun MolButtonContent(
             .background(color = role.surfaceColor(), shape = shape)
             .clickable(enabled = state.isClickable, onClick = onTap)
             .semantics(mergeDescendants = true) { this.role = Role.Button }
-            .padding(horizontal = Theme.padding.elementExpanded),
+            .padding(horizontal = PaddingRoles.Element.Expanded.dp),
         contentAlignment = Alignment.Center,
     ) {
         when (state.showsLoadingIndicator) {

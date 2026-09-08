@@ -13,8 +13,7 @@ import com.perrystreet.woof.designsystem.atomic._tokens.alpha.AlphaRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.aspectratio.AspectRatioRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.colors.Colors
 import com.perrystreet.woof.designsystem.atomic._tokens.motion.MotionRoles
-import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
-import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.radius.RadiusRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.typography.Typography
 
 @Composable
@@ -68,13 +67,9 @@ object Theme {
         @Composable @ReadOnlyComposable
         get() = LocalTheme.current.alpha
 
-    val padding: PaddingRoles
+    val radius: RadiusRoles
         @Composable @ReadOnlyComposable
-        get() = LocalTheme.current.padding
-
-    val sizing: SizingRoles
-        @Composable @ReadOnlyComposable
-        get() = LocalTheme.current.sizing
+        get() = LocalTheme.current.radius
 
     val typography: Typography
         @Composable @ReadOnlyComposable
