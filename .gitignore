@@ -18,3 +18,11 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Xcode / Swift Package Manager
+.build/
+.swiftpm/
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.xcresult

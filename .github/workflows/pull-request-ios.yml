@@ -1,0 +1,60 @@
+# Demo-purposes only: Disabled for now
+# 
+# name: Pull Request (iOS)
+#
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - main
+#
+# concurrency:
+#   group: pull-request-ios-${{ github.ref }}
+#   cancel-in-progress: true
+#
+# defaults:
+#   run:
+#     working-directory: WoofIOS
+#
+# jobs:
+#   unit-tests:
+#     name: Unit tests
+#     runs-on: macos-26
+#     steps:
+#       - uses: actions/checkout@v4
+#
+#       - name: Select Xcode
+#         run: sudo xcode-select -s /Applications/Xcode_26.2.app
+#
+#       - name: Run unit tests
+#         run: bash scripts/run-unit-tests.sh
+#
+#   harmonize-tests:
+#     name: Harmonize lint rules
+#     runs-on: macos-26
+#     steps:
+#       - uses: actions/checkout@v4
+#
+#       - name: Select Xcode
+#         run: sudo xcode-select -s /Applications/Xcode_26.2.app
+#
+#       - name: Run Harmonize lint rules
+#         run: bash scripts/run-harmonize.sh
+#
+#   build:
+#     name: Build app
+#     runs-on: macos-26
+#     steps:
+#       - uses: actions/checkout@v4
+#
+#       - name: Select Xcode
+#         run: sudo xcode-select -s /Applications/Xcode_26.2.app
+#
+#       - name: Build for iOS Simulator
+#         run: |
+#           xcodebuild build \
+#             -project Woof.xcodeproj \
+#             -scheme Woof \
+#             -destination 'generic/platform=iOS Simulator' \
+#             -skipPackagePluginValidation -skipMacroValidation \
+#             CODE_SIGNING_ALLOWED=NO | xcbeautify || true

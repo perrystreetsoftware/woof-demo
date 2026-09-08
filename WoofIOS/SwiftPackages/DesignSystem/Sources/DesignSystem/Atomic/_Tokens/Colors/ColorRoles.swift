@@ -1,0 +1,61 @@
+import SwiftUI
+
+public enum ColorRoles {
+    public static let light = Colors(
+        background: ColorPrimitives.Sand._200,
+        surface: ColorPrimitives.Sand._100,
+        surfaceContainer: ColorPrimitives.White._100,
+        surfaceContainerHigh: ColorPrimitives.Sand._300,
+        surfaceContainerDisabled: ColorPrimitives.Black._15,
+        onSurface: ColorPrimitives.Ink._900,
+        onSurfaceVariant: ColorPrimitives.Ink._300,
+        outlineVariant: ColorPrimitives.Black._15,
+        primary: ColorPrimitives.Orange._500,
+        primaryHigh: ColorPrimitives.Orange._700,
+        onPrimary: ColorPrimitives.White._100,
+        scrim: ColorPrimitives.Black._60,
+        scrimDim: ColorPrimitives.Black._85,
+        onScrim: ColorPrimitives.White._100,
+        onScrimVariant: ColorPrimitives.White._60,
+        scrimContainer: ColorPrimitives.White._25,
+        active: ColorPrimitives.Teal._500,
+        recent: ColorPrimitives.Honey._500,
+        inactive: ColorPrimitives.Sand._500,
+        destructive: ColorPrimitives.Red._500,
+        error: ColorPrimitives.Red._700,
+        onError: ColorPrimitives.White._100,
+        success: ColorPrimitives.Green._500,
+        placeholder: ColorPrimitives.Black._15,
+        onPlaceholder: ColorPrimitives.White._100,
+        shadow: ColorPrimitives.Black._100
+    )
+
+    public static let dark = Colors(
+        background: ColorPrimitives.Ink._900,
+        surface: ColorPrimitives.Ink._800,
+        surfaceContainer: ColorPrimitives.Ink._700,
+        surfaceContainerHigh: ColorPrimitives.Ink._500,
+        surfaceContainerDisabled: ColorPrimitives.White._25,
+        onSurface: ColorPrimitives.Sand._100,
+        onSurfaceVariant: ColorPrimitives.White._60,
+        outlineVariant: ColorPrimitives.White._15,
+        primary: ColorPrimitives.Orange._500,
+        primaryHigh: ColorPrimitives.Orange._300,
+        onPrimary: ColorPrimitives.White._100,
+        scrim: ColorPrimitives.Black._60,
+        scrimDim: ColorPrimitives.Black._85,
+        onScrim: ColorPrimitives.White._100,
+        onScrimVariant: ColorPrimitives.White._60,
+        scrimContainer: ColorPrimitives.White._25,
+        active: ColorPrimitives.Teal._300,
+        recent: ColorPrimitives.Honey._500,
+        inactive: ColorPrimitives.Ink._300,
+        destructive: ColorPrimitives.Red._300,
+        error: ColorPrimitives.Red._500,
+        onError: ColorPrimitives.White._100,
+        success: ColorPrimitives.Green._500,
+        placeholder: ColorPrimitives.White._15,
+        onPlaceholder: ColorPrimitives.White._60,
+        shadow: ColorPrimitives.Black._100
+    )
+}

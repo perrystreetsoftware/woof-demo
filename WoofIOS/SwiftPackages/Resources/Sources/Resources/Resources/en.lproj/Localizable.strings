@@ -1,0 +1,54 @@
+"app_name" = "Woof";
+
+"accessibility_back" = "Back";
+"accessibility_more_options" = "More options";
+"accessibility_add_favorite" = "Add to favorites";
+"accessibility_remove_favorite" = "Remove from favorites";
+"accessibility_woof" = "Woof";
+"accessibility_send_message" = "Send message";
+"accessibility_app_logo" = "Woof logo";
+"accessibility_dog_photo" = "Photo of %@";
+
+"home_tab_browse" = "Browse";
+"home_tab_favorites" = "Favorites";
+"home_tab_account" = "Account";
+
+"favorites_title" = "Favorites";
+"favorites_empty_title" = "No favorites yet";
+"favorites_empty_message" = "Tap the star on a dog's profile to keep them here.";
+
+"account_title" = "Account";
+
+"grid_error_title" = "The park is empty";
+"grid_error_message" = "We couldn't fetch the pack. Give it another try.";
+"grid_error_retry" = "Try again";
+
+"profile_message_placeholder" = "Say hi to %@…";
+"profile_summary" = "%@ · %@ · %@";
+"profile_section_about" = "About %@";
+"profile_section_personality" = "Personality";
+"profile_section_details" = "Details";
+"profile_label_breed" = "Breed";
+"profile_label_age" = "Age";
+"profile_label_size" = "Size";
+"profile_label_neighborhood" = "Neighborhood";
+"profile_label_favorite_activity" = "Favorite activity";
+"profile_size_small" = "Small";
+"profile_size_medium" = "Medium";
+"profile_size_large" = "Large";
+
+"profile_menu_report" = "Report";
+"profile_menu_block" = "Block";
+"profile_report_title" = "Report %@?";
+"profile_report_message" = "Let us know if something about this profile doesn't look right.";
+"profile_report_confirm" = "Report";
+"profile_block_title" = "Block %@?";
+"profile_block_message" = "You won't see %@ in the grid anymore.";
+"profile_block_confirm" = "Block";
+"profile_dialog_cancel" = "Cancel";
+
+"profile_toast_report_sent" = "Thanks, we'll take a look.";
+"profile_toast_message_sent" = "Message sent to %@";
+"profile_toast_woof_sent" = "You woofed at %@";
+"profile_toast_already_woofed" = "You already woofed at %@";
+"profile_toast_message_empty" = "Type something first";

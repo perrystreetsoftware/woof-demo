@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">Woof</string>
+
+    <string name="accessibility_back">Back</string>
+    <string name="accessibility_more_options">More options</string>
+    <string name="accessibility_add_favorite">Add to favorites</string>
+    <string name="accessibility_remove_favorite">Remove from favorites</string>
+    <string name="accessibility_woof">Woof</string>
+    <string name="accessibility_send_message">Send message</string>
+    <string name="accessibility_app_logo">Woof logo</string>
+    <string name="accessibility_dog_photo">Photo of %1$s</string>
+
+    <string name="home_tab_browse">Browse</string>
+    <string name="home_tab_favorites">Favorites</string>
+    <string name="home_tab_account">Account</string>
+
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_empty_title">No favorites yet</string>
+    <string name="favorites_empty_message">Tap the star on a dog\'s profile to keep them here.</string>
+
+    <string name="account_title">Account</string>
+
+    <string name="grid_error_title">The park is empty</string>
+    <string name="grid_error_message">We couldn\'t fetch the pack. Give it another try.</string>
+    <string name="grid_error_retry">Try again</string>
+
+    <string name="profile_message_placeholder">Say hi to %1$s…</string>
+    <string name="profile_summary">%1$s · %2$s · %3$s</string>
+    <plurals name="profile_age">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+    <string name="profile_section_about">About %1$s</string>
+    <string name="profile_section_personality">Personality</string>
+    <string name="profile_section_details">Details</string>
+    <string name="profile_label_breed">Breed</string>
+    <string name="profile_label_age">Age</string>
+    <string name="profile_label_size">Size</string>
+    <string name="profile_label_neighborhood">Neighborhood</string>
+    <string name="profile_label_favorite_activity">Favorite activity</string>
+    <string name="profile_size_small">Small</string>
+    <string name="profile_size_medium">Medium</string>
+    <string name="profile_size_large">Large</string>
+
+    <string name="profile_menu_report">Report</string>
+    <string name="profile_menu_block">Block</string>
+    <string name="profile_report_title">Report %1$s?</string>
+    <string name="profile_report_message">Let us know if something about this profile doesn\'t look right.</string>
+    <string name="profile_report_confirm">Report</string>
+    <string name="profile_block_title">Block %1$s?</string>
+    <string name="profile_block_message">You won\'t see %1$s in the grid anymore.</string>
+    <string name="profile_block_confirm">Block</string>
+    <string name="profile_dialog_cancel">Cancel</string>
+
+    <string name="profile_toast_report_sent">Thanks, we\'ll take a look.</string>
+    <string name="profile_toast_message_sent">Message sent to %1$s</string>
+    <string name="profile_toast_woof_sent">You woofed at %1$s</string>
+    <string name="profile_toast_already_woofed">You already woofed at %1$s</string>
+    <string name="profile_toast_message_empty">Type something first</string>
+</resources>
