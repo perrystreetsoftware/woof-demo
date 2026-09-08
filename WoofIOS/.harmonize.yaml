@@ -1,0 +1,6 @@
+excludes:
+  - scripts
+  - HarmonizeRules
+  - Macros
+  - Package.swift
+  - Package.resolved
