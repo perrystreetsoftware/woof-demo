@@ -22,6 +22,7 @@ import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.AtomIcon
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
@@ -39,7 +40,7 @@ fun MolTypeBar(
     modifier: Modifier = Modifier,
     isSubmitEnabled: Boolean = text.isNotBlank(),
 ) {
-    val shape = RoundedCornerShape(Theme.sizing.radiusXL)
+    val shape = RoundedCornerShape(Theme.radius.xl)
     val textStyle = Theme.typography.body.p1.copy(color = Theme.colors.onScrim)
     val submitColorRole = when (isSubmitEnabled) {
         true -> IconColorRole.Primary
@@ -51,7 +52,7 @@ fun MolTypeBar(
         onValueChange = onTextChange,
         modifier = modifier
             .fillMaxWidth()
-            .defaultMinSize(minHeight = Theme.sizing.interactionHeightDefault)
+            .defaultMinSize(minHeight = SizingRoles.InteractionHeight.Default.dp)
             .clip(shape)
             .background(Theme.colors.scrimContainer),
         textStyle = textStyle,
@@ -64,10 +65,10 @@ fun MolTypeBar(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
-                        start = Theme.padding.elementExpanded,
-                        end = Theme.padding.elementRelaxed,
-                        top = Theme.padding.elementRelaxed,
-                        bottom = Theme.padding.elementRelaxed,
+                        start = PaddingRoles.Element.Expanded.dp,
+                        end = PaddingRoles.Element.Relaxed.dp,
+                        top = PaddingRoles.Element.Relaxed.dp,
+                        bottom = PaddingRoles.Element.Relaxed.dp,
                     ),
                 verticalAlignment = Alignment.CenterVertically,
             ) {

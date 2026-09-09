@@ -42,7 +42,7 @@ public enum SectionToneRole {
     public func containerPadding(from theme: ThemeImplementing) -> CGFloat {
         switch self {
         case .onScrim: .zero
-        case .onSurface: theme.padding.elementExpanded
+        case .onSurface: PaddingRoles.Element.expanded.rawValue
         }
     }
 }

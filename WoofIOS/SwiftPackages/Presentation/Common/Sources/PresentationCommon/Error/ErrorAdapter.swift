@@ -16,7 +16,9 @@ public struct ErrorAdapter: ViewModifier {
     public func body(content: Content) -> some View {
         content
             .overlay {
-                OrgToastHost(message: errorToast?.message, onDismiss: onDismiss)
+                TemplateOverlayTop {
+                    OrgToastHost(message: errorToast?.message, onDismiss: onDismiss)
+                }
             }
             .onReceive(mergedErrors) { error in
                 errorToast = error.flatMap { errorMapper($0) }

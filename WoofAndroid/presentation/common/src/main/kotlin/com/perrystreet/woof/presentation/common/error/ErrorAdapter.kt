@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.res.stringResource
 import com.perrystreet.woof.designsystem.atomic.organisms.toast.OrgToastHost
+import com.perrystreet.woof.designsystem.atomic.templates.TemplateOverlayTop
 import com.perrystreet.woof.presentation.common.viewmodel.base.ErrorProducingViewModel
 import io.reactivex.rxjava3.core.Observable
 import java.util.Optional
@@ -20,10 +21,12 @@ fun ErrorAdapter(
             .map { error -> error.flatMap { throwable -> Optional.ofNullable(errorMapper(throwable)) } }
     }.subscribeAsState(initial = Optional.empty<ErrorToast>())
 
-    OrgToastHost(
-        message = errorToast.orElse(null)?.text(),
-        onDismiss = { viewModels.forEach { viewModel -> viewModel.clearLastError() } },
-    )
+    TemplateOverlayTop {
+        OrgToastHost(
+            message = errorToast.orElse(null)?.text(),
+            onDismiss = { viewModels.forEach { viewModel -> viewModel.clearLastError() } },
+        )
+    }
 }
 
 @Composable

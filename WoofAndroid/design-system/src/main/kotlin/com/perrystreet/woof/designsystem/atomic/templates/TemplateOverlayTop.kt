@@ -1,11 +1,9 @@
-package com.perrystreet.woof.designsystem.atomic.organisms.header
+package com.perrystreet.woof.designsystem.atomic.templates
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -13,20 +11,21 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
-import com.perrystreet.woof.designsystem.atomic.molecules.header.MolBrandLogo
-import com.perrystreet.woof.designsystem.theme.Theme
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 
 @Composable
-fun OrgNavigationHeaderBranded() {
-    Row(
+fun TemplateOverlayTop(content: @Composable () -> Unit) {
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Theme.colors.background)
             .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal))
-            .height(SizingRoles.InteractionHeight.Comfort.dp),
-        verticalAlignment = Alignment.CenterVertically,
+            .padding(
+                top = PaddingRoles.Screen.Expanded.dp,
+                start = PaddingRoles.Screen.Regular.dp,
+                end = PaddingRoles.Screen.Regular.dp,
+            ),
+        contentAlignment = Alignment.TopCenter,
     ) {
-        MolBrandLogo()
+        content()
     }
 }

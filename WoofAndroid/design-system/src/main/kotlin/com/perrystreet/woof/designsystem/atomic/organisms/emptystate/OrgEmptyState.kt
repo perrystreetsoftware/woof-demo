@@ -15,7 +15,6 @@ import com.perrystreet.woof.designsystem.atomic.atoms.spacer.AtomSpacer
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
-import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
 fun OrgEmptyState(
@@ -24,8 +23,7 @@ fun OrgEmptyState(
 ) {
     Column(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = Theme.padding.screenHorizontal),
+            .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {

@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct OrgNavigationHeaderOverlay: View {
-    @Environment(\.theme) private var theme
-
     private let onBackTap: () -> Void
     private let actions: [OrgNavigationHeaderActionItem]
     private let overflowItems: [OrgOverflowMenuItem]
@@ -42,7 +40,7 @@ public struct OrgNavigationHeaderOverlay: View {
                 isOnScrim: true
             )
         }
-        .padding(.horizontal, theme.padding.elementCompact)
-        .frame(maxWidth: .infinity, minHeight: theme.sizing.interactionHeightComfort)
+        .padding(.horizontal, PaddingRoles.Element.compact.rawValue)
+        .frame(maxWidth: .infinity, minHeight: SizingRoles.InteractionHeight.comfort.rawValue)
     }
 }

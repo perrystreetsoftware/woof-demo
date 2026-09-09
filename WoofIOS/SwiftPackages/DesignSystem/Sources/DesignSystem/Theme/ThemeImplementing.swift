@@ -5,8 +5,7 @@ public protocol ThemeImplementing {
     var isDark: Bool { get }
     var colors: Colors { get }
     var alpha: AlphaRoles { get }
-    var padding: PaddingRoles { get }
-    var sizing: SizingRoles { get }
+    var radius: RadiusRoles { get }
     var typography: Typography { get }
     var motion: MotionRoles { get }
     var aspectRatios: AspectRatioRoles { get }

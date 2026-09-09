@@ -16,8 +16,8 @@ public struct AtomTag: View {
             .font(theme.typography.subhead.p3)
             .foregroundStyle(styleRole.textColor(from: theme))
             .lineLimit(1)
-            .padding(.horizontal, theme.padding.elementRelaxed)
-            .padding(.vertical, theme.padding.elementCompact)
-            .background(styleRole.backgroundColor(from: theme), in: RoundedRectangle(cornerRadius: theme.sizing.radiusXL))
+            .padding(.horizontal, PaddingRoles.Element.relaxed.rawValue)
+            .padding(.vertical, PaddingRoles.Element.compact.rawValue)
+            .background(styleRole.backgroundColor(from: theme), in: RoundedRectangle(cornerRadius: theme.radius.xl))
     }
 }

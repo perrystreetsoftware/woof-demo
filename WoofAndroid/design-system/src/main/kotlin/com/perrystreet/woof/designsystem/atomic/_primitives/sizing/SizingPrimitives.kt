@@ -21,5 +21,6 @@ object SizingPrimitives {
     val Size60 = 60.dp
     val Size88 = 88.dp
     val Size108 = 108.dp
+    val Size128 = 128.dp
     val Size240 = 240.dp
 }

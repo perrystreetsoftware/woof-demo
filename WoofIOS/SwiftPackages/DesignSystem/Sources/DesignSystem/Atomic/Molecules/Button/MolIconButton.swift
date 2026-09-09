@@ -34,7 +34,7 @@ public struct MolIconButton: View {
                 contentDescription: isActive ? role.activeContentDescription : role.contentDescription,
                 colorRole: colorRole
             )
-            .frame(width: theme.sizing.interactionHeightDefault, height: theme.sizing.interactionHeightDefault)
+            .frame(width: SizingRoles.InteractionHeight.default.rawValue, height: SizingRoles.InteractionHeight.default.rawValue)
             .background(backgroundColor, in: Circle())
         }
         .buttonStyle(MolIconButtonStyle(pressedScale: Self.pressedScale, pressedAlpha: theme.alpha.pressed, enabledAlpha: theme.alpha.enabled))

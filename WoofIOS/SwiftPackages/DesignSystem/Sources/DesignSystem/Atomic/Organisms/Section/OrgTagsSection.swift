@@ -20,6 +20,6 @@ public struct OrgTagsSection: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(toneRole.containerPadding(from: theme))
-        .background(toneRole.containerColor(from: theme), in: RoundedRectangle(cornerRadius: theme.sizing.radiusL))
+        .background(toneRole.containerColor(from: theme), in: RoundedRectangle(cornerRadius: theme.radius.l))
     }
 }

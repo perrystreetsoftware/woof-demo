@@ -12,7 +12,7 @@ fun AtomRoundedRectanglePlaceholder(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier.background(
             color = Theme.colors.placeholder,
-            shape = RoundedCornerShape(Theme.sizing.radiusS),
+            shape = RoundedCornerShape(Theme.radius.s),
         ),
     )
 }

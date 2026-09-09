@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct OrgOverflowMenuButton: View {
-    @Environment(\.theme) private var theme
-
     private let items: [OrgOverflowMenuItem]
     private let isExpanded: Bool
     private let onExpandedChange: (Bool) -> Void
@@ -37,7 +35,7 @@ public struct OrgOverflowMenuButton: View {
                 contentDescription: IconButtonRole.more.contentDescription,
                 colorRole: colorRole
             )
-            .frame(width: theme.sizing.interactionHeightDefault, height: theme.sizing.interactionHeightDefault)
+            .frame(width: SizingRoles.InteractionHeight.default.rawValue, height: SizingRoles.InteractionHeight.default.rawValue)
         }
         .simultaneousGesture(TapGesture().onEnded { onExpandedChange(true) })
     }

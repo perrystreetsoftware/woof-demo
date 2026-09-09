@@ -11,7 +11,7 @@ public struct ThemedPreview<Content: View>: View {
 
     public var body: some View {
         content()
-            .padding(theme.padding.elementRegular)
+            .padding(PaddingRoles.Element.regular.rawValue)
             .background(theme.colors.background)
             .theme(theme)
     }

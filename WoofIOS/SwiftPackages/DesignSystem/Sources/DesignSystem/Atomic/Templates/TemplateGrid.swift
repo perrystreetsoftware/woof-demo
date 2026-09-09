@@ -14,12 +14,12 @@ public struct TemplateGrid<TopBar: View, Content: View>: View {
     public var body: some View {
         VStack(spacing: 0) {
             topBar()
+                .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
             ScrollView {
                 LazyVGrid(columns: columns, spacing: SpacingRoles.Component.extraCompact.rawValue) {
                     content()
                 }
-                .padding(.horizontal, theme.padding.elementCompact)
-                .padding(.bottom, theme.padding.screenBottomRegular)
+                .padding(PaddingRoles.Screen.extraCompact.rawValue)
             }
             .scrollIndicators(.hidden)
         }
@@ -27,9 +27,11 @@ public struct TemplateGrid<TopBar: View, Content: View>: View {
     }
 
     private var columns: [GridItem] {
-        Array(
-            repeating: GridItem(.flexible(), spacing: SpacingRoles.Component.extraCompact.rawValue),
-            count: theme.sizing.gridColumns
-        )
+        [
+            GridItem(
+                .adaptive(minimum: SizingRoles.GridCell.minWidth),
+                spacing: SpacingRoles.Component.extraCompact.rawValue
+            )
+        ]
     }
 }

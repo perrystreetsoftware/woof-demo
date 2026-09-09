@@ -5,8 +5,7 @@ public struct WoofTheme: ThemeImplementing {
     public let isDark: Bool
     public let colors: Colors
     public let alpha: AlphaRoles = .default
-    public let padding: PaddingRoles = .default
-    public let sizing: SizingRoles = .default
+    public let radius: RadiusRoles = .default
     public let typography: Typography = .default
     public let motion: MotionRoles = .default
     public let aspectRatios: AspectRatioRoles = .default

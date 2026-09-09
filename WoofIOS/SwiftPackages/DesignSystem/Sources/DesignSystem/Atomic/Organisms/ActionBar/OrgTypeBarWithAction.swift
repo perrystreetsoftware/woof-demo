@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct OrgTypeBarWithAction: View {
-    @Environment(\.theme) private var theme
-
     private let text: String
     private let placeholder: String
     private let onTextChange: (String) -> Void
@@ -49,7 +47,7 @@ public struct OrgTypeBarWithAction: View {
                 hasBackground: true
             )
         }
-        .padding(.horizontal, theme.padding.elementRelaxed)
-        .padding(.vertical, theme.padding.elementRegular)
+        .padding(.horizontal, PaddingRoles.Element.relaxed.rawValue)
+        .padding(.vertical, PaddingRoles.Element.regular.rawValue)
     }
 }

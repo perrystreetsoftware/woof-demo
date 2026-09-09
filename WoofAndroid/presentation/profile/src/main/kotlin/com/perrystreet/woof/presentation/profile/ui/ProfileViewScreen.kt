@@ -12,6 +12,7 @@ import com.perrystreet.woof.designsystem.atomic.organisms.hero.OrgHeroPhoto
 import com.perrystreet.woof.designsystem.atomic.organisms.hero.OrgHeroSummary
 import com.perrystreet.woof.designsystem.atomic.organisms.section.OrgSectionsPlaceholder
 import com.perrystreet.woof.designsystem.atomic.organisms.toast.OrgToastHost
+import com.perrystreet.woof.designsystem.atomic.templates.TemplateOverlayTop
 import com.perrystreet.woof.designsystem.atomic.templates.TemplateHeroDetails
 import com.perrystreet.woof.designsystem.preview.PreviewDevices
 import com.perrystreet.woof.designsystem.preview.ThemeProvider
@@ -100,9 +101,11 @@ fun ProfileViewScreen(
             )
         },
         overlay = {
-            OrgToastHost(message = woofState.toast?.text(), onDismiss = onWoofToastDismiss)
-            OrgToastHost(message = messageState.toast?.text(), onDismiss = onMessageToastDismiss)
-            OrgToastHost(message = moderationState.toast?.text(), onDismiss = onModerationToastDismiss)
+            TemplateOverlayTop {
+                OrgToastHost(message = woofState.toast?.text(), onDismiss = onWoofToastDismiss)
+                OrgToastHost(message = messageState.toast?.text(), onDismiss = onMessageToastDismiss)
+                OrgToastHost(message = moderationState.toast?.text(), onDismiss = onModerationToastDismiss)
+            }
             ProfileModerationDialog(
                 dialog = moderationState.dialog,
                 onConfirmTap = onModerationDialogConfirm,

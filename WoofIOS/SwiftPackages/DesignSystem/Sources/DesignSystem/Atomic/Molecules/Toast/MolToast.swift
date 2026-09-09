@@ -15,9 +15,9 @@ public struct MolToast: View {
             AtomIcon(icon: Asset.Icons.check, iconSize: .s, colorRole: .primary)
             AtomText(text: text, textFontRole: .subheadP2, maxLines: 2)
         }
-        .padding(.horizontal, theme.padding.elementExpanded)
-        .padding(.vertical, theme.padding.elementRelaxed)
-        .background(theme.colors.surfaceContainer, in: RoundedRectangle(cornerRadius: theme.sizing.radiusL))
-        .shadow(color: theme.colors.shadow.opacity(theme.alpha.shimmerLowMedium), radius: theme.sizing.radiusS)
+        .padding(.horizontal, PaddingRoles.Element.expanded.rawValue)
+        .padding(.vertical, PaddingRoles.Element.relaxed.rawValue)
+        .background(theme.colors.surfaceContainer, in: RoundedRectangle(cornerRadius: theme.radius.l))
+        .shadow(color: theme.colors.shadow.opacity(theme.alpha.shimmerLowMedium), radius: theme.radius.s)
     }
 }

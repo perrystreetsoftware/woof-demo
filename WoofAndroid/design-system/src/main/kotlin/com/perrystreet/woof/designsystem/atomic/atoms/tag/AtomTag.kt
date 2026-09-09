@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.tag.roles.TagStyleRole
 import com.perrystreet.woof.designsystem.theme.Theme
 
@@ -22,11 +23,11 @@ fun AtomTag(
         modifier = Modifier
             .background(
                 color = styleRole.backgroundColor(),
-                shape = RoundedCornerShape(Theme.sizing.radiusXL),
+                shape = RoundedCornerShape(Theme.radius.xl),
             )
             .padding(
-                horizontal = Theme.padding.elementRelaxed,
-                vertical = Theme.padding.elementCompact,
+                horizontal = PaddingRoles.Element.Relaxed.dp,
+                vertical = PaddingRoles.Element.Compact.dp,
             ),
     )
 }

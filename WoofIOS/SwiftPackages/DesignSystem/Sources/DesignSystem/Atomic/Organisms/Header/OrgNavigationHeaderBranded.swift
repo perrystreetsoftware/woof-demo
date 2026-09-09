@@ -9,8 +9,7 @@ public struct OrgNavigationHeaderBranded: View {
         HStack(spacing: 0) {
             MolBrandLogo()
         }
-        .padding(.horizontal, theme.padding.screenHorizontal)
-        .frame(maxWidth: .infinity, minHeight: theme.sizing.interactionHeightComfort, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: SizingRoles.InteractionHeight.comfort.rawValue, alignment: .leading)
         .background(theme.colors.background)
     }
 }

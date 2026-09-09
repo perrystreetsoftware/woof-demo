@@ -16,7 +16,7 @@ fun AtomCircularProgressIndicator(
     CircularProgressIndicator(
         modifier = Modifier.size(iconSize.dp),
         color = colorRole.color(),
-        strokeWidth = Theme.sizing.horizontalRuleS,
+        strokeWidth = SizingRoles.HorizontalRule.S.dp,
         trackColor = Theme.colors.outlineVariant,
     )
 }

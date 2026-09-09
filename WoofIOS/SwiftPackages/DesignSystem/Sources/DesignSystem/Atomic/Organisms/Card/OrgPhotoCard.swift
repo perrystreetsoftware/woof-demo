@@ -21,11 +21,11 @@ public struct OrgPhotoCard: View {
                 MolAsyncImage(state: imageState, contentDescription: contentDescription)
                 AtomHeroScrim()
                 AtomText(text: title, textFontRole: .subheadP2, colorRole: .onScrim, maxLines: 1)
-                    .padding(theme.padding.elementRegular)
+                    .padding(PaddingRoles.Element.regular.rawValue)
             }
             .aspectRatio(theme.aspectRatios.gridCell, contentMode: .fit)
             .background(theme.colors.placeholder)
-            .clipShape(RoundedRectangle(cornerRadius: theme.sizing.radiusS))
+            .clipShape(RoundedRectangle(cornerRadius: theme.radius.s))
         }
         .buttonStyle(.plain)
     }

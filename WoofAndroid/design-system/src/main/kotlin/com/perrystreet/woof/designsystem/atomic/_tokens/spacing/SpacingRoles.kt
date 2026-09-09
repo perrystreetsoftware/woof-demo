@@ -6,7 +6,9 @@ import androidx.compose.ui.unit.Dp
 import com.perrystreet.woof.designsystem.atomic._primitives.spacing.SpacingPrimitives
 
 object SpacingRoles {
-    enum class Component(val dp: Dp) {
+    enum class Component(
+        val dp: Dp,
+    ) {
         Hairline(SpacingPrimitives.Space2),
         ExtraCompact(SpacingPrimitives.Space4),
         Compact(SpacingPrimitives.Space8),
@@ -17,7 +19,9 @@ object SpacingRoles {
         ExtraExpanded(SpacingPrimitives.Space32),
     }
 
-    enum class Module(val dp: Dp) {
+    enum class Module(
+        val dp: Dp,
+    ) {
         Compact(SpacingPrimitives.Space20),
         Regular(SpacingPrimitives.Space40),
         Expanded(SpacingPrimitives.Space60),

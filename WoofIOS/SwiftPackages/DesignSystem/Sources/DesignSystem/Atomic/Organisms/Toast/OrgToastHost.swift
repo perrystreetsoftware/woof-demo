@@ -21,11 +21,7 @@ public struct OrgToastHost: View {
                     .transition(.move(edge: .top).combined(with: .opacity))
             }
         }
-        .padding(.top, theme.padding.screenTopRegular)
-        .padding(.horizontal, theme.padding.screenHorizontal)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(.easeInOut(duration: theme.motion.durationShort), value: message)
-        .allowsHitTesting(false)
         .task(id: message) {
             guard message != nil else { return }
             try? await Task.sleep(for: .seconds(theme.motion.toastDuration))

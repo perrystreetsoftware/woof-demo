@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct MolLabeledValue: View {
-    @Environment(\.theme) private var theme
-
     private let label: String
     private let value: String
     private let toneRole: SectionToneRole
@@ -19,6 +17,6 @@ public struct MolLabeledValue: View {
             AtomText(text: value, textFontRole: .subheadP2, colorRole: toneRole.bodyColorRole, maxLines: 2, textAlign: .trailing)
                 .frame(maxWidth: .infinity, alignment: .trailing)
         }
-        .padding(.vertical, theme.padding.elementRelaxed)
+        .padding(.vertical, PaddingRoles.Element.relaxed.rawValue)
     }
 }

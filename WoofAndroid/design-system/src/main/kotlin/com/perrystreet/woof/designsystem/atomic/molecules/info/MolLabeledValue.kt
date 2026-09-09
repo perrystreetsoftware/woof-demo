@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
 import com.perrystreet.woof.designsystem.atomic.molecules.header.roles.SectionToneRole
-import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
 fun MolLabeledValue(
@@ -23,7 +23,7 @@ fun MolLabeledValue(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(vertical = Theme.padding.elementRelaxed),
+            .padding(vertical = PaddingRoles.Element.Relaxed.dp),
         horizontalArrangement = Arrangement.spacedBy(SpacingRoles.Component.Regular.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

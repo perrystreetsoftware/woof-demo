@@ -3,37 +3,38 @@ package com.perrystreet.woof.designsystem.atomic.templates
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
-import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.only
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.layout.onSizeChanged
-import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.layout.SubcomposeLayout
+import androidx.compose.ui.unit.Constraints
+import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
+import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.templates.base.HeroDetailsScrollConnection
 import com.perrystreet.woof.designsystem.theme.Theme
+import kotlin.math.roundToInt
 
 @Composable
 fun TemplateHeroDetails(
@@ -44,87 +45,108 @@ fun TemplateHeroDetails(
     overlay: @Composable () -> Unit,
     details: LazyListScope.() -> Unit,
 ) {
-    val density = LocalDensity.current
-    val statusBarPadding = WindowInsets.statusBars.asPaddingValues().calculateTopPadding()
-    val topBarHeight = Theme.sizing.interactionHeightComfort + statusBarPadding
-    val panelHorizontalPadding = Theme.padding.screenHorizontal
-    val panelBottomPadding = Theme.padding.elementExpanded
+    val topInset = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
+    val horizontalSafe = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
+    val topBarHeight = SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
+    val panelHorizontalPadding = PaddingRoles.Screen.Regular.dp
+    val panelBottomPadding = PaddingRoles.Screen.Regular.dp
     val bottomBarScrim = Theme.colors.scrimDim
-    val defaultMinHeight = Theme.sizing.heroSummaryMinHeight
-
-    BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Theme.colors.background),
-    ) {
-        var bottomBarHeightPx by remember { mutableIntStateOf(0) }
-        var summaryHeightPx by remember { mutableIntStateOf(0) }
-        val listState = rememberLazyListState()
-        val connection = remember {
+    val listState = rememberLazyListState()
+    val connection =
+        remember {
             HeroDetailsScrollConnection(
                 isListAtTop = { listState.firstVisibleItemIndex == 0 && listState.firstVisibleItemScrollOffset == 0 },
             )
         }
-        val progress by remember { derivedStateOf { connection.progress } }
-        val maxHeightPx = with(density) { (maxHeight - topBarHeight).toPx() }
-        val panelBottomPaddingPx = with(density) { panelBottomPadding.toPx() }
-        val defaultMinHeightPx = with(density) { defaultMinHeight.toPx() }
+    val progress by remember { derivedStateOf { connection.progress } }
 
-        LaunchedEffect(summaryHeightPx, bottomBarHeightPx, maxHeightPx) {
-            val measuredMin = summaryHeightPx + bottomBarHeightPx + panelBottomPaddingPx
-            val minHeightPx = when (summaryHeightPx > 0) {
-                true -> measuredMin
-                false -> defaultMinHeightPx
-            }
-            connection.updateBounds(minHeightPx = minHeightPx, maxHeightPx = maxHeightPx)
-        }
+    SubcomposeLayout(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Theme.colors.background),
+    ) { constraints ->
+        val width = constraints.maxWidth
+        val height = constraints.maxHeight
+        val loose = Constraints(maxWidth = width, maxHeight = height)
 
-        hero({ progress })
-
-        LazyColumn(
-            state = listState,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .height(with(density) { connection.heightPx.toDp() })
-                .nestedScroll(connection),
-            verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
-            contentPadding = PaddingValues(
-                start = panelHorizontalPadding,
-                end = panelHorizontalPadding,
-                bottom = with(density) { bottomBarHeightPx.toDp() } + panelBottomPadding,
-            ),
-        ) {
-            item(key = SummaryKey) {
-                Box(modifier = Modifier.onSizeChanged { summaryHeightPx = it.height }) {
-                    summary()
+        val bottomBarPlaceables =
+            subcompose(HeroDetailsSlot.BottomBar) {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
+                            .imePadding()
+                            .navigationBarsPadding()
+                            .windowInsetsPadding(horizontalSafe),
+                ) {
+                    bottomBar()
                 }
-            }
-            item(key = BottomBarSpacerKey) {
-                val spacerHeight = with(density) { (bottomBarHeightPx * (1f - connection.progress)).toDp() }
-                Spacer(modifier = Modifier.height(spacerHeight))
-            }
-            details()
-        }
+            }.map { it.measure(loose) }
+        val bottomBarHeight = bottomBarPlaceables.maxOfOrNull { it.height } ?: 0
+        val cutoutStart = horizontalSafe.getLeft(this, layoutDirection)
+        val cutoutEnd = horizontalSafe.getRight(this, layoutDirection)
+        val summaryWidth = (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(0)
+        val summaryHeight =
+            subcompose(HeroDetailsSlot.Summary, summary)
+                .map { it.measure(Constraints(minWidth = summaryWidth, maxWidth = summaryWidth)) }
+                .maxOfOrNull { it.height } ?: 0
 
-        Box(modifier = Modifier.align(Alignment.TopCenter)) {
-            topBar()
-        }
+        val minHeightPx = (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
+        val maxHeightPx = (height - topBarHeight.roundToPx()).toFloat().coerceAtLeast(minHeightPx)
+        connection.updateBounds(minHeightPx = minHeightPx, maxHeightPx = maxHeightPx)
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                .onSizeChanged { bottomBarHeightPx = it.height }
-                .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
-                .imePadding()
-                .navigationBarsPadding(),
-        ) {
-            bottomBar()
-        }
+        val panelHeight = connection.heightPx.coerceIn(minHeightPx, maxHeightPx).roundToInt()
+        val bottomBarHeightDp = bottomBarHeight.toDp()
 
-        overlay()
+        val panelPlaceables =
+            subcompose(HeroDetailsSlot.Panel) {
+                LazyColumn(
+                    state = listState,
+                    modifier =
+                        Modifier
+                            .windowInsetsPadding(horizontalSafe)
+                            .nestedScroll(connection),
+                    verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
+                    contentPadding =
+                        PaddingValues(
+                            start = panelHorizontalPadding,
+                            end = panelHorizontalPadding,
+                            bottom = bottomBarHeightDp + panelBottomPadding,
+                        ),
+                ) {
+                    item(key = SummaryKey) {
+                        summary()
+                    }
+                    item(key = BottomBarSpacerKey) {
+                        Spacer(modifier = Modifier.height(bottomBarHeightDp * (1f - connection.progress)))
+                    }
+                    details()
+                }
+            }.map { it.measure(Constraints.fixed(width, panelHeight)) }
+
+        val heroPlaceables = subcompose(HeroDetailsSlot.Hero) { hero({ progress }) }.map { it.measure(loose) }
+        val topBarPlaceables = subcompose(HeroDetailsSlot.TopBar, topBar).map { it.measure(loose) }
+        val overlayPlaceables = subcompose(HeroDetailsSlot.Overlay, overlay).map { it.measure(loose) }
+
+        layout(width, height) {
+            heroPlaceables.forEach { it.place(x = 0, y = 0) }
+            panelPlaceables.forEach { it.place(x = 0, y = height - panelHeight) }
+            topBarPlaceables.forEach { it.place(x = 0, y = 0) }
+            bottomBarPlaceables.forEach { it.place(x = 0, y = height - it.height) }
+            overlayPlaceables.forEach { it.place(x = 0, y = 0) }
+        }
     }
+}
+
+private enum class HeroDetailsSlot {
+    Hero,
+    TopBar,
+    Summary,
+    Panel,
+    BottomBar,
+    Overlay,
 }
 
 private const val SummaryKey = "hero_details_summary"

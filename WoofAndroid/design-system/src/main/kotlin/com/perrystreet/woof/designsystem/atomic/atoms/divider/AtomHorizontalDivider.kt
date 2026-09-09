@@ -2,12 +2,13 @@ package com.perrystreet.woof.designsystem.atomic.atoms.divider
 
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.Composable
+import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
 import com.perrystreet.woof.designsystem.theme.Theme
 
 @Composable
 fun AtomHorizontalDivider() {
     HorizontalDivider(
-        thickness = Theme.sizing.horizontalRuleXS,
+        thickness = SizingRoles.HorizontalRule.XS.dp,
         color = Theme.colors.outlineVariant,
     )
 }
