@@ -23,7 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier`
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -85,9 +85,6 @@ fun TemplateHeroDetails(
                 }
             }.map { it.measure(loose) }
         val bottomBarHeight = bottomBarPlaceables.maxOfOrNull { it.height } ?: 0
-
-        // Collapsed, the panel is as tall as the summary plus the bottom bar, so the summary is
-        // measured in a slot of its own at the width it will get inside the list.
         val cutoutStart = horizontalSafe.getLeft(this, layoutDirection)
         val cutoutEnd = horizontalSafe.getRight(this, layoutDirection)
         val summaryWidth = (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(0)
