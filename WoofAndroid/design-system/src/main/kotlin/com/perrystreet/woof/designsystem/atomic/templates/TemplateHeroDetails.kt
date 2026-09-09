@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -22,12 +23,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
+import androidx.compose.ui.Modifier`
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.SubcomposeLayout
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.ui.unit.Constraints
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
@@ -52,34 +52,38 @@ fun TemplateHeroDetails(
     val panelBottomPadding = PaddingRoles.Screen.Regular.dp
     val bottomBarScrim = Theme.colors.scrimDim
     val listState = rememberLazyListState()
-    val connection = remember {
-        HeroDetailsScrollConnection(
-            isListAtTop = { listState.firstVisibleItemIndex == 0 && listState.firstVisibleItemScrollOffset == 0 },
-        )
-    }
+    val connection =
+        remember {
+            HeroDetailsScrollConnection(
+                isListAtTop = { listState.firstVisibleItemIndex == 0 && listState.firstVisibleItemScrollOffset == 0 },
+            )
+        }
     val progress by remember { derivedStateOf { connection.progress } }
 
     SubcomposeLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Theme.colors.background),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Theme.colors.background),
     ) { constraints ->
         val width = constraints.maxWidth
         val height = constraints.maxHeight
         val loose = Constraints(maxWidth = width, maxHeight = height)
 
-        val bottomBarPlaceables = subcompose(HeroDetailsSlot.BottomBar) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
-                    .imePadding()
-                    .navigationBarsPadding()
-                    .windowInsetsPadding(horizontalSafe),
-            ) {
-                bottomBar()
-            }
-        }.map { it.measure(loose) }
+        val bottomBarPlaceables =
+            subcompose(HeroDetailsSlot.BottomBar) {
+                Box(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
+                            .imePadding()
+                            .navigationBarsPadding()
+                            .windowInsetsPadding(horizontalSafe),
+                ) {
+                    bottomBar()
+                }
+            }.map { it.measure(loose) }
         val bottomBarHeight = bottomBarPlaceables.maxOfOrNull { it.height } ?: 0
 
         // Collapsed, the panel is as tall as the summary plus the bottom bar, so the summary is
@@ -87,9 +91,10 @@ fun TemplateHeroDetails(
         val cutoutStart = horizontalSafe.getLeft(this, layoutDirection)
         val cutoutEnd = horizontalSafe.getRight(this, layoutDirection)
         val summaryWidth = (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(0)
-        val summaryHeight = subcompose(HeroDetailsSlot.Summary, summary)
-            .map { it.measure(Constraints(minWidth = summaryWidth, maxWidth = summaryWidth)) }
-            .maxOfOrNull { it.height } ?: 0
+        val summaryHeight =
+            subcompose(HeroDetailsSlot.Summary, summary)
+                .map { it.measure(Constraints(minWidth = summaryWidth, maxWidth = summaryWidth)) }
+                .maxOfOrNull { it.height } ?: 0
 
         val minHeightPx = (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
         val maxHeightPx = (height - topBarHeight.roundToPx()).toFloat().coerceAtLeast(minHeightPx)
@@ -98,28 +103,31 @@ fun TemplateHeroDetails(
         val panelHeight = connection.heightPx.coerceIn(minHeightPx, maxHeightPx).roundToInt()
         val bottomBarHeightDp = bottomBarHeight.toDp()
 
-        val panelPlaceables = subcompose(HeroDetailsSlot.Panel) {
-            LazyColumn(
-                state = listState,
-                modifier = Modifier
-                    .windowInsetsPadding(horizontalSafe)
-                    .nestedScroll(connection),
-                verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
-                contentPadding = PaddingValues(
-                    start = panelHorizontalPadding,
-                    end = panelHorizontalPadding,
-                    bottom = bottomBarHeightDp + panelBottomPadding,
-                ),
-            ) {
-                item(key = SummaryKey) {
-                    summary()
+        val panelPlaceables =
+            subcompose(HeroDetailsSlot.Panel) {
+                LazyColumn(
+                    state = listState,
+                    modifier =
+                        Modifier
+                            .windowInsetsPadding(horizontalSafe)
+                            .nestedScroll(connection),
+                    verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
+                    contentPadding =
+                        PaddingValues(
+                            start = panelHorizontalPadding,
+                            end = panelHorizontalPadding,
+                            bottom = bottomBarHeightDp + panelBottomPadding,
+                        ),
+                ) {
+                    item(key = SummaryKey) {
+                        summary()
+                    }
+                    item(key = BottomBarSpacerKey) {
+                        Spacer(modifier = Modifier.height(bottomBarHeightDp * (1f - connection.progress)))
+                    }
+                    details()
                 }
-                item(key = BottomBarSpacerKey) {
-                    Spacer(modifier = Modifier.height(bottomBarHeightDp * (1f - connection.progress)))
-                }
-                details()
-            }
-        }.map { it.measure(Constraints.fixed(width, panelHeight)) }
+            }.map { it.measure(Constraints.fixed(width, panelHeight)) }
 
         val heroPlaceables = subcompose(HeroDetailsSlot.Hero) { hero({ progress }) }.map { it.measure(loose) }
         val topBarPlaceables = subcompose(HeroDetailsSlot.TopBar, topBar).map { it.measure(loose) }

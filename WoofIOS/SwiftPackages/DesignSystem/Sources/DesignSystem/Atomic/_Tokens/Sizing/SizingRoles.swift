@@ -1,19 +1,6 @@
 import Foundation
 
-public struct SizingRoles {
-    public let radiusXS: CGFloat
-    public let radiusS: CGFloat
-    public let radiusM: CGFloat
-    public let radiusL: CGFloat
-    public let radiusXL: CGFloat
-    public let horizontalRuleXS: CGFloat
-    public let horizontalRuleS: CGFloat
-    public let interactionHeightCompact: CGFloat
-    public let interactionHeightDefault: CGFloat
-    public let interactionHeightComfort: CGFloat
-    public let heroSummaryMinHeight: CGFloat
-    public let gridColumns: Int
-
+public enum SizingRoles {
     public enum Icon {
         case xs
         case s
@@ -48,18 +35,33 @@ public struct SizingRoles {
         }
     }
 
-    public static let `default` = SizingRoles(
-        radiusXS: SizingPrimitives.size2.rawValue,
-        radiusS: SizingPrimitives.size4.rawValue,
-        radiusM: SizingPrimitives.size8.rawValue,
-        radiusL: SizingPrimitives.size12.rawValue,
-        radiusXL: SizingPrimitives.size20.rawValue,
-        horizontalRuleXS: SizingPrimitives.size1.rawValue,
-        horizontalRuleS: SizingPrimitives.size2.rawValue,
-        interactionHeightCompact: SizingPrimitives.size32.rawValue,
-        interactionHeightDefault: SizingPrimitives.size48.rawValue,
-        interactionHeightComfort: SizingPrimitives.size56.rawValue,
-        heroSummaryMinHeight: SizingPrimitives.size240.rawValue,
-        gridColumns: 3
-    )
+    public enum HorizontalRule {
+        case xs
+        case s
+
+        public var rawValue: CGFloat {
+            switch self {
+            case .xs: SizingPrimitives.size1.rawValue
+            case .s: SizingPrimitives.size2.rawValue
+            }
+        }
+    }
+
+    public enum InteractionHeight {
+        case compact
+        case `default`
+        case comfort
+
+        public var rawValue: CGFloat {
+            switch self {
+            case .compact: SizingPrimitives.size32.rawValue
+            case .default: SizingPrimitives.size48.rawValue
+            case .comfort: SizingPrimitives.size56.rawValue
+            }
+        }
+    }
+
+    public enum GridCell {
+        public static let minWidth: CGFloat = SizingPrimitives.size128.rawValue
+    }
 }

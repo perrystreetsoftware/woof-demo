@@ -21,7 +21,7 @@ public struct MolButton: View {
             onTap: onTap,
             role: role,
             state: state,
-            minHeight: theme.sizing.interactionHeightComfort,
+            minHeight: SizingRoles.InteractionHeight.comfort.rawValue,
             textFontRole: .displayH4,
             fillsWidth: true
         )
@@ -49,7 +49,7 @@ public struct MolButtonCompact: View {
             onTap: onTap,
             role: role,
             state: state,
-            minHeight: theme.sizing.interactionHeightDefault,
+            minHeight: SizingRoles.InteractionHeight.default.rawValue,
             textFontRole: .displayH5,
             fillsWidth: false
         )
@@ -83,9 +83,9 @@ private struct MolButtonContent: View {
                     )
                 }
             }
-            .padding(.horizontal, theme.padding.elementExpanded)
+            .padding(.horizontal, PaddingRoles.Element.expanded.rawValue)
             .frame(maxWidth: fillsWidth ? .infinity : nil, minHeight: minHeight)
-            .background(role.surfaceColor(from: theme), in: RoundedRectangle(cornerRadius: theme.sizing.radiusM))
+            .background(role.surfaceColor(from: theme), in: RoundedRectangle(cornerRadius: theme.radius.m))
         }
         .buttonStyle(.plain)
         .disabled(!state.isClickable)

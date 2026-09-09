@@ -47,11 +47,11 @@ public struct MolTypeBar: View {
             .buttonStyle(.plain)
             .disabled(!isSubmitEnabled)
         }
-        .padding(.leading, theme.padding.elementExpanded)
-        .padding(.trailing, theme.padding.elementRelaxed)
-        .padding(.vertical, theme.padding.elementRelaxed)
-        .frame(minHeight: theme.sizing.interactionHeightDefault)
-        .background(theme.colors.scrimContainer, in: RoundedRectangle(cornerRadius: theme.sizing.radiusXL))
+        .padding(.leading, PaddingRoles.Element.expanded.rawValue)
+        .padding(.trailing, PaddingRoles.Element.relaxed.rawValue)
+        .padding(.vertical, PaddingRoles.Element.relaxed.rawValue)
+        .frame(minHeight: SizingRoles.InteractionHeight.default.rawValue)
+        .background(theme.colors.scrimContainer, in: RoundedRectangle(cornerRadius: theme.radius.xl))
     }
 
     private var submitColorRole: IconColorRole {

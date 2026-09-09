@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct OrgEmptyState: View {
-    @Environment(\.theme) private var theme
-
     private let title: String
     private let message: String
 
@@ -19,7 +17,6 @@ public struct OrgEmptyState: View {
             AtomSpacer(spacing: .compact)
             AtomText(text: message, textFontRole: .bodyP1, colorRole: .onSurfaceVariant, textAlign: .center)
         }
-        .padding(.horizontal, theme.padding.screenHorizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

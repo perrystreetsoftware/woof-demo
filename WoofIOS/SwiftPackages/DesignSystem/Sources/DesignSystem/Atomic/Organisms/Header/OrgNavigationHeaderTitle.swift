@@ -13,8 +13,7 @@ public struct OrgNavigationHeaderTitle: View {
         HStack(spacing: 0) {
             AtomText(text: title, textFontRole: .displayH2, maxLines: 1)
         }
-        .padding(.horizontal, theme.padding.screenHorizontal)
-        .frame(maxWidth: .infinity, minHeight: theme.sizing.interactionHeightComfort, alignment: .leading)
+        .frame(maxWidth: .infinity, minHeight: SizingRoles.InteractionHeight.comfort.rawValue, alignment: .leading)
         .background(theme.colors.background)
     }
 }

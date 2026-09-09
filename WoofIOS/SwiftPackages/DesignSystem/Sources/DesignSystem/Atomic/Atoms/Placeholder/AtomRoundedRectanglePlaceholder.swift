@@ -6,7 +6,7 @@ public struct AtomRoundedRectanglePlaceholder: View {
     public init() {}
 
     public var body: some View {
-        RoundedRectangle(cornerRadius: theme.sizing.radiusS)
+        RoundedRectangle(cornerRadius: theme.radius.s)
             .fill(theme.colors.placeholder)
     }
 }

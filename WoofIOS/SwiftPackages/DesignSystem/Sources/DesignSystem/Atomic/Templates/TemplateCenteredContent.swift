@@ -14,7 +14,9 @@ public struct TemplateCenteredContent<TopBar: View, Content: View>: View {
     public var body: some View {
         VStack(spacing: 0) {
             topBar()
+                .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
             content()
+                .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         .background(theme.colors.background.ignoresSafeArea())

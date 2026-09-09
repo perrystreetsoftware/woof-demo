@@ -8,6 +8,6 @@ public struct AtomHorizontalDivider: View {
     public var body: some View {
         Rectangle()
             .fill(theme.colors.outlineVariant)
-            .frame(height: theme.sizing.horizontalRuleXS)
+            .frame(height: SizingRoles.HorizontalRule.xs.rawValue)
     }
 }

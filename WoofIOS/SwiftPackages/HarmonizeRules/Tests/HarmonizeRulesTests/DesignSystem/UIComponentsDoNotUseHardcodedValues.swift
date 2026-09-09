@@ -26,9 +26,9 @@ final class UIComponentsDoNotUseHardcodedValues: QuickSpec {
     private static let pointMessage = LintRuleMessage(
         rule: "Views never hardcode point values.",
         why: "Spacing, sizing, and radii are tokens tuned in one place. A literal point value bypasses that and drifts between components.",
-        howToFix: "Use theme.padding.*, theme.sizing.*, SpacingRoles.*, or SizingRoles.* instead of the literal.",
+        howToFix: "Use PaddingRoles.*, SpacingRoles.*, SizingRoles.*, or theme.radius.* instead of the literal.",
         badExample: ".padding(16)",
-        goodExample: ".padding(theme.padding.elementRegular)"
+        goodExample: ".padding(PaddingRoles.Element.regular.rawValue)"
     )
 
     private static let colorMessage = LintRuleMessage(

@@ -111,9 +111,11 @@ public struct ProfileViewScreen: View {
                 )
             },
             overlay: {
-                OrgToastHost(message: woofState.toast?.text, onDismiss: onWoofToastDismiss)
-                OrgToastHost(message: messageState.toast?.text, onDismiss: onMessageToastDismiss)
-                OrgToastHost(message: moderationState.toast?.text, onDismiss: onModerationToastDismiss)
+                TemplateOverlayTop {
+                    OrgToastHost(message: woofState.toast?.text, onDismiss: onWoofToastDismiss)
+                    OrgToastHost(message: messageState.toast?.text, onDismiss: onMessageToastDismiss)
+                    OrgToastHost(message: moderationState.toast?.text, onDismiss: onModerationToastDismiss)
+                }
             },
             details: {
                 switch detailsState.content {

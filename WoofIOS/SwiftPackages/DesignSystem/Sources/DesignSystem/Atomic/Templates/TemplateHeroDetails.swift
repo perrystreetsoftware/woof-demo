@@ -35,9 +35,9 @@ public struct TemplateHeroDetails<Hero: View, TopBar: View, Summary: View, Botto
             let topInset = max(proxy.safeAreaInsets.top, inheritedInsets.top)
             let bottomInset = max(proxy.safeAreaInsets.bottom, inheritedInsets.bottom)
             let containerHeight = proxy.size.height + proxy.safeAreaInsets.top + proxy.safeAreaInsets.bottom
-            let topBarHeight = theme.sizing.interactionHeightComfort + topInset
-            let panelBottomPadding = theme.padding.elementExpanded
-            let panelMinHeight = max(summaryHeight + bottomBarHeight + panelBottomPadding, theme.sizing.heroSummaryMinHeight)
+            let topBarHeight = SizingRoles.InteractionHeight.comfort.rawValue + topInset
+            let panelBottomPadding = PaddingRoles.Screen.regular.rawValue
+            let panelMinHeight = summaryHeight + bottomBarHeight + panelBottomPadding
             let maxOffset = max(containerHeight - topBarHeight - panelMinHeight, 1)
             let progress = min(max(scrollOffset / maxOffset, 0), 1)
             ZStack(alignment: .top) {
@@ -53,7 +53,7 @@ public struct TemplateHeroDetails<Hero: View, TopBar: View, Summary: View, Botto
                             .frame(height: bottomBarHeight * (1 - progress))
                         details()
                     }
-                    .padding(.horizontal, theme.padding.screenHorizontal)
+                    .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
                     .padding(.bottom, bottomBarHeight + panelBottomPadding)
                 }
                 .scrollIndicators(.hidden)

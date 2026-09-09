@@ -17,5 +17,6 @@ public enum SizingPrimitives: CGFloat {
     case size60 = 60
     case size88 = 88
     case size108 = 108
+    case size128 = 128
     case size240 = 240
 }

@@ -14,13 +14,14 @@ public struct TemplateScrollableContent<TopBar: View, Content: View>: View {
     public var body: some View {
         VStack(spacing: 0) {
             topBar()
+                .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: SpacingRoles.Module.compact.rawValue) {
                     content()
                 }
-                .padding(.horizontal, theme.padding.screenHorizontal)
-                .padding(.top, theme.padding.elementRegular)
-                .padding(.bottom, theme.padding.screenBottomRegular)
+                .padding(.horizontal, PaddingRoles.Screen.regular.rawValue)
+                .padding(.top, PaddingRoles.Screen.compact.rawValue)
+                .padding(.bottom, PaddingRoles.Screen.regular.rawValue)
             }
             .scrollIndicators(.hidden)
         }

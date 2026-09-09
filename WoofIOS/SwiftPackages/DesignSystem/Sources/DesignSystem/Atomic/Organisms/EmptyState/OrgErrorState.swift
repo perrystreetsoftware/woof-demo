@@ -1,8 +1,6 @@
 import SwiftUI
 
 public struct OrgErrorState: View {
-    @Environment(\.theme) private var theme
-
     private let title: String
     private let message: String
     private let actionText: String
@@ -25,7 +23,6 @@ public struct OrgErrorState: View {
             AtomSpacer(spacing: .expanded)
             MolButtonCompact(text: actionText, onTap: onActionTap)
         }
-        .padding(.horizontal, theme.padding.screenHorizontal)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

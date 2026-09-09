@@ -14,7 +14,7 @@ public struct AtomTextPlaceholder: View {
             .font(role.font(from: theme))
             .lineLimit(1)
             .opacity(0)
-            .background(theme.colors.placeholder, in: RoundedRectangle(cornerRadius: theme.sizing.radiusS))
+            .background(theme.colors.placeholder, in: RoundedRectangle(cornerRadius: theme.radius.s))
             .accessibilityHidden(true)
     }
 }
