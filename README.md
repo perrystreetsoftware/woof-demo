@@ -2,10 +2,10 @@
 
 Woof is an open-source architecture demo app built by [Perry Street Software](https://www.perrystreet.com), the creators of [SCRUFF](https://www.scruff.com) and [Jack'd](https://www.jackd.com/). It mirrors the patterns we use in our production apps so we can showcase them in conference talks, blog posts, and engineering interviews without exposing proprietary code:
 
-- MVVM and Clean Architecture with a strict, unidirectional flow of dependencies: View → ViewModel → UseCase → Repository → DataSource
-- Atomic design system for the UI components, from primitives and tokens to organisms and templates
-- Architectural lint rules written as unit tests
-- BDD tests at the ViewModel layer, faking only the data source layer
+- **MVVM and Clean Architecture** with a strict, unidirectional flow of dependencies: View → ViewModel → UseCase → Repository → DataSource
+- **Atomic design** system for the UI components, from primitives and tokens to organisms and templates
+- **Architectural lint rules** written as unit tests
+- **BDD tests** at the ViewModel layer, faking only the data source layer
 
 The features are deliberately small. Woof is a "playdate" app for dogs: a grid of 1,000 dog profiles that you can browse, open fullscreen, swipe between, favorite, woof at, and message, plus Favorites and Account tabs. All data is local. There are no network calls, no analytics, and no accounts. The dog names, breeds, neighborhoods, and bios are generated fixtures; the photos are generated illustrations bundled with each app.
 
