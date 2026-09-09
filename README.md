@@ -1,8 +1,15 @@
 # Woof
 
-Woof is an open-source demo app built by [Perry Street Software](https://www.perrystreet.com), the creators of [SCRUFF](https://www.scruff.com) and [Jack'd](https://www.jackd.com/). It is a "playdate" app for dogs: a grid of 1,000 dog profiles that you can browse, open fullscreen, swipe between, favorite, woof at, and message, plus a favorites tab and a read-only account tab.
+Woof is an open-source architecture demo app built by [Perry Street Software](https://www.perrystreet.com), the creators of [SCRUFF](https://www.scruff.com) and [Jack'd](https://www.jackd.com/). It mirrors the patterns we use in our production apps so we can showcase them in conference talks, blog posts, and engineering interviews without exposing proprietary code:
 
-The repository contains both the Android & iOS app with strict feature parity and code parity between them.
+- MVVM and Clean Architecture with a strict, unidirectional flow of dependencies: View → ViewModel → UseCase → Repository → DataSource
+- Atomic design system for the UI components, from primitives and tokens to organisms and templates
+- Architectural lint rules written as unit tests
+- BDD tests at the ViewModel layer, faking only the data source layer
+
+The features are deliberately small. Woof is a "playdate" app for dogs: a grid of 1,000 dog profiles that you can browse, open fullscreen, swipe between, favorite, woof at, and message, plus Favorites and Account tabs. All data is local. There are no network calls, no analytics, and no accounts. The dog names, breeds, neighborhoods, and bios are generated fixtures; the photos are generated illustrations bundled with each app.
+
+The repository contains both the Android and iOS app, with strict feature parity and code parity between them.
 
 | | Android | iOS |
 |---|---|---|
@@ -12,10 +19,6 @@ The repository contains both the Android & iOS app with strict feature parity an
 | DI | Koin annotations | Swinject + macros + codegen |
 | Tests | Kotest `BehaviorSpec` | Quick + Nimble with a Given / When / Then DSL |
 | Linter | [Konsist](https://github.com/LemonAppDev/konsist) | [Harmonize](https://github.com/perrystreetsoftware/Harmonize) |
-
-The features are deliberately small. The goal of the app is showcasing our **architecture**: Woof mirrors the patterns we use in our production apps so we can use them in conference talks, blog posts, and engineering interviews without exposing proprietary code.
-
-All data is local. There are no network calls, no analytics, and no accounts. The dog names, breeds, neighborhoods, and bios are generated fixtures; the photos are generated illustrations bundled with each app.
 
 ## Architecture
 
