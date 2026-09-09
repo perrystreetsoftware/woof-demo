@@ -7,7 +7,7 @@ Woof is an open-source architecture demo app built by [Perry Street Software](ht
 - Architectural lint rules written as unit tests
 - BDD tests at the ViewModel layer, faking only the data source layer
 
-The features are deliberately small. Woof is a "playdate" app for dogs: a grid of 1,000 dog profiles that you can browse, open fullscreen, swipe between, favorite, woof at, and message, plus a favorites and an account tab. All data is local. There are no network calls, no analytics, and no accounts. The dog names, breeds, neighborhoods, and bios are generated fixtures; the photos are generated illustrations bundled with each app.
+The features are deliberately small. Woof is a "playdate" app for dogs: a grid of 1,000 dog profiles that you can browse, open fullscreen, swipe between, favorite, woof at, and message, plus Favorites and Account tabs. All data is local. There are no network calls, no analytics, and no accounts. The dog names, breeds, neighborhoods, and bios are generated fixtures; the photos are generated illustrations bundled with each app.
 
 The repository contains both the Android and iOS app, with strict feature parity and code parity between them.
 
