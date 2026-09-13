@@ -24,8 +24,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.unit.Constraints
@@ -50,7 +48,7 @@ fun TemplateHeroDetails(
     val topBarHeight = SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
     val panelHorizontalPadding = PaddingRoles.Screen.Regular.dp
     val panelBottomPadding = PaddingRoles.Screen.Regular.dp
-    val bottomBarScrim = Theme.colors.scrimDim
+    val bottomBarScrim = Theme.gradients.scrimVertical
     val listState = rememberLazyListState()
     val connection =
         remember {
@@ -62,9 +60,9 @@ fun TemplateHeroDetails(
 
     SubcomposeLayout(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .background(Theme.colors.background),
+        Modifier
+            .fillMaxSize()
+            .background(Theme.colors.background),
     ) { constraints ->
         val width = constraints.maxWidth
         val height = constraints.maxHeight
@@ -74,12 +72,12 @@ fun TemplateHeroDetails(
             subcompose(HeroDetailsSlot.BottomBar) {
                 Box(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
-                            .imePadding()
-                            .navigationBarsPadding()
-                            .windowInsetsPadding(horizontalSafe),
+                    Modifier
+                        .fillMaxWidth()
+                        .background(bottomBarScrim)
+                        .imePadding()
+                        .navigationBarsPadding()
+                        .windowInsetsPadding(horizontalSafe),
                 ) {
                     bottomBar()
                 }
@@ -105,16 +103,16 @@ fun TemplateHeroDetails(
                 LazyColumn(
                     state = listState,
                     modifier =
-                        Modifier
-                            .windowInsetsPadding(horizontalSafe)
-                            .nestedScroll(connection),
+                    Modifier
+                        .windowInsetsPadding(horizontalSafe)
+                        .nestedScroll(connection),
                     verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
                     contentPadding =
-                        PaddingValues(
-                            start = panelHorizontalPadding,
-                            end = panelHorizontalPadding,
-                            bottom = bottomBarHeightDp + panelBottomPadding,
-                        ),
+                    PaddingValues(
+                        start = panelHorizontalPadding,
+                        end = panelHorizontalPadding,
+                        bottom = bottomBarHeightDp + panelBottomPadding,
+                    ),
                 ) {
                     item(key = SummaryKey) {
                         summary()

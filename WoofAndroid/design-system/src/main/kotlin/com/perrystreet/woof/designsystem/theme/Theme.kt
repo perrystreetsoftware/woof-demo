@@ -12,6 +12,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import com.perrystreet.woof.designsystem.atomic._tokens.alpha.AlphaRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.aspectratio.AspectRatioRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.colors.Colors
+import com.perrystreet.woof.designsystem.atomic._tokens.gradient.GradientRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.motion.MotionRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.radius.RadiusRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.typography.Typography
@@ -70,6 +71,10 @@ object Theme {
     val radius: RadiusRoles
         @Composable @ReadOnlyComposable
         get() = LocalTheme.current.radius
+
+    val gradients: GradientRoles
+        @Composable @ReadOnlyComposable
+        get() = LocalTheme.current.gradients
 
     val typography: Typography
         @Composable @ReadOnlyComposable

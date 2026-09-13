@@ -23,6 +23,8 @@ abstract class BaseBehaviorSpec : BehaviorSpec(), KoinTest {
 
     override suspend fun beforeSpec(spec: Spec) {
         super.beforeSpec(spec)
+        // Kotest 6 starts each leaf's spec instance while the first instance's Koin is still running.
+        stopKoin()
         startKoin {
             modules(coreTestModules + featureModules)
         }

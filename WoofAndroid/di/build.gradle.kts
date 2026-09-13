@@ -23,8 +23,6 @@ dependencies {
     implementation(libs.rxandroid)
     api(platform(libs.koin.bom))
     api(libs.koin.core)
-    implementation(platform(libs.koin.annotations.bom))
     implementation(libs.koin.annotations)
-    ksp(platform(libs.koin.annotations.bom))
     ksp(libs.koin.ksp.compiler)
 }

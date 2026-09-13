@@ -5,6 +5,7 @@ import com.perrystreet.woof.designsystem.atomic._tokens.alpha.AlphaRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.aspectratio.AspectRatioRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.colors.ColorRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.colors.Colors
+import com.perrystreet.woof.designsystem.atomic._tokens.gradient.GradientRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.motion.MotionRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.radius.RadiusRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.typography.Typography
@@ -16,6 +17,7 @@ class WoofTheme private constructor(
     override val isDark: Boolean,
     override val colors: Colors,
 ) : ITheme {
+    override val gradients: GradientRoles = GradientRoles.from(colors)
     override val alpha: AlphaRoles = AlphaRoles.Default
     override val radius: RadiusRoles = RadiusRoles.Default
     override val typography: Typography = TypographyRoles.Default

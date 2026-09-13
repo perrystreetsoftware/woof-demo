@@ -24,6 +24,16 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    components {
+        // koin-ksp-compiler generates code for koin-annotations 2.x, which koin-bom 4.2 would otherwise upgrade.
+        withModule("io.insert-koin:koin-bom") {
+            allVariants {
+                withDependencyConstraints {
+                    removeAll { it.name == "koin-annotations" }
+                }
+            }
+        }
+    }
 }
 
 rootProject.name = "WoofAndroid"

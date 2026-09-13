@@ -26,3 +26,6 @@ xcuserdata/
 *.xcuserstate
 DerivedData/
 *.xcresult
+
+# ktlint Compose ruleset jar
+WoofAndroid/tools/ktlint/*.jar

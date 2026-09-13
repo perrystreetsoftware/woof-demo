@@ -4,7 +4,8 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.perrystreet.woof.designsystem.atomic.molecules.placeholder.MolCardPlaceholder
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.AtomPlaceholder
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
 import com.perrystreet.woof.designsystem.atomic.organisms.emptystate.OrgErrorState
 import com.perrystreet.woof.designsystem.atomic.organisms.header.OrgNavigationHeaderBranded
 import com.perrystreet.woof.designsystem.atomic.templates.TemplateCenteredContent
@@ -41,7 +42,7 @@ fun GridScreen(
 private fun GridLoadingScreen() {
     TemplateGrid(topBar = { OrgNavigationHeaderBranded() }) {
         items(PlaceholderCellCount) {
-            MolCardPlaceholder()
+            AtomPlaceholder(role = PlaceholderRole.Card)
         }
     }
 }
@@ -57,7 +58,7 @@ private fun GridLoadedScreen(
             DogCell(cell = cell, onCellAppear = onCellAppear, onCellTap = onCellTap)
         }
         items(state.loadingMoreCellCount) {
-            MolCardPlaceholder()
+            AtomPlaceholder(role = PlaceholderRole.Card)
         }
     }
 }

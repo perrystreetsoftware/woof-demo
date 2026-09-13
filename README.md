@@ -68,7 +68,7 @@ Each Android module has an equivalent Swift package with the same responsibility
 - **UI models and mappers.** ViewModels never expose domain models to the view. `DomainToUIModel` mappers produce UI models, while resource mapping lives in extensions in the screens layer.
 - **Reactive programming.** Repositories expose streams backed by subjects (`BehaviorSubject` / `CurrentValueSubject`), use cases compose them, and the ViewModels map them into UI state.
 - **DTOs and mappers.** Data sources return DTOs and repositories transform them into domain models using `DTOToDomain` mappers.
-- **Atomic design.** Screens only use `Template*`, `Org*`, `Mol*`, and `Atom*` components. Colors, spacing, sizing, and typography are only reachable through theme tokens inside the design system.
+- **Atomic design.** Screens only use `Template*`, `Org*`, `Mol*`, and `Atom*` components. Colors and typography are only reachable through theme tokens inside the design system.
 - **Dependency injection using annotations.** Android uses Koin's `@Single`, `@Factory`, and `@KoinViewModel`. iOS has the same `@Single` and `@Factory` annotations, implemented as Swift macros, and `scripts/SwinjectCodegen` generates the Swinject registrations from them.
 
 ### Platform-specific choices

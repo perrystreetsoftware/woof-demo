@@ -1,6 +1,5 @@
 import com.android.build.api.dsl.LibraryExtension
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
+import com.google.devtools.ksp.gradle.KspExtension
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -11,14 +10,13 @@ plugins {
 }
 
 subprojects {
-    plugins.withId("org.jetbrains.kotlin.jvm") {
+    plugins.withId("java-base") {
         extensions.configure<JavaPluginExtension> {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get().toInt()))
         }
-        extensions.configure<KotlinJvmProjectExtension> {
-            compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
-        }
+    }
+
+    plugins.withId("org.jetbrains.kotlin.jvm") {
         tasks.withType<Test>().configureEach {
             useJUnitPlatform()
         }
@@ -32,10 +30,6 @@ subprojects {
             defaultConfig {
                 minSdk = libs.versions.android.sdk.min.get().toInt()
             }
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_17
-                targetCompatibility = JavaVersion.VERSION_17
-            }
             testOptions {
                 unitTests.all { it.useJUnitPlatform() }
             }
@@ -43,7 +37,7 @@ subprojects {
     }
 
     plugins.withId("com.google.devtools.ksp") {
-        extensions.configure<com.google.devtools.ksp.gradle.KspExtension> {
+        extensions.configure<KspExtension> {
             arg("KOIN_CONFIG_CHECK", "false")
             arg("KOIN_DEFAULT_MODULE", "false")
         }
