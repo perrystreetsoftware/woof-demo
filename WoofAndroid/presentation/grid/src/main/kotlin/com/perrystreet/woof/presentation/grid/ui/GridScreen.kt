@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.AtomPlaceholder
-import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.ShapePlaceholderRole
 import com.perrystreet.woof.designsystem.atomic.organisms.emptystate.OrgErrorState
 import com.perrystreet.woof.designsystem.atomic.organisms.header.OrgNavigationHeaderBranded
 import com.perrystreet.woof.designsystem.atomic.templates.TemplateCenteredContent
@@ -42,7 +42,7 @@ fun GridScreen(
 private fun GridLoadingScreen() {
     TemplateGrid(topBar = { OrgNavigationHeaderBranded() }) {
         items(PlaceholderCellCount) {
-            AtomPlaceholder(role = PlaceholderRole.Card)
+            AtomPlaceholder(role = ShapePlaceholderRole.Card)
         }
     }
 }
@@ -58,7 +58,7 @@ private fun GridLoadedScreen(
             DogCell(cell = cell, onCellAppear = onCellAppear, onCellTap = onCellTap)
         }
         items(state.loadingMoreCellCount) {
-            AtomPlaceholder(role = PlaceholderRole.Card)
+            AtomPlaceholder(role = ShapePlaceholderRole.Card)
         }
     }
 }

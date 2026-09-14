@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.AtomPlaceholder
-import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.TagPlaceholderRole
 
 @Composable
 fun MolTagGroupPlaceholder() {
@@ -19,7 +19,7 @@ fun MolTagGroupPlaceholder() {
 }
 
 private val SampleTagRoles = listOf(
-    PlaceholderRole.TagExpanded,
-    PlaceholderRole.TagRegular,
-    PlaceholderRole.TagCompact,
+    TagPlaceholderRole.Expanded,
+    TagPlaceholderRole.Regular,
+    TagPlaceholderRole.Compact,
 )

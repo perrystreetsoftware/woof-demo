@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.perrystreet.woof.designsystem.atomic.atoms.image.AtomPainterImage
 import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.AtomPlaceholder
-import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.ShapePlaceholderRole
 import com.perrystreet.woof.designsystem.atomic.molecules.image.state.AsyncImageState
 
 @Composable
@@ -28,7 +28,7 @@ fun MolAsyncImage(
         )
         AnimatedVisibility(visible = state.isLoading, exit = fadeOut()) {
             AtomPlaceholder(
-                role = PlaceholderRole.Block,
+                role = ShapePlaceholderRole.Image,
                 modifier = Modifier.fillMaxSize(),
             )
         }

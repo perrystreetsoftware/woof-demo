@@ -25,7 +25,6 @@ class UIComponentsDoNotUseHardcodedValues : BehaviorSpec() {
 
             Then("It does not build gradients from literal colours") {
                 composables
-                    .filter { it.name !in DynamicGradients }
                     .assertFalse(message = GradientMessage) { InlineGradientRegex.containsMatchIn(it.text) }
             }
         }
@@ -35,7 +34,6 @@ class UIComponentsDoNotUseHardcodedValues : BehaviorSpec() {
         private val HardcodedDpRegex = Regex("""[1-9]\d*\.dp\b""")
         private val HardcodedColorRegex = Regex("""Color\(0x""")
         private val InlineGradientRegex = Regex("""Brush\.\w*[Gg]radient\s*\(\s*(colors|colorStops)?\s*=?\s*(listOf|arrayOf)\(""")
-        private val DynamicGradients = emptyList<String>()
 
         private val DpMessage = LintRuleMessage(
             rule = "Composables never hardcode dp values.",

@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.AtomPlaceholder
-import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.TextPlaceholderRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
@@ -47,6 +47,6 @@ private fun OrgHeroSummaryTitleLoading(title: String) {
             colorRole = TextColorRole.OnScrim,
             maxLines = 1,
         )
-        AtomPlaceholder(role = PlaceholderRole.Subtitle)
+        AtomPlaceholder(role = TextPlaceholderRole.Subtitle)
     }
 }

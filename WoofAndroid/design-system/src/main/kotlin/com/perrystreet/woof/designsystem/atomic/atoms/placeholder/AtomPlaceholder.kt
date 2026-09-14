@@ -16,7 +16,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.clearAndSetSemantics
-import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.PlaceholderRole
+import androidx.compose.ui.unit.Dp
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.ShapePlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.TagPlaceholderRole
+import com.perrystreet.woof.designsystem.atomic.atoms.placeholder.roles.TextPlaceholderRole
 import com.perrystreet.woof.designsystem.theme.Theme
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.defaultShimmerTheme
@@ -25,25 +28,14 @@ import com.valentinilk.shimmer.shimmer
 
 @Composable
 fun AtomPlaceholder(
-    role: PlaceholderRole,
-    modifier: Modifier = Modifier,
+    role: TextPlaceholderRole,
 ) {
-    val aspectRatio = role.aspectRatio()
-    Box(
-        modifier = modifier
-            .then(aspectRatio?.let { Modifier.aspectRatio(it) } ?: Modifier)
-            .placeholderShimmer()
-            .background(
-                color = Theme.colors.placeholder,
-                shape = RoundedCornerShape(role.radius()),
-            ),
-    ) {
+    Box(modifier = Modifier.placeholderShimmer(role.radius())) {
         Text(
             text = role.sampleText,
             style = role.textStyle(),
             maxLines = 1,
             modifier = Modifier
-                .padding(role.padding)
                 .alpha(0f)
                 .clearAndSetSemantics {},
         )
@@ -51,7 +43,40 @@ fun AtomPlaceholder(
 }
 
 @Composable
-private fun Modifier.placeholderShimmer(): Modifier {
+fun AtomPlaceholder(
+    role: TagPlaceholderRole,
+) {
+    Box(modifier = Modifier.placeholderShimmer(role.radius())) {
+        Text(
+            text = role.sampleText,
+            style = role.textStyle(),
+            maxLines = 1,
+            modifier = Modifier
+                .padding(
+                    horizontal = role.horizontalPadding().dp,
+                    vertical = role.verticalPadding().dp,
+                )
+                .alpha(0f)
+                .clearAndSetSemantics {},
+        )
+    }
+}
+
+@Composable
+fun AtomPlaceholder(
+    role: ShapePlaceholderRole,
+    modifier: Modifier = Modifier,
+) {
+    val aspectRatio = role.aspectRatio()
+    Box(
+        modifier = modifier
+            .then(aspectRatio?.let { Modifier.aspectRatio(it) } ?: Modifier)
+            .placeholderShimmer(role.radius()),
+    )
+}
+
+@Composable
+private fun Modifier.placeholderShimmer(radius: Dp): Modifier {
     val highlight = Theme.colors.onPlaceholder
     val shimmer = rememberShimmer(
         shimmerBounds = ShimmerBounds.Window,
@@ -71,7 +96,12 @@ private fun Modifier.placeholderShimmer(): Modifier {
             shaderColorStops = ShaderStops,
         ),
     )
-    return this.shimmer(shimmer)
+    return this
+        .shimmer(shimmer)
+        .background(
+            color = Theme.colors.placeholder,
+            shape = RoundedCornerShape(radius),
+        )
 }
 
 private val ShaderStops = listOf(0f, 0.25f, 0.5f, 0.75f, 1f)
