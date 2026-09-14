@@ -45,7 +45,8 @@ fun TemplateHeroDetails(
 ) {
     val topInset = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
     val horizontalSafe = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-    val topBarHeight = SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
+    val topBarHeight =
+        SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
     val panelHorizontalPadding = PaddingRoles.Screen.Regular.dp
     val panelBottomPadding = PaddingRoles.Screen.Regular.dp
     val bottomBarScrim = Theme.gradients.scrimVertical
@@ -85,13 +86,17 @@ fun TemplateHeroDetails(
         val bottomBarHeight = bottomBarPlaceables.maxOfOrNull { it.height } ?: 0
         val cutoutStart = horizontalSafe.getLeft(this, layoutDirection)
         val cutoutEnd = horizontalSafe.getRight(this, layoutDirection)
-        val summaryWidth = (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(0)
+        val summaryWidth =
+            (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(
+                0,
+            )
         val summaryHeight =
             subcompose(HeroDetailsSlot.Summary, summary)
                 .map { it.measure(Constraints(minWidth = summaryWidth, maxWidth = summaryWidth)) }
                 .maxOfOrNull { it.height } ?: 0
 
-        val minHeightPx = (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
+        val minHeightPx =
+            (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
         val maxHeightPx = (height - topBarHeight.roundToPx()).toFloat().coerceAtLeast(minHeightPx)
         connection.updateBounds(minHeightPx = minHeightPx, maxHeightPx = maxHeightPx)
 
@@ -124,9 +129,11 @@ fun TemplateHeroDetails(
                 }
             }.map { it.measure(Constraints.fixed(width, panelHeight)) }
 
-        val heroPlaceables = subcompose(HeroDetailsSlot.Hero) { hero({ progress }) }.map { it.measure(loose) }
+        val heroPlaceables =
+            subcompose(HeroDetailsSlot.Hero) { hero { progress } }.map { it.measure(loose) }
         val topBarPlaceables = subcompose(HeroDetailsSlot.TopBar, topBar).map { it.measure(loose) }
-        val overlayPlaceables = subcompose(HeroDetailsSlot.Overlay, overlay).map { it.measure(loose) }
+        val overlayPlaceables =
+            subcompose(HeroDetailsSlot.Overlay, overlay).map { it.measure(loose) }
 
         layout(width, height) {
             heroPlaceables.forEach { it.place(x = 0, y = 0) }
