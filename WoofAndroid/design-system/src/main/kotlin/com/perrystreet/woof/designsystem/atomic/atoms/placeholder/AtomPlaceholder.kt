@@ -30,8 +30,6 @@ fun AtomPlaceholder(
 ) {
     val aspectRatio = role.aspectRatio()
     Box(
-        // The shimmer must wrap the background, not follow it: it sweeps over the content its
-        // node draws, and the fill is what it has to cross.
         modifier = modifier
             .then(aspectRatio?.let { Modifier.aspectRatio(it) } ?: Modifier)
             .placeholderShimmer()
@@ -40,8 +38,6 @@ fun AtomPlaceholder(
                 shape = RoundedCornerShape(role.radius()),
             ),
     ) {
-        // The text is invisible and only sizes the box, so a placeholder occupies exactly the
-        // space its real content will.
         Text(
             text = role.sampleText,
             style = role.textStyle(),
@@ -57,8 +53,6 @@ fun AtomPlaceholder(
 @Composable
 private fun Modifier.placeholderShimmer(): Modifier {
     val highlight = Theme.colors.onPlaceholder
-    // Window bounds put every placeholder on screen under one band, so a loading screen reads as
-    // a single sweep rather than each element flashing on its own.
     val shimmer = rememberShimmer(
         shimmerBounds = ShimmerBounds.Window,
         theme = defaultShimmerTheme.copy(

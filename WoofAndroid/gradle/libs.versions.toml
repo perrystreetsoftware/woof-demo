@@ -13,13 +13,13 @@ androidx-navigation3 = "1.1.7"
 compose-bom = "2026.09.00"
 coil = "3.6.2"
 compose-shimmer = "1.5.0"
-koin = "4.2.2"
+koin = "4.1.1"
 koin-annotations = "2.3.1"
 moshi = "1.15.2"
 rxjava = "3.1.12"
 rxandroid = "3.0.2"
 rxkotlin = "3.0.1"
-kotest = "6.2.5"
+kotest = "5.9.1"
 kluent = "1.73"
 konsist = "0.17.3"
 junit-platform = "6.1.3"
@@ -48,8 +48,9 @@ koin-core-viewmodel = { module = "io.insert-koin:koin-core-viewmodel" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-test = { module = "io.insert-koin:koin-test" }
-koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
-koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
+koin-annotations-bom = { module = "io.insert-koin:koin-annotations-bom", version.ref = "koin-annotations" }
+koin-annotations = { module = "io.insert-koin:koin-annotations" }
+koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }

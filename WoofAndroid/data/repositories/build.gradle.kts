@@ -11,6 +11,8 @@ dependencies {
     implementation(libs.rxkotlin)
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
+    implementation(platform(libs.koin.annotations.bom))
     implementation(libs.koin.annotations)
+    ksp(platform(libs.koin.annotations.bom))
     ksp(libs.koin.ksp.compiler)
 }
