@@ -32,8 +32,7 @@ private struct OrgHeroSummaryTitleLoading: View {
     var body: some View {
         VStack(alignment: .leading, spacing: SpacingRoles.Component.extraCompact.rawValue) {
             AtomText(text: title, textFontRole: .displayH1, colorRole: .onScrim, maxLines: 1)
-            AtomTextPlaceholder(role: .subtitle)
-                .atomPlaceholderShimmer()
+            AtomPlaceholder(role: .subtitle)
         }
     }
 }

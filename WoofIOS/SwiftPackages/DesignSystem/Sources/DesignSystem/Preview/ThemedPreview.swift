@@ -10,9 +10,10 @@ public struct ThemedPreview<Content: View>: View {
     }
 
     public var body: some View {
-        content()
-            .padding(PaddingRoles.Element.regular.rawValue)
-            .background(theme.colors.background)
-            .theme(theme)
+        Theme(theme: theme) {
+            content()
+                .padding(PaddingRoles.Element.regular.rawValue)
+                .background(theme.colors.background)
+        }
     }
 }

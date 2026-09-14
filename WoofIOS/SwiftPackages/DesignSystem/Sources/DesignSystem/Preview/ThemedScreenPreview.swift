@@ -10,7 +10,6 @@ public struct ThemedScreenPreview<Content: View>: View {
     }
 
     public var body: some View {
-        content()
-            .theme(theme)
+        Theme(theme: theme, content: content)
     }
 }

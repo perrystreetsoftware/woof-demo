@@ -69,13 +69,7 @@ public struct TemplateHeroDetails<Hero: View, TopBar: View, Summary: View, Botto
                     bottomBar()
                         .padding(.bottom, bottomInset)
                         .onGeometryChange(for: CGFloat.self) { $0.size.height } action: { bottomBarHeight = $0 }
-                        .background {
-                            LinearGradient(
-                                colors: [Color.clear, theme.colors.scrimDim],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        }
+                        .background { theme.gradients.scrimVertical }
                 }
                 .frame(height: containerHeight)
                 overlay()

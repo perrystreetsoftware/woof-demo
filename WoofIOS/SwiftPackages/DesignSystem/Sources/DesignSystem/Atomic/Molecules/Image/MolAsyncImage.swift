@@ -14,8 +14,7 @@ public struct MolAsyncImage: View {
     public var body: some View {
         ZStack {
             AtomPainterImage(image: state.image, contentDescription: contentDescription)
-            AtomRoundedRectanglePlaceholder()
-                .atomPlaceholderShimmer()
+            AtomPlaceholder(role: .image)
                 .opacity(state.isLoading ? theme.alpha.enabled : 0)
                 .animation(.easeOut(duration: theme.motion.durationShort), value: state.isLoading)
         }

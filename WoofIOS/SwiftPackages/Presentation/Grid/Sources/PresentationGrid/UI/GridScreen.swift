@@ -38,7 +38,7 @@ private struct GridLoadingScreen: View {
     var body: some View {
         TemplateGrid(topBar: { OrgNavigationHeaderBranded() }) {
             ForEach(0..<Self.placeholderCellCount, id: \.self) { _ in
-                MolCardPlaceholder()
+                AtomPlaceholder(role: .card)
             }
         }
     }
@@ -55,7 +55,7 @@ private struct GridLoadedScreen: View {
                 DogCell(cell: cell, onCellAppear: onCellAppear, onCellTap: onCellTap)
             }
             ForEach(0..<state.loadingMoreCellCount, id: \.self) { _ in
-                MolCardPlaceholder()
+                AtomPlaceholder(role: .card)
             }
         }
     }
