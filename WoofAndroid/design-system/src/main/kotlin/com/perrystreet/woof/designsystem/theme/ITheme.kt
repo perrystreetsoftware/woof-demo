@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import com.perrystreet.woof.designsystem.atomic._tokens.alpha.AlphaRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.aspectratio.AspectRatioRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.colors.Colors
+import com.perrystreet.woof.designsystem.atomic._tokens.gradient.GradientRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.motion.MotionRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.radius.RadiusRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.typography.Typography
@@ -13,6 +14,7 @@ interface ITheme {
     val name: String
     val isDark: Boolean
     val colors: Colors
+    val gradients: GradientRoles
     val alpha: AlphaRoles
     val radius: RadiusRoles
     val typography: Typography

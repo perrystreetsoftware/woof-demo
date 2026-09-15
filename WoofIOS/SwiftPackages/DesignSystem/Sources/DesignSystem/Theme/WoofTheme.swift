@@ -4,6 +4,7 @@ public struct WoofTheme: ThemeImplementing {
     public let name: String
     public let isDark: Bool
     public let colors: Colors
+    public let gradients: GradientRoles
     public let alpha: AlphaRoles = .default
     public let radius: RadiusRoles = .default
     public let typography: Typography = .default
@@ -14,6 +15,7 @@ public struct WoofTheme: ThemeImplementing {
         self.name = name
         self.isDark = isDark
         self.colors = colors
+        self.gradients = .from(colors)
     }
 
     public static func light() -> ThemeImplementing {

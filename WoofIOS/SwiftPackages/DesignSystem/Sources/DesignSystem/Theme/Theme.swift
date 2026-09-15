@@ -11,25 +11,21 @@ public extension EnvironmentValues {
     }
 }
 
-public struct ThemeModifier: ViewModifier {
+public struct Theme<Content: View>: View {
     private let theme: ThemeImplementing
+    private let content: () -> Content
 
-    public init(theme: ThemeImplementing) {
+    public init(theme: ThemeImplementing, @ViewBuilder content: @escaping () -> Content) {
         self.theme = theme
+        self.content = content
     }
 
-    public func body(content: Content) -> some View {
-        content
+    public var body: some View {
+        content()
             .tint(theme.colors.primary)
             .foregroundStyle(theme.colors.onSurface)
             .font(theme.typography.body.p1)
             .preferredColorScheme(theme.isDark ? .dark : .light)
             .environment(\.theme, theme)
-    }
-}
-
-public extension View {
-    func theme(_ theme: ThemeImplementing) -> some View {
-        modifier(ThemeModifier(theme: theme))
     }
 }

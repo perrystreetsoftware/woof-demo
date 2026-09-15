@@ -15,6 +15,7 @@ dependencies {
     implementation(projects.resources)
     implementation(projects.utils)
 
+    implementation(libs.compose.shimmer)
     api(platform(libs.androidx.compose.bom))
     api(libs.androidx.compose.foundation)
     api(libs.androidx.compose.material3)

@@ -12,7 +12,7 @@ class DomainModelsAreImmutable : BehaviorSpec() {
             val properties = KonsistUtils.domainModelModule.classes().properties()
 
             Then("It is declared with val") {
-                properties.assertFalse(message = Message) { it.hasVarModifier }
+                properties.assertFalse(message = Message) { it.isVar }
             }
         }
     }

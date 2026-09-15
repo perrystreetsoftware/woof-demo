@@ -9,13 +9,12 @@ public struct MolTextBlockPlaceholder: View {
 
     public var body: some View {
         VStack(alignment: .leading, spacing: SpacingRoles.Component.compact.rawValue) {
-            AtomTextPlaceholder(role: .title)
+            AtomPlaceholder(role: .title)
             AtomSpacer(spacing: .extraCompact)
             ForEach(0..<lines, id: \.self) { _ in
-                AtomTextPlaceholder(role: .body)
+                AtomPlaceholder(role: .body)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .atomPlaceholderShimmer()
     }
 }

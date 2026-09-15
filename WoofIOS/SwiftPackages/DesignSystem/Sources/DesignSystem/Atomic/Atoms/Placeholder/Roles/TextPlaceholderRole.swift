@@ -20,4 +20,10 @@ public enum TextPlaceholderRole {
         case .body: theme.typography.body.p1
         }
     }
+
+    public func radius(from theme: ThemeImplementing) -> CGFloat {
+        switch self {
+        case .title, .subtitle, .body: theme.radius.s
+        }
+    }
 }

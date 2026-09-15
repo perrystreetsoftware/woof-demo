@@ -22,12 +22,18 @@ class UIComponentsDoNotUseHardcodedValues : BehaviorSpec() {
             Then("It does not hardcode colors") {
                 composables.assertFalse(message = ColorMessage) { HardcodedColorRegex.containsMatchIn(it.text) }
             }
+
+            Then("It does not build gradients from literal colours") {
+                composables
+                    .assertFalse(message = GradientMessage) { InlineGradientRegex.containsMatchIn(it.text) }
+            }
         }
     }
 
     private companion object {
         private val HardcodedDpRegex = Regex("""[1-9]\d*\.dp\b""")
         private val HardcodedColorRegex = Regex("""Color\(0x""")
+        private val InlineGradientRegex = Regex("""Brush\.\w*[Gg]radient\s*\(\s*(colors|colorStops)?\s*=?\s*(listOf|arrayOf)\(""")
 
         private val DpMessage = LintRuleMessage(
             rule = "Composables never hardcode dp values.",
@@ -43,6 +49,14 @@ class UIComponentsDoNotUseHardcodedValues : BehaviorSpec() {
             howToFix = "Add a semantic color to Colors and read it through Theme.colors or a *ColorRole.",
             badExample = "Text(color = Color(0xFFFF7A29))",
             goodExample = "AtomText(colorRole = TextColorRole.Primary)",
+        )
+
+        private val GradientMessage = LintRuleMessage(
+            rule = "Composables never build gradients from literal colours.",
+            why = "A gradient is a design decision — which colours, and where the ramp starts. Built inline it drifts between components, and its stop positions become literals no token can tune.",
+            howToFix = "Add the gradient to GradientRoles and read it through Theme.gradients.*.",
+            badExample = "Brush.verticalGradient(colorStops = arrayOf(0f to Color.Transparent, 1f to Theme.colors.scrimDim))",
+            goodExample = "Theme.gradients.verticalScrim",
         )
     }
 }

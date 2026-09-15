@@ -4,6 +4,7 @@ public protocol ThemeImplementing {
     var name: String { get }
     var isDark: Bool { get }
     var colors: Colors { get }
+    var gradients: GradientRoles { get }
     var alpha: AlphaRoles { get }
     var radius: RadiusRoles { get }
     var typography: Typography { get }

@@ -68,7 +68,7 @@ Each Android module has an equivalent Swift package with the same responsibility
 - **UI models and mappers.** ViewModels never expose domain models to the view. `DomainToUIModel` mappers produce UI models, while resource mapping lives in extensions in the screens layer.
 - **Reactive programming.** Repositories expose streams backed by subjects (`BehaviorSubject` / `CurrentValueSubject`), use cases compose them, and the ViewModels map them into UI state.
 - **DTOs and mappers.** Data sources return DTOs and repositories transform them into domain models using `DTOToDomain` mappers.
-- **Atomic design.** Screens only use `Template*`, `Org*`, `Mol*`, and `Atom*` components. Colors, spacing, sizing, and typography are only reachable through theme tokens inside the design system.
+- **Atomic design.** Screens only use `Template*`, `Org*`, `Mol*`, and `Atom*` components. Colors, gradients, and typography are only reachable through theme tokens inside the design system.
 - **Dependency injection using annotations.** Android uses Koin's `@Single`, `@Factory`, and `@KoinViewModel`. iOS has the same `@Single` and `@Factory` annotations, implemented as Swift macros, and `scripts/SwinjectCodegen` generates the Swinject registrations from them.
 
 ### Platform-specific choices
@@ -99,6 +99,14 @@ cd WoofAndroid && ./gradlew runKonsistTests
 ```bash
 cd WoofIOS && bash scripts/run-harmonize.sh
 ```
+
+### Static analysis
+
+`WoofAndroid` also follows general Compose best practices, checked by the [ktlint Compose ruleset](https://github.com/mrmans0n/compose-rules). It is configured in `WoofAndroid/.editorconfig` to fit the existing Konsist rules. To enable checks in Android Studio:
+
+1. Install the [ktlint plugin](https://plugins.jetbrains.com/plugin/15057-ktlint).
+2. Download the latest `ktlint-compose-<version>-all.jar` from the [releases](https://github.com/mrmans0n/compose-rules/releases) into `WoofAndroid/tools/ktlint/`.
+3. Add the jar as an external ruleset in the plugin settings.
 
 ## Building
 

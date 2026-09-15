@@ -24,8 +24,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.unit.Constraints
@@ -47,10 +45,11 @@ fun TemplateHeroDetails(
 ) {
     val topInset = WindowInsets.safeDrawing.only(WindowInsetsSides.Top)
     val horizontalSafe = WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)
-    val topBarHeight = SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
+    val topBarHeight =
+        SizingRoles.InteractionHeight.Comfort.dp + topInset.asPaddingValues().calculateTopPadding()
     val panelHorizontalPadding = PaddingRoles.Screen.Regular.dp
     val panelBottomPadding = PaddingRoles.Screen.Regular.dp
-    val bottomBarScrim = Theme.colors.scrimDim
+    val bottomBarScrim = Theme.gradients.scrimVertical
     val listState = rememberLazyListState()
     val connection =
         remember {
@@ -62,9 +61,9 @@ fun TemplateHeroDetails(
 
     SubcomposeLayout(
         modifier =
-            Modifier
-                .fillMaxSize()
-                .background(Theme.colors.background),
+        Modifier
+            .fillMaxSize()
+            .background(Theme.colors.background),
     ) { constraints ->
         val width = constraints.maxWidth
         val height = constraints.maxHeight
@@ -74,12 +73,12 @@ fun TemplateHeroDetails(
             subcompose(HeroDetailsSlot.BottomBar) {
                 Box(
                     modifier =
-                        Modifier
-                            .fillMaxWidth()
-                            .background(Brush.verticalGradient(colors = listOf(Color.Transparent, bottomBarScrim)))
-                            .imePadding()
-                            .navigationBarsPadding()
-                            .windowInsetsPadding(horizontalSafe),
+                    Modifier
+                        .fillMaxWidth()
+                        .background(bottomBarScrim)
+                        .imePadding()
+                        .navigationBarsPadding()
+                        .windowInsetsPadding(horizontalSafe),
                 ) {
                     bottomBar()
                 }
@@ -87,13 +86,17 @@ fun TemplateHeroDetails(
         val bottomBarHeight = bottomBarPlaceables.maxOfOrNull { it.height } ?: 0
         val cutoutStart = horizontalSafe.getLeft(this, layoutDirection)
         val cutoutEnd = horizontalSafe.getRight(this, layoutDirection)
-        val summaryWidth = (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(0)
+        val summaryWidth =
+            (width - panelHorizontalPadding.roundToPx() * 2 - cutoutStart - cutoutEnd).coerceAtLeast(
+                0,
+            )
         val summaryHeight =
             subcompose(HeroDetailsSlot.Summary, summary)
                 .map { it.measure(Constraints(minWidth = summaryWidth, maxWidth = summaryWidth)) }
                 .maxOfOrNull { it.height } ?: 0
 
-        val minHeightPx = (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
+        val minHeightPx =
+            (summaryHeight + bottomBarHeight + panelBottomPadding.roundToPx()).toFloat()
         val maxHeightPx = (height - topBarHeight.roundToPx()).toFloat().coerceAtLeast(minHeightPx)
         connection.updateBounds(minHeightPx = minHeightPx, maxHeightPx = maxHeightPx)
 
@@ -105,16 +108,16 @@ fun TemplateHeroDetails(
                 LazyColumn(
                     state = listState,
                     modifier =
-                        Modifier
-                            .windowInsetsPadding(horizontalSafe)
-                            .nestedScroll(connection),
+                    Modifier
+                        .windowInsetsPadding(horizontalSafe)
+                        .nestedScroll(connection),
                     verticalArrangement = Arrangement.spacedBy(SpacingRoles.Module.Compact.dp),
                     contentPadding =
-                        PaddingValues(
-                            start = panelHorizontalPadding,
-                            end = panelHorizontalPadding,
-                            bottom = bottomBarHeightDp + panelBottomPadding,
-                        ),
+                    PaddingValues(
+                        start = panelHorizontalPadding,
+                        end = panelHorizontalPadding,
+                        bottom = bottomBarHeightDp + panelBottomPadding,
+                    ),
                 ) {
                     item(key = SummaryKey) {
                         summary()
@@ -126,9 +129,11 @@ fun TemplateHeroDetails(
                 }
             }.map { it.measure(Constraints.fixed(width, panelHeight)) }
 
-        val heroPlaceables = subcompose(HeroDetailsSlot.Hero) { hero({ progress }) }.map { it.measure(loose) }
+        val heroPlaceables =
+            subcompose(HeroDetailsSlot.Hero) { hero { progress } }.map { it.measure(loose) }
         val topBarPlaceables = subcompose(HeroDetailsSlot.TopBar, topBar).map { it.measure(loose) }
-        val overlayPlaceables = subcompose(HeroDetailsSlot.Overlay, overlay).map { it.measure(loose) }
+        val overlayPlaceables =
+            subcompose(HeroDetailsSlot.Overlay, overlay).map { it.measure(loose) }
 
         layout(width, height) {
             heroPlaceables.forEach { it.place(x = 0, y = 0) }

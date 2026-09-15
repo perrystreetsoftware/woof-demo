@@ -6,8 +6,9 @@ struct WoofRootView: View {
     @Environment(\.colorScheme) private var colorScheme
 
     var body: some View {
-        WoofNavDisplay()
-            .theme(theme)
+        Theme(theme: theme) {
+            WoofNavDisplay()
+        }
     }
 
     private var theme: ThemeImplementing {
