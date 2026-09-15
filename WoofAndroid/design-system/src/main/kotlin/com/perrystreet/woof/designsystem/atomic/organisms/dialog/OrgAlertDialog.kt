@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
-import com.perrystreet.woof.designsystem.atomic.molecules.button.MolButtonCompact
+import com.perrystreet.woof.designsystem.atomic.molecules.button.MolButton
 import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.ButtonRole
 import com.perrystreet.woof.designsystem.theme.Theme
 
@@ -34,7 +34,7 @@ fun OrgAlertDialog(
                 colorRole = TextColorRole.OnSurfaceVariant,
             )
         },
-        confirmButton = { MolButtonCompact(text = confirmText, onTap = onConfirmTap, role = confirmRole) },
-        dismissButton = { MolButtonCompact(text = dismissText, onTap = onDismissTap, role = ButtonRole.Secondary) },
+        confirmButton = { MolButton(text = confirmText, onTap = onConfirmTap, role = confirmRole) },
+        dismissButton = { MolButton(text = dismissText, onTap = onDismissTap, role = ButtonRole.Secondary) },
     )
 }

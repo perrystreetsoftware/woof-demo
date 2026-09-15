@@ -1,3 +1,4 @@
+import Resources
 import SwiftUI
 
 public struct OrgNavigationHeaderOverlay: View {
@@ -23,21 +24,28 @@ public struct OrgNavigationHeaderOverlay: View {
 
     public var body: some View {
         HStack(spacing: 0) {
-            MolIconButton(role: .back, onTap: onBackTap, isOnScrim: true)
+            AtomIconButton(
+                icon: Asset.Icons.arrowBack,
+                contentDescription: L10n.Accessibility.back,
+                colorRole: .onScrim,
+                backgroundRole: .none,
+                onTap: onBackTap
+            )
             Spacer(minLength: 0)
             ForEach(Array(actions.enumerated()), id: \.offset) { action in
-                MolIconButton(
-                    role: action.element.role,
-                    onTap: action.element.onTap,
-                    isActive: action.element.isActive,
-                    isOnScrim: true
+                AtomIconButton(
+                    icon: action.element.icon,
+                    contentDescription: action.element.contentDescription,
+                    colorRole: action.element.colorRole,
+                    backgroundRole: .none,
+                    onTap: action.element.onTap
                 )
             }
             OrgOverflowMenuButton(
                 items: overflowItems,
                 isExpanded: isOverflowExpanded,
                 onExpandedChange: onOverflowExpandedChange,
-                isOnScrim: true
+                colorRole: .onScrim
             )
         }
         .padding(.horizontal, PaddingRoles.Element.compact.rawValue)

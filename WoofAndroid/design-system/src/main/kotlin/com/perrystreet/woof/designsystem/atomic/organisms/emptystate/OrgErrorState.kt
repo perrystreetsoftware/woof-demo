@@ -16,7 +16,7 @@ import com.perrystreet.woof.designsystem.atomic.atoms.spacer.AtomSpacer
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
-import com.perrystreet.woof.designsystem.atomic.molecules.button.MolButtonCompact
+import com.perrystreet.woof.designsystem.atomic.molecules.button.MolButton
 
 @Composable
 fun OrgErrorState(
@@ -42,6 +42,6 @@ fun OrgErrorState(
             textAlign = TextAlign.Center,
         )
         AtomSpacer(spacing = SpacingRoles.Component.Expanded)
-        MolButtonCompact(text = actionText, onTap = onActionTap)
+        MolButton(text = actionText, onTap = onActionTap)
     }
 }

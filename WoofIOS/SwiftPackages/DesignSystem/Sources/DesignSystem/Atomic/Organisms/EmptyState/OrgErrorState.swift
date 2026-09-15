@@ -21,7 +21,7 @@ public struct OrgErrorState: View {
             AtomSpacer(spacing: .compact)
             AtomText(text: message, textFontRole: .bodyP1, colorRole: .onSurfaceVariant, textAlign: .center)
             AtomSpacer(spacing: .expanded)
-            MolButtonCompact(text: actionText, onTap: onActionTap)
+            MolButton(text: actionText, onTap: onActionTap)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

@@ -1,23 +1,23 @@
 package com.perrystreet.woof.designsystem.atomic.organisms.navbar
 
+import androidx.annotation.DrawableRes
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.res.stringResource
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.AtomIcon
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.AtomText
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
-import com.perrystreet.woof.designsystem.atomic.organisms.navbar.roles.BottomNavigationRole
 import com.perrystreet.woof.designsystem.theme.Theme
 
 @Immutable
 data class OrgBottomNavigationItem(
-    val role: BottomNavigationRole,
+    @DrawableRes val iconRes: Int,
+    val label: String,
     val isSelected: Boolean,
     val onTap: () -> Unit,
 )
@@ -31,14 +31,14 @@ fun OrgBottomNavigationBar(items: List<OrgBottomNavigationItem>) {
                 onClick = item.onTap,
                 icon = {
                     AtomIcon(
-                        iconRes = item.iconRes(),
+                        iconRes = item.iconRes,
                         iconSize = SizingRoles.Icon.M,
                         colorRole = item.iconColorRole(),
                     )
                 },
                 label = {
                     AtomText(
-                        text = stringResource(item.role.labelRes),
+                        text = item.label,
                         textFontRole = TextFontRole.SubheadP3,
                         colorRole = item.labelColorRole(),
                         maxLines = 1,
@@ -48,11 +48,6 @@ fun OrgBottomNavigationBar(items: List<OrgBottomNavigationItem>) {
             )
         }
     }
-}
-
-private fun OrgBottomNavigationItem.iconRes(): Int = when (isSelected) {
-    true -> role.selectedIconRes
-    false -> role.iconRes
 }
 
 private fun OrgBottomNavigationItem.iconColorRole(): IconColorRole = when (isSelected) {

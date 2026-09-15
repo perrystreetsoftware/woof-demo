@@ -21,13 +21,10 @@ final class RolesLiveInRolesFolder: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Component roles are enums under a Roles folder, and each entry resolves to a theme token or resource.",
-        rationale: """
-            Roles are the vocabulary a component offers (TextFontRole.bodyP1, ButtonRole.primary). Keeping them as
-            enums next to their component limits the set of tokens a component can use and makes the API discoverable.
-            """,
-        fixHint: "Move the role into <Component>/Roles/ and make every entry return a theme.* token.",
-        badExample: "// Atoms/Text/TextColorRole.swift\nstruct TextColorRole { let color: Color }",
-        goodExample: "// Atoms/Text/Roles/TextColorRole.swift\nenum TextColorRole { case onSurface\n    func color(from theme: ThemeImplementing) -> Color { theme.colors.onSurface } }"
+        description: "Component roles live in a Roles folder next to their component.",
+        rationale: "Roles are the vocabulary a component offers (TextFontRole.bodyP1, ButtonRole.primary); keeping them next to the component makes the API discoverable.",
+        fixHint: "Move the role into <Component>/Roles/.",
+        badExample: "// Atoms/Text/TextColorRole.swift\nenum TextColorRole { ... }",
+        goodExample: "// Atoms/Text/Roles/TextColorRole.swift\nenum TextColorRole { ... }"
     )
 }

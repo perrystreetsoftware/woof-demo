@@ -1,21 +1,22 @@
+import Resources
 import SwiftUI
 
 public struct OrgOverflowMenuButton: View {
     private let items: [OrgOverflowMenuItem]
     private let isExpanded: Bool
     private let onExpandedChange: (Bool) -> Void
-    private let isOnScrim: Bool
+    private let colorRole: IconColorRole
 
     public init(
         items: [OrgOverflowMenuItem],
         isExpanded: Bool,
         onExpandedChange: @escaping (Bool) -> Void,
-        isOnScrim: Bool = false
+        colorRole: IconColorRole
     ) {
         self.items = items
         self.isExpanded = isExpanded
         self.onExpandedChange = onExpandedChange
-        self.isOnScrim = isOnScrim
+        self.colorRole = colorRole
     }
 
     public var body: some View {
@@ -30,21 +31,13 @@ public struct OrgOverflowMenuButton: View {
             }
         } label: {
             AtomIcon(
-                icon: IconButtonRole.more.icon,
+                icon: Asset.Icons.moreVertical,
                 iconSize: .m,
-                contentDescription: IconButtonRole.more.contentDescription,
+                contentDescription: L10n.Accessibility.moreOptions,
                 colorRole: colorRole
             )
             .frame(width: SizingRoles.InteractionHeight.default.rawValue, height: SizingRoles.InteractionHeight.default.rawValue)
         }
         .simultaneousGesture(TapGesture().onEnded { onExpandedChange(true) })
-    }
-
-    private var colorRole: IconColorRole {
-        switch (isExpanded, isOnScrim) {
-        case (true, _): IconButtonRole.more.activeColorRole
-        case (false, true): .onScrim
-        case (false, false): .onSurface
-        }
     }
 }

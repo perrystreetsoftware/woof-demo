@@ -79,9 +79,10 @@ public struct ProfileViewScreen: View {
                     onBackTap: onBackTap,
                     actions: [
                         OrgNavigationHeaderActionItem(
-                            role: .favorite,
-                            onTap: onFavoriteTap,
-                            isActive: headerState.isFavorite
+                            icon: headerState.favoriteIcon,
+                            contentDescription: headerState.favoriteContentDescription,
+                            colorRole: headerState.favoriteColorRole,
+                            onTap: onFavoriteTap
                         )
                     ],
                     overflowItems: headerState.overflowItems.map { item in
@@ -104,8 +105,9 @@ public struct ProfileViewScreen: View {
                     placeholder: L10n.Profile.messagePlaceholder(page.name),
                     onTextChange: onMessageTextChange,
                     onSubmit: onMessageSendTap,
-                    actionRole: .woof,
-                    isActionActive: woofState.hasWoofed,
+                    actionIcon: woofState.woofIcon,
+                    actionContentDescription: L10n.Accessibility.woof,
+                    actionColorRole: woofState.woofColorRole,
                     onActionTap: onWoofTap,
                     isSubmitEnabled: messageState.isSendEnabled
                 )
