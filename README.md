@@ -100,6 +100,14 @@ cd WoofAndroid && ./gradlew runKonsistTests
 cd WoofIOS && bash scripts/run-harmonize.sh
 ```
 
+### Static analysis
+
+`WoofAndroid` also follows general Compose best practices, checked by the [ktlint Compose ruleset](https://github.com/mrmans0n/compose-rules). It is configured in `WoofAndroid/.editorconfig` to fit the existing Konsist rules. To enable checks in Android Studio:
+
+1. Install the [ktlint plugin](https://plugins.jetbrains.com/plugin/15057-ktlint).
+2. Download the latest `ktlint-compose-<version>-all.jar` from the [releases](https://github.com/mrmans0n/compose-rules/releases) into `WoofAndroid/tools/ktlint/`.
+3. Add the jar as an external ruleset in the plugin settings.
+
 ## Building
 
 ### Android
