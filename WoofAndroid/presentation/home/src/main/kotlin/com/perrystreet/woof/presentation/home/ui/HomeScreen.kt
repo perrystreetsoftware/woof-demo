@@ -11,7 +11,8 @@ import com.perrystreet.woof.designsystem.preview.PreviewDevices
 import com.perrystreet.woof.designsystem.preview.ThemeProvider
 import com.perrystreet.woof.designsystem.preview.ThemedScreenPreview
 import com.perrystreet.woof.designsystem.theme.ITheme
-import com.perrystreet.woof.presentation.home.ui.extensions.HomeTabUIModelExtensions.toBottomNavigationRole
+import com.perrystreet.woof.presentation.home.ui.extensions.HomeTabUIModelExtensions.iconRes
+import com.perrystreet.woof.presentation.home.ui.extensions.HomeTabUIModelExtensions.label
 import com.perrystreet.woof.presentation.home.uimodel.HomeTabUIModel
 import com.perrystreet.woof.presentation.home.viewmodel.HomeViewModel
 import com.perrystreet.woof.resources.R
@@ -26,9 +27,11 @@ fun HomeScreen(
         bottomBar = {
             OrgBottomNavigationBar(
                 items = state.tabs.map { tab ->
+                    val isSelected = tab == state.selectedTab
                     OrgBottomNavigationItem(
-                        role = tab.toBottomNavigationRole(),
-                        isSelected = tab == state.selectedTab,
+                        iconRes = tab.iconRes(isSelected = isSelected),
+                        label = tab.label(),
+                        isSelected = isSelected,
                         onTap = { onTabSelect(tab) },
                     )
                 },

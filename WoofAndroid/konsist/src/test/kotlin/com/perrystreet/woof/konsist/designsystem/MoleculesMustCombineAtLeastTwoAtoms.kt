@@ -23,7 +23,6 @@ class MoleculesMustCombineAtLeastTwoAtoms : BehaviorSpec() {
                 .withoutAnnotationNamed("PreviewDevices")
                 .filter { it.path.contains("/molecules/") }
                 .withNameStartingWith("Mol")
-                .filter { it.name !in Baseline }
 
             Then("It combines at least two atoms") {
                 molecules.assertTrue(message = Message) { molecule ->
@@ -37,12 +36,6 @@ class MoleculesMustCombineAtLeastTwoAtoms : BehaviorSpec() {
     }
 
     private companion object {
-        private val Baseline = setOf(
-            "MolButton",
-            "MolButtonCompact",
-            "MolIconButton",
-        )
-
         private val IterationRegexes = listOf(
             Regex("""\bitems\s*\("""),
             Regex("""\bitemsIndexed\s*\("""),

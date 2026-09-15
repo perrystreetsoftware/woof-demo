@@ -8,7 +8,7 @@ final class MoleculesMustCombineAtLeastTwoAtoms: QuickSpec {
         Given("A molecule view") {
             let molecules = WoofHarmonize.atomicDesignPackage.structs().views
                 .inFolder("Molecules")
-                .filter { $0.name.hasPrefix("Mol") && !baseline.contains($0.name) }
+                .filter { $0.name.hasPrefix("Mol") }
 
             Then("It combines at least two atoms") {
                 molecules.assertTrue(message: message) { molecule in
@@ -20,13 +20,6 @@ final class MoleculesMustCombineAtLeastTwoAtoms: QuickSpec {
             }
         }
     }
-
-    private static let baseline: Set<String> = [
-        "MolButton",
-        "MolButtonCompact",
-        "MolIconButton",
-        "MolTypeBar",
-    ]
 
     private static let atomCallPattern = try! NSRegularExpression(pattern: #"\bAtom[A-Z]\w*\("#)
     private static let iterationPattern = try! NSRegularExpression(pattern: #"\bForEach\b"#)

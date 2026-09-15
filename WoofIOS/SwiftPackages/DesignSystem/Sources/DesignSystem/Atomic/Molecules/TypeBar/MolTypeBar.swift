@@ -26,16 +26,15 @@ public struct MolTypeBar: View {
 
     public var body: some View {
         HStack(spacing: SpacingRoles.Component.compact.rawValue) {
-            TextField(
-                "",
-                text: Binding(get: { text }, set: onTextChange),
-                prompt: Text(placeholder).foregroundStyle(theme.colors.onScrimVariant)
+            AtomTextField(
+                text: text,
+                placeholder: placeholder,
+                onTextChange: onTextChange,
+                onSubmit: onSubmit,
+                textFontRole: .bodyP1,
+                colorRole: .onScrim,
+                placeholderColorRole: .onScrimVariant
             )
-            .font(theme.typography.body.p1)
-            .foregroundStyle(theme.colors.onScrim)
-            .tint(theme.colors.primary)
-            .submitLabel(.send)
-            .onSubmit(onSubmit)
             Button(action: onSubmit) {
                 AtomIcon(
                     icon: Asset.Icons.send,

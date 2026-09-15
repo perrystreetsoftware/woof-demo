@@ -1,3 +1,4 @@
+import Resources
 import SwiftUI
 
 public struct OrgTypeBarWithAction: View {
@@ -5,8 +6,9 @@ public struct OrgTypeBarWithAction: View {
     private let placeholder: String
     private let onTextChange: (String) -> Void
     private let onSubmit: () -> Void
-    private let actionRole: IconButtonRole
-    private let isActionActive: Bool
+    private let actionIcon: ImageAsset
+    private let actionContentDescription: String
+    private let actionColorRole: IconColorRole
     private let onActionTap: () -> Void
     private let isSubmitEnabled: Bool
 
@@ -15,8 +17,9 @@ public struct OrgTypeBarWithAction: View {
         placeholder: String,
         onTextChange: @escaping (String) -> Void,
         onSubmit: @escaping () -> Void,
-        actionRole: IconButtonRole,
-        isActionActive: Bool,
+        actionIcon: ImageAsset,
+        actionContentDescription: String,
+        actionColorRole: IconColorRole,
         onActionTap: @escaping () -> Void,
         isSubmitEnabled: Bool
     ) {
@@ -24,8 +27,9 @@ public struct OrgTypeBarWithAction: View {
         self.placeholder = placeholder
         self.onTextChange = onTextChange
         self.onSubmit = onSubmit
-        self.actionRole = actionRole
-        self.isActionActive = isActionActive
+        self.actionIcon = actionIcon
+        self.actionContentDescription = actionContentDescription
+        self.actionColorRole = actionColorRole
         self.onActionTap = onActionTap
         self.isSubmitEnabled = isSubmitEnabled
     }
@@ -39,12 +43,12 @@ public struct OrgTypeBarWithAction: View {
                 onSubmit: onSubmit,
                 isSubmitEnabled: isSubmitEnabled
             )
-            MolIconButton(
-                role: actionRole,
-                onTap: onActionTap,
-                isActive: isActionActive,
-                isOnScrim: true,
-                hasBackground: true
+            AtomIconButton(
+                icon: actionIcon,
+                contentDescription: actionContentDescription,
+                colorRole: actionColorRole,
+                backgroundRole: .scrimContainer,
+                onTap: onActionTap
             )
         }
         .padding(.horizontal, PaddingRoles.Element.relaxed.rawValue)
