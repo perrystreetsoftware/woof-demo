@@ -11,7 +11,7 @@ final class CustomModifiersArePrivate: QuickSpec {
                 .filter { $0.inheritanceTypesNames.contains("ViewModifier") && !baseline.contains($0.name) }
 
             Then("It is not public") {
-                modifiers.assertEmpty(message: message)
+                modifiers.assertEmpty(rule: rule)
             }
         }
 
@@ -24,7 +24,7 @@ final class CustomModifiersArePrivate: QuickSpec {
                 .filter { !baseline.contains($0.name) }
 
             Then("It is not public") {
-                functions.assertEmpty(message: message)
+                functions.assertEmpty(rule: rule)
             }
         }
     }
@@ -36,10 +36,10 @@ final class CustomModifiersArePrivate: QuickSpec {
         "errorAdapter",
     ]
 
-    private static let message = LintRuleMessage(
-        rule: "Custom view modifiers are private.",
-        why: "A public modifier spreads styling outside the component that owns it, so callers restyle one-off instead of picking a variant.",
-        howToFix: "Make the modifier private to its component. If several components need it, move them into that file as initializers of one component.",
+    private static let rule = Rule(
+        description: "Custom view modifiers are private.",
+        rationale: "A public modifier spreads styling outside the component that owns it, so callers restyle one-off instead of picking a variant.",
+        fixHint: "Make the modifier private to its component. If several components need it, move them into that file as initializers of one component.",
         badExample: """
         public extension View {
             func atomPlaceholderShimmer() -> some View { modifier(AtomPlaceholderShimmer()) }

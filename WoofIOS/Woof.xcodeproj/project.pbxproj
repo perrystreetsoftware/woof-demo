@@ -134,24 +134,6 @@
 			mainGroup = FDD02AFC304A3EE100F86D02;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				A0EA319B29D494EE030DF624 /* XCLocalSwiftPackageReference "SwiftPackages/Utils" */,
-				882F561F668F46F52D3F2251 /* XCLocalSwiftPackageReference "SwiftPackages/Data/DataSource" */,
-				21D2FC2D2CAE5181ED439ABB /* XCLocalSwiftPackageReference "SwiftPackages/Data/Repositories" */,
-				118E4750591C88D586791298 /* XCLocalSwiftPackageReference "SwiftPackages/Domain/UseCase" */,
-				E4109940135E87FE227ECFC1 /* XCLocalSwiftPackageReference "SwiftPackages/DesignSystem" */,
-				E621C873088D26A4114125A8 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Navigation" */,
-				7696EBB5C28D502BB42D6C2D /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Grid" */,
-				63D65A498095830D3AF44773 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Profile" */,
-				BDBB38E99C9192A293DB1BF6 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Favorites" */,
-				D7DFBE77C1C5E1115697D803 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Account" */,
-				5CEE9B6C00F26499EFC1D620 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Home" */,
-				E31A5AD398A6D11AACE555F6 /* XCLocalSwiftPackageReference "SwiftPackages/Macros" */,
-				0ECC60691E735E1203401733 /* XCLocalSwiftPackageReference "SwiftPackages/DTO" */,
-				749D1AAA4518AA6A54BB181A /* XCLocalSwiftPackageReference "SwiftPackages/Domain/Model" */,
-				566CE70C958C1723364EC0CA /* XCLocalSwiftPackageReference "SwiftPackages/Resources" */,
-				AFCA12136FAB39525C257454 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Common" */,
-				A7A339C86279C08BE55BDB4C /* XCLocalSwiftPackageReference "SwiftPackages/TestUtils" */,
-				625C6D9170409D39CFD40F69 /* XCLocalSwiftPackageReference "SwiftPackages/HarmonizeRules" */,
 				0B4DB041027D4B34A57A5D27 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -363,81 +345,6 @@
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		A0EA319B29D494EE030DF624 /* XCLocalSwiftPackageReference "SwiftPackages/Utils" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Utils;
-		};
-		882F561F668F46F52D3F2251 /* XCLocalSwiftPackageReference "SwiftPackages/Data/DataSource" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Data/DataSource;
-		};
-		21D2FC2D2CAE5181ED439ABB /* XCLocalSwiftPackageReference "SwiftPackages/Data/Repositories" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Data/Repositories;
-		};
-		118E4750591C88D586791298 /* XCLocalSwiftPackageReference "SwiftPackages/Domain/UseCase" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Domain/UseCase;
-		};
-		E4109940135E87FE227ECFC1 /* XCLocalSwiftPackageReference "SwiftPackages/DesignSystem" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/DesignSystem;
-		};
-		E621C873088D26A4114125A8 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Navigation" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Navigation;
-		};
-		7696EBB5C28D502BB42D6C2D /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Grid" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Grid;
-		};
-		63D65A498095830D3AF44773 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Profile" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Profile;
-		};
-		BDBB38E99C9192A293DB1BF6 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Favorites" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Favorites;
-		};
-		D7DFBE77C1C5E1115697D803 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Account" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Account;
-		};
-		5CEE9B6C00F26499EFC1D620 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Home" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Home;
-		};
-		E31A5AD398A6D11AACE555F6 /* XCLocalSwiftPackageReference "SwiftPackages/Macros" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Macros;
-		};
-		0ECC60691E735E1203401733 /* XCLocalSwiftPackageReference "SwiftPackages/DTO" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/DTO;
-		};
-		749D1AAA4518AA6A54BB181A /* XCLocalSwiftPackageReference "SwiftPackages/Domain/Model" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Domain/Model;
-		};
-		566CE70C958C1723364EC0CA /* XCLocalSwiftPackageReference "SwiftPackages/Resources" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Resources;
-		};
-		AFCA12136FAB39525C257454 /* XCLocalSwiftPackageReference "SwiftPackages/Presentation/Common" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/Presentation/Common;
-		};
-		A7A339C86279C08BE55BDB4C /* XCLocalSwiftPackageReference "SwiftPackages/TestUtils" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/TestUtils;
-		};
-		625C6D9170409D39CFD40F69 /* XCLocalSwiftPackageReference "SwiftPackages/HarmonizeRules" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = SwiftPackages/HarmonizeRules;
-		};
-/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		0B4DB041027D4B34A57A5D27 /* XCRemoteSwiftPackageReference "Swinject" */ = {

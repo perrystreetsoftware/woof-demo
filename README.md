@@ -123,9 +123,9 @@ Requires JDK 21.
 
 ### iOS
 
-Open `WoofIOS/Woof.xcodeproj` in Xcode and run the `Woof` scheme, or build from the command line:
+Open `WoofIOS/Woof.xcworkspace` in Xcode and run the `Woof` scheme, or build from the command line:
 
 ```bash
 cd WoofIOS
-xcodebuild build -project Woof.xcodeproj -scheme Woof -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
+xcodebuild build -workspace Woof.xcworkspace -scheme Woof -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
 ```

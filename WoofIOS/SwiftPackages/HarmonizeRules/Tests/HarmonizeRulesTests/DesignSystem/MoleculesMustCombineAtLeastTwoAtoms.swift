@@ -11,7 +11,7 @@ final class MoleculesMustCombineAtLeastTwoAtoms: QuickSpec {
                 .filter { $0.name.hasPrefix("Mol") && !baseline.contains($0.name) }
 
             Then("It combines at least two atoms") {
-                molecules.assertTrue(message: message) { molecule in
+                molecules.assertTrue(rule: rule) { molecule in
                     let source = molecule.description
                     let atomUsages = atomCallPattern.numberOfMatches(in: source, range: NSRange(source.startIndex..., in: source))
                     let iterations = iterationPattern.numberOfMatches(in: source, range: NSRange(source.startIndex..., in: source))
@@ -31,10 +31,10 @@ final class MoleculesMustCombineAtLeastTwoAtoms: QuickSpec {
     private static let atomCallPattern = try! NSRegularExpression(pattern: #"\bAtom[A-Z]\w*\("#)
     private static let iterationPattern = try! NSRegularExpression(pattern: #"\bForEach\b"#)
 
-    private static let message = LintRuleMessage(
-        rule: "Molecules combine at least two atoms.",
-        why: "A molecule exists to compose atoms. One atom in a wrapper adds nothing the atom did not already do.",
-        howToFix: "Combine a second atom, or delete the molecule and call the atom directly. The same atom repeated counts.",
+    private static let rule = Rule(
+        description: "Molecules combine at least two atoms.",
+        rationale: "A molecule exists to compose atoms. One atom in a wrapper adds nothing the atom did not already do.",
+        fixHint: "Combine a second atom, or delete the molecule and call the atom directly. The same atom repeated counts.",
         badExample: """
         public struct MolTitle: View {
             public var body: some View {

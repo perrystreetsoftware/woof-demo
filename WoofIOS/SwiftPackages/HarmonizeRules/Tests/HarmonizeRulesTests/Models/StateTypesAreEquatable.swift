@@ -13,15 +13,15 @@ final class StateTypesAreEquatable: QuickSpec {
 
             Then("It is Equatable") {
                 let violations = types.filter { !$0.contains("Equatable") && !$0.contains("Hashable") }
-                WoofHarmonize.featurePackages.sources().assertTrue(message: message) { _ in violations.isEmpty }
+                WoofHarmonize.featurePackages.sources().assertTrue(rule: rule) { _ in violations.isEmpty }
             }
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "State types and UI models must be Equatable.",
-        why: "States mix enums with associated values and structs. Equatable gives every branch the same equality semantics, which keeps test assertions symmetric.",
-        howToFix: "Add Equatable (or Hashable) conformance to the type.",
+    private static let rule = Rule(
+        description: "State types and UI models must be Equatable.",
+        rationale: "States mix enums with associated values and structs. Equatable gives every branch the same equality semantics, which keeps test assertions symmetric.",
+        fixHint: "Add Equatable (or Hashable) conformance to the type.",
         badExample: "public enum State { case loading }",
         goodExample: "public enum State: Equatable { case loading }"
     )

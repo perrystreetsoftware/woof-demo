@@ -9,15 +9,15 @@ final class ViewModelsLiveInViewModelPackage: QuickSpec {
             let viewModels = WoofHarmonize.viewModels
 
             Then("It is declared in the feature's ViewModel folder") {
-                viewModels.assertTrue(message: message) { $0.filePathString.contains("/ViewModel/") }
+                viewModels.assertTrue(rule: rule) { $0.filePathString.contains("/ViewModel/") }
             }
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "ViewModels live in Presentation/<Feature>/Sources/<Target>/ViewModel.",
-        why: "Each feature package has the same four folders (ViewModel, UIModel, Mapper, UI), so anyone can find a class by convention.",
-        howToFix: "Move the class to the ViewModel folder of its feature.",
+    private static let rule = Rule(
+        description: "ViewModels live in Presentation/<Feature>/Sources/<Target>/ViewModel.",
+        rationale: "Each feature package has the same four folders (ViewModel, UIModel, Mapper, UI), so anyone can find a class by convention.",
+        fixHint: "Move the class to the ViewModel folder of its feature.",
         badExample: "// Presentation/Grid/Sources/PresentationGrid/UI/GridViewModel.swift",
         goodExample: "// Presentation/Grid/Sources/PresentationGrid/ViewModel/GridViewModel.swift"
     )

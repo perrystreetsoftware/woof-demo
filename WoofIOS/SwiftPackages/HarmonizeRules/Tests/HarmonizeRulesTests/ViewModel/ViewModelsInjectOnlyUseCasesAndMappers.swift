@@ -9,7 +9,7 @@ final class ViewModelsInjectOnlyUseCasesAndMappers: QuickSpec {
             let viewModels = WoofHarmonize.viewModels
 
             Then("Every dependency is a UseCase, a Mapper, the NavigatorImplementing, or a @DIArgument value") {
-                viewModels.assertTrue(message: message) { viewModel in
+                viewModels.assertTrue(rule: rule) { viewModel in
                     let arguments = Set(viewModel.variables.filter { $0.hasAttribute(named: "@DIArgument") }.map(\.name))
                     return viewModel.initializers.flatMap(\.parameters).allSatisfy { parameter in
                         let type = parameter.typeAnnotation?.name ?? ""
@@ -23,13 +23,13 @@ final class ViewModelsInjectOnlyUseCasesAndMappers: QuickSpec {
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "ViewModels may only inject UseCases, Mappers, NavigatorImplementing (for state-driven navigation), and @DIArgument values.",
-        why: """
+    private static let rule = Rule(
+        description: "ViewModels may only inject UseCases, Mappers, NavigatorImplementing (for state-driven navigation), and @DIArgument values.",
+        rationale: """
             ViewModels orchestrate use cases and shape their output for the UI. Any other dependency
             (repositories, data sources, framework classes) belongs to a lower layer.
             """,
-        howToFix: "Move the work into a UseCase or a Mapper and inject that.",
+        fixHint: "Move the work into a UseCase or a Mapper and inject that.",
         badExample: "final class ProfileWoofViewModel { private let woofsRepository: WoofsRepository }",
         goodExample: "final class ProfileWoofViewModel { @DIArgument private let dog: Dog; private let sendWoofUseCase: SendWoofUseCase }"
     )

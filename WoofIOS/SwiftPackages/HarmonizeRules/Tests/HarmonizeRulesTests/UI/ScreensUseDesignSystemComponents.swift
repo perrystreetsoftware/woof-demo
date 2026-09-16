@@ -9,7 +9,7 @@ final class ScreensUseDesignSystemComponents: QuickSpec {
             let files = WoofHarmonize.featurePackages.sources().inFolder("UI")
 
             Then("It does not use raw SwiftUI components, layout modifiers, or design tokens") {
-                files.assertFalse(message: message) { file in
+                files.assertFalse(rule: rule) { file in
                     file.source.containsMatch(of: rawComponentPattern)
                         || file.source.containsMatch(of: layoutModifierPattern)
                         || file.source.containsMatch(of: tokenPattern)
@@ -24,13 +24,13 @@ final class ScreensUseDesignSystemComponents: QuickSpec {
     private static let layoutModifierPattern = try! NSRegularExpression(pattern: #"\.(padding|frame|background|foregroundStyle|font|overlay|cornerRadius)\("#)
     private static let tokenPattern = try! NSRegularExpression(pattern: #"\b(ColorPrimitives|SpacingPrimitives|SizingPrimitives|SpacingRoles|SizingRoles|ColorRoles|TypographyRoles)\b|\btheme\."#)
 
-    private static let message = LintRuleMessage(
-        rule: "Feature UI only composes Template*, Org*, Mol*, and Atom* components and never touches layout modifiers or design tokens.",
-        why: """
+    private static let rule = Rule(
+        description: "Feature UI only composes Template*, Org*, Mol*, and Atom* components and never touches layout modifiers or design tokens.",
+        rationale: """
             If a screen reaches for Text, VStack, .padding, or theme.colors, styling decisions leak out of
             the design system and drift between features. The design system is the only place tokens are resolved.
             """,
-        howToFix: "Use the matching atomic component, or add a new one (or a new role) to the design system.",
+        fixHint: "Use the matching atomic component, or add a new one (or a new role) to the design system.",
         badExample: "Text(dog.name).foregroundStyle(theme.colors.onSurface).padding(8)",
         goodExample: "AtomText(text: dog.name, textFontRole: .subheadP2)"
     )

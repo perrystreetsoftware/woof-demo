@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Woof.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:SwiftPackages"
+      name = "SwiftPackages">
+      <FileRef
+         location = "group:Macros">
+      </FileRef>
+      <FileRef
+         location = "group:Utils">
+      </FileRef>
+      <FileRef
+         location = "group:DTO">
+      </FileRef>
+      <FileRef
+         location = "group:Domain/Model">
+      </FileRef>
+      <FileRef
+         location = "group:Data/DataSource">
+      </FileRef>
+      <FileRef
+         location = "group:Data/Repositories">
+      </FileRef>
+      <FileRef
+         location = "group:Domain/UseCase">
+      </FileRef>
+      <FileRef
+         location = "group:Resources">
+      </FileRef>
+      <FileRef
+         location = "group:DesignSystem">
+      </FileRef>
+      <FileRef
+         location = "group:TestUtils">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Common">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Navigation">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Grid">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Profile">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Favorites">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Account">
+      </FileRef>
+      <FileRef
+         location = "group:Presentation/Home">
+      </FileRef>
+      <FileRef
+         location = "group:HarmonizeRules">
+      </FileRef>
+   </Group>
+</Workspace>
