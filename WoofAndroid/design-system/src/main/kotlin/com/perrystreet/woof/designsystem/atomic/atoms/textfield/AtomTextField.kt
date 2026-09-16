@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextOverflow
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextColorRole
 import com.perrystreet.woof.designsystem.atomic.atoms.text.roles.TextFontRole
 import com.perrystreet.woof.designsystem.theme.Theme
@@ -42,6 +43,7 @@ fun AtomTextField(
                         style = textStyle,
                         color = placeholderColorRole.color(),
                         maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
                     )
                     false -> Unit
                 }

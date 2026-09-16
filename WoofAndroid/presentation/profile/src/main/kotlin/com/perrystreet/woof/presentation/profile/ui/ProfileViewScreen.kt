@@ -23,6 +23,7 @@ import com.perrystreet.woof.presentation.profile.ui.components.ProfileSection
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteColorRole
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteContentDescription
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteIconRes
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.overflowMenuState
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileOverflowMenuItemUIModelExtensions.toOverflowMenuItem
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileSummaryUIModelExtensions.text
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileToastUIModelExtensions.text
@@ -82,7 +83,7 @@ fun ProfileViewScreen(
                 overflowItems = headerState.overflowItems.map { item ->
                     item.toOverflowMenuItem(onTap = { onOverflowItemTap(item) })
                 },
-                isOverflowExpanded = headerState.isOverflowExpanded,
+                overflowState = headerState.overflowMenuState(),
                 onOverflowExpandedChange = onOverflowExpandedChange,
             )
         },

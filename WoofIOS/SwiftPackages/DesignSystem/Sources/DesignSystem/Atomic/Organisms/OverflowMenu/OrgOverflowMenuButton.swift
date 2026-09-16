@@ -3,20 +3,17 @@ import SwiftUI
 
 public struct OrgOverflowMenuButton: View {
     private let items: [OrgOverflowMenuItem]
-    private let isExpanded: Bool
+    private let state: OverflowMenuState
     private let onExpandedChange: (Bool) -> Void
-    private let colorRole: IconColorRole
 
     public init(
         items: [OrgOverflowMenuItem],
-        isExpanded: Bool,
-        onExpandedChange: @escaping (Bool) -> Void,
-        colorRole: IconColorRole
+        state: OverflowMenuState,
+        onExpandedChange: @escaping (Bool) -> Void
     ) {
         self.items = items
-        self.isExpanded = isExpanded
+        self.state = state
         self.onExpandedChange = onExpandedChange
-        self.colorRole = colorRole
     }
 
     public var body: some View {
@@ -34,7 +31,7 @@ public struct OrgOverflowMenuButton: View {
                 icon: Asset.Icons.moreVertical,
                 iconSize: .m,
                 contentDescription: L10n.Accessibility.moreOptions,
-                colorRole: colorRole
+                colorRole: state.colorRole
             )
             .frame(width: SizingRoles.InteractionHeight.default.rawValue, height: SizingRoles.InteractionHeight.default.rawValue)
         }

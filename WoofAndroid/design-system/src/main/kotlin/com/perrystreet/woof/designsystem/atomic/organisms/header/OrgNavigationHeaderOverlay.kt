@@ -21,6 +21,7 @@ import com.perrystreet.woof.designsystem.atomic.atoms.button.roles.ButtonBackgro
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuButton
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuItem
+import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.state.OverflowMenuState
 import com.perrystreet.woof.resources.R
 
 @Composable
@@ -28,7 +29,7 @@ fun OrgNavigationHeaderOverlay(
     onBackTap: () -> Unit,
     actions: List<OrgNavigationHeaderActionItem> = emptyList(),
     overflowItems: List<OrgOverflowMenuItem> = emptyList(),
-    isOverflowExpanded: Boolean = false,
+    overflowState: OverflowMenuState = OverflowMenuState.Default,
     onOverflowExpandedChange: (Boolean) -> Unit = {},
 ) {
     Row(
@@ -58,9 +59,8 @@ fun OrgNavigationHeaderOverlay(
         }
         OrgOverflowMenuButton(
             items = overflowItems,
-            isExpanded = isOverflowExpanded,
+            state = overflowState,
             onExpandedChange = onOverflowExpandedChange,
-            colorRole = IconColorRole.OnScrim,
         )
     }
 }

@@ -22,4 +22,11 @@ extension ProfileHeaderViewModel.State {
         case false: .onScrim
         }
     }
+
+    var overflowMenuState: OverflowMenuState {
+        switch isOverflowExpanded {
+        case true: .expanded
+        case false: .default
+        }
+    }
 }
