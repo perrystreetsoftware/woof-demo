@@ -9,7 +9,7 @@ final class DataSourcesAreBackedByInterfaces: QuickSpec {
             let protocols = WoofHarmonize.dataSourcePackage.protocols().withNameContaining("DataSource")
 
             Then("Its name ends with DataSourceImplementing") {
-                protocols.assertTrue(message: message) { $0.name.hasSuffix("DataSourceImplementing") }
+                protocols.assertTrue(rule: rule) { $0.name.hasSuffix("DataSourceImplementing") }
             }
         }
 
@@ -17,17 +17,17 @@ final class DataSourcesAreBackedByInterfaces: QuickSpec {
             let implementations = WoofHarmonize.dataSourcePackage.classes().withSuffix("DataSource")
 
             Then("It conforms to a *DataSourceImplementing protocol") {
-                implementations.assertTrue(message: message) { implementation in
+                implementations.assertTrue(rule: rule) { implementation in
                     implementation.inheritanceTypesNames.contains { $0.hasSuffix("DataSourceImplementing") }
                 }
             }
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "Every data source is a *DataSourceImplementing protocol with local and fake implementations.",
-        why: "The protocol is the seam between the app and the outside world. Repositories, tests, and a future remote implementation all program against it.",
-        howToFix: "Declare protocol FooDataSourceImplementing, then make FooLocalDataSource and FakeFooDataSource conform to it.",
+    private static let rule = Rule(
+        description: "Every data source is a *DataSourceImplementing protocol with local and fake implementations.",
+        rationale: "The protocol is the seam between the app and the outside world. Repositories, tests, and a future remote implementation all program against it.",
+        fixHint: "Declare protocol FooDataSourceImplementing, then make FooLocalDataSource and FakeFooDataSource conform to it.",
         badExample: "final class DogsLocalDataSource { func getDogs() -> AnyPublisher<DogsPageDTO, DataSourceError> }",
         goodExample: "protocol DogsDataSourceImplementing { func getDogs() -> AnyPublisher<DogsPageDTO, DataSourceError> }\nfinal class DogsLocalDataSource: DogsDataSourceImplementing"
     )

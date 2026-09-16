@@ -90,7 +90,7 @@ cd WoofIOS && bash scripts/run-unit-tests.sh
 
 ### Lint rules
 
-Architectural rules are BDD specs in the `konsist` module (Android) and the `HarmonizeRules` package (iOS). Every rule contains a `LintRuleMessage` explaining what it checks, why the rule exists, how to fix a violation, and a bad/good example.
+Architectural rules are BDD specs in the `konsist` module (Android) and the `HarmonizeRules` package (iOS). Every rule explains what it checks, why the rule exists, how to fix a violation, and a bad/good example.
 
 ```bash
 cd WoofAndroid && ./gradlew runKonsistTests
@@ -123,9 +123,9 @@ Requires JDK 21.
 
 ### iOS
 
-Open `WoofIOS/Woof.xcodeproj` in Xcode and run the `Woof` scheme, or build from the command line:
+Open `WoofIOS/Woof.xcworkspace` in Xcode and run the `Woof` scheme, or build from the command line:
 
 ```bash
 cd WoofIOS
-xcodebuild build -project Woof.xcodeproj -scheme Woof -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
+xcodebuild build -workspace Woof.xcworkspace -scheme Woof -destination 'platform=iOS Simulator,name=iPhone 17 Pro Max'
 ```

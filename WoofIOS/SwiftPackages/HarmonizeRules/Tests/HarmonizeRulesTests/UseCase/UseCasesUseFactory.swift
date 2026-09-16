@@ -9,15 +9,15 @@ final class UseCasesUseFactory: QuickSpec {
             let useCases = WoofHarmonize.useCases
 
             Then("It is annotated with @Factory") {
-                useCases.assertTrue(message: message) { $0.hasAttribute(named: "@Factory") }
+                useCases.assertTrue(rule: rule) { $0.hasAttribute(named: "@Factory") }
             }
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "UseCases must be annotated with @Factory.",
-        why: "UseCases are stateless, so a new instance per injection is free and rules out accidental shared state.",
-        howToFix: "Add @Factory to the UseCase class.",
+    private static let rule = Rule(
+        description: "UseCases must be annotated with @Factory.",
+        rationale: "UseCases are stateless, so a new instance per injection is free and rules out accidental shared state.",
+        fixHint: "Add @Factory to the UseCase class.",
         badExample: "@Single\nfinal class SendWoofUseCase",
         goodExample: "@Factory\nfinal class SendWoofUseCase"
     )

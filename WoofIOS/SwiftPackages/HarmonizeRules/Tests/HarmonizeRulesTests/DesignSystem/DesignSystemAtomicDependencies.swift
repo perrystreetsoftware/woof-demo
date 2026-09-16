@@ -9,37 +9,37 @@ final class DesignSystemAtomicDependencies: QuickSpec {
             let files = WoofHarmonize.atomicDesignPackage.sources()
 
             Then("Primitives depend on nothing else in the design system") {
-                files.inFolder("_Primitives").assertFalse(message: message) { file in
+                files.inFolder("_Primitives").assertFalse(rule: rule) { file in
                     file.references(tokenPattern) || file.references(componentPattern) || file.references(themePattern)
                 }
             }
 
             Then("Tokens depend only on primitives") {
-                files.inFolder("_Tokens").assertFalse(message: message) { file in
+                files.inFolder("_Tokens").assertFalse(rule: rule) { file in
                     file.references(componentPattern) || file.references(themePattern)
                 }
             }
 
             Then("Atoms depend only on tokens and the theme") {
-                files.inFolder("Atoms").assertFalse(message: message) { file in
+                files.inFolder("Atoms").assertFalse(rule: rule) { file in
                     file.references(primitivePattern) || file.references(moleculePattern) || file.references(organismPattern) || file.references(templatePattern)
                 }
             }
 
             Then("Molecules depend only on atoms, tokens, and the theme") {
-                files.inFolder("Molecules").assertFalse(message: message) { file in
+                files.inFolder("Molecules").assertFalse(rule: rule) { file in
                     file.references(primitivePattern) || file.references(organismPattern) || file.references(templatePattern) || file.referencesOtherMolecules()
                 }
             }
 
             Then("Organisms depend only on molecules, atoms, tokens, the theme, and other organisms") {
-                files.inFolder("Organisms").assertFalse(message: message) { file in
+                files.inFolder("Organisms").assertFalse(rule: rule) { file in
                     file.references(primitivePattern) || file.references(templatePattern)
                 }
             }
 
             Then("Templates depend only on organisms, molecules, atoms, tokens, and the theme") {
-                files.inFolder("Templates").assertFalse(message: message) { file in
+                files.inFolder("Templates").assertFalse(rule: rule) { file in
                     file.references(primitivePattern)
                 }
             }
@@ -54,13 +54,13 @@ final class DesignSystemAtomicDependencies: QuickSpec {
     private static let organismPattern = try! NSRegularExpression(pattern: #"\bOrg[A-Z]\w*\b"#)
     private static let templatePattern = try! NSRegularExpression(pattern: #"\bTemplate[A-Z]\w*\b"#)
 
-    private static let message = LintRuleMessage(
-        rule: "Atomic layers only depend on the layers below them: _Primitives -> _Tokens -> Atoms -> Molecules -> Organisms -> Templates.",
-        why: """
+    private static let rule = Rule(
+        description: "Atomic layers only depend on the layers below them: _Primitives -> _Tokens -> Atoms -> Molecules -> Organisms -> Templates.",
+        rationale: """
             Strict layering is what makes the design system composable: an atom can be reused anywhere because it
             depends on nothing above it, and a molecule never hides a whole organism inside.
             """,
-        howToFix: "Move shared code down (to atoms or tokens) or composition up (to organisms or templates) so references follow the dependency flow.",
+        fixHint: "Move shared code down (to atoms or tokens) or composition up (to organisms or templates) so references follow the dependency flow.",
         badExample: "// in Atoms/Text/AtomText.swift\nMolButton(text: text, onTap: onTap)",
         goodExample: "// in Molecules/Button/MolButton.swift\nAtomText(text: text, textFontRole: .displayH4)"
     )

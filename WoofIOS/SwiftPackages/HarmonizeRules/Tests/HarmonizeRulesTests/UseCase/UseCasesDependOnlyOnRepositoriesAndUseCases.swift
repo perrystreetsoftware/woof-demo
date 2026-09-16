@@ -9,7 +9,7 @@ final class UseCasesDependOnlyOnRepositoriesAndUseCases: QuickSpec {
             let useCases = WoofHarmonize.useCases
 
             Then("It only injects repositories and other use cases") {
-                useCases.assertTrue(message: message) { useCase in
+                useCases.assertTrue(rule: rule) { useCase in
                     useCase.variables
                         .filter { $0.isStored && !$0.modifiers.contains(.static) }
                         .allSatisfy { variable in
@@ -21,10 +21,10 @@ final class UseCasesDependOnlyOnRepositoriesAndUseCases: QuickSpec {
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "UseCases may only depend on Repositories and other UseCases.",
-        why: "Use cases compose data access into business rules. Data sources, mappers, or view types would leak other layers into the domain.",
-        howToFix: "Inject a Repository that wraps the data source, or another UseCase.",
+    private static let rule = Rule(
+        description: "UseCases may only depend on Repositories and other UseCases.",
+        rationale: "Use cases compose data access into business rules. Data sources, mappers, or view types would leak other layers into the domain.",
+        fixHint: "Inject a Repository that wraps the data source, or another UseCase.",
         badExample: "final class SendWoofUseCase { private let dataSource: WoofsDataSourceImplementing }",
         goodExample: "final class SendWoofUseCase { private let woofsRepository: WoofsRepository }"
     )

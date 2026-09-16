@@ -24,7 +24,8 @@ Thumbs.db
 
 # Xcode / Swift Package Manager
 .build/
-.swiftpm/
+.swiftpm/xcode/xcuserdata/
+.swiftpm/configuration/
 xcuserdata/
 *.xcuserstate
 DerivedData/

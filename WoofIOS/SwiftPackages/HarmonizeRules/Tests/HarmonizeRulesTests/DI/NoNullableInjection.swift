@@ -11,7 +11,7 @@ final class NoNullableInjection: QuickSpec {
             }
 
             Then("Its stored constants are not optional") {
-                classes.assertTrue(message: message) { klass in
+                classes.assertTrue(rule: rule) { klass in
                     klass.variables
                         .filter { $0.isStored && $0.isConstant && !$0.modifiers.contains(.static) }
                         .allSatisfy { !$0.isOptional }
@@ -19,17 +19,17 @@ final class NoNullableInjection: QuickSpec {
             }
 
             Then("Its initializer parameters are not optional") {
-                classes.assertTrue(message: message) { klass in
+                classes.assertTrue(rule: rule) { klass in
                     klass.initializers.flatMap(\.parameters).allSatisfy { $0.typeAnnotation?.isOptional == false }
                 }
             }
         }
     }
 
-    private static let message = LintRuleMessage(
-        rule: "Swinject-managed classes never inject nullable dependencies.",
-        why: "A nullable dependency is a missing registration in disguise. Either the dependency exists in the graph or the design is wrong.",
-        howToFix: "Make the dependency non-optional and provide it in the DI graph, or split the class.",
+    private static let rule = Rule(
+        description: "Swinject-managed classes never inject nullable dependencies.",
+        rationale: "A nullable dependency is a missing registration in disguise. Either the dependency exists in the graph or the design is wrong.",
+        fixHint: "Make the dependency non-optional and provide it in the DI graph, or split the class.",
         badExample: "@Single\nfinal class DogsRepository { private let dataSource: DogsDataSourceImplementing? }",
         goodExample: "@Single\nfinal class DogsRepository { private let dataSource: DogsDataSourceImplementing }"
     )
