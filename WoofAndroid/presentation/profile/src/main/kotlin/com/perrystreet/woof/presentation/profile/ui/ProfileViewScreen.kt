@@ -4,7 +4,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.IconButtonRole
 import com.perrystreet.woof.designsystem.atomic.organisms.actionbar.OrgTypeBarWithAction
 import com.perrystreet.woof.designsystem.atomic.organisms.header.OrgNavigationHeaderActionItem
 import com.perrystreet.woof.designsystem.atomic.organisms.header.OrgNavigationHeaderOverlay
@@ -12,8 +11,8 @@ import com.perrystreet.woof.designsystem.atomic.organisms.hero.OrgHeroPhoto
 import com.perrystreet.woof.designsystem.atomic.organisms.hero.OrgHeroSummary
 import com.perrystreet.woof.designsystem.atomic.organisms.section.OrgSectionsPlaceholder
 import com.perrystreet.woof.designsystem.atomic.organisms.toast.OrgToastHost
-import com.perrystreet.woof.designsystem.atomic.templates.TemplateOverlayTop
 import com.perrystreet.woof.designsystem.atomic.templates.TemplateHeroDetails
+import com.perrystreet.woof.designsystem.atomic.templates.TemplateOverlayTop
 import com.perrystreet.woof.designsystem.preview.PreviewDevices
 import com.perrystreet.woof.designsystem.preview.ThemeProvider
 import com.perrystreet.woof.designsystem.preview.ThemedScreenPreview
@@ -21,9 +20,15 @@ import com.perrystreet.woof.designsystem.theme.ITheme
 import com.perrystreet.woof.presentation.common.image.AsyncImageStateExtensions.rememberAsyncImageState
 import com.perrystreet.woof.presentation.profile.ui.components.ProfileModerationDialog
 import com.perrystreet.woof.presentation.profile.ui.components.ProfileSection
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteColorRole
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteContentDescription
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.favoriteIconRes
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileHeaderStateExtensions.overflowMenuState
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileOverflowMenuItemUIModelExtensions.toOverflowMenuItem
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileSummaryUIModelExtensions.text
 import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileToastUIModelExtensions.text
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileWoofStateExtensions.woofColorRole
+import com.perrystreet.woof.presentation.profile.ui.extensions.ProfileWoofStateExtensions.woofIconRes
 import com.perrystreet.woof.presentation.profile.ui.preview.ProfilePreviewData
 import com.perrystreet.woof.presentation.profile.uimodel.ProfileContentUIModel
 import com.perrystreet.woof.presentation.profile.uimodel.ProfileDetailsUIModel
@@ -69,15 +74,16 @@ fun ProfileViewScreen(
                 onBackTap = onBackTap,
                 actions = listOf(
                     OrgNavigationHeaderActionItem(
-                        role = IconButtonRole.Favorite,
+                        iconRes = headerState.favoriteIconRes(),
+                        contentDescription = headerState.favoriteContentDescription(),
+                        colorRole = headerState.favoriteColorRole(),
                         onTap = onFavoriteTap,
-                        isActive = headerState.isFavorite,
                     ),
                 ),
                 overflowItems = headerState.overflowItems.map { item ->
                     item.toOverflowMenuItem(onTap = { onOverflowItemTap(item) })
                 },
-                isOverflowExpanded = headerState.isOverflowExpanded,
+                overflowState = headerState.overflowMenuState(),
                 onOverflowExpandedChange = onOverflowExpandedChange,
             )
         },
@@ -95,8 +101,9 @@ fun ProfileViewScreen(
                 onTextChange = onMessageTextChange,
                 onSubmit = onMessageSendTap,
                 isSubmitEnabled = messageState.isSendEnabled,
-                actionRole = IconButtonRole.Woof,
-                isActionActive = woofState.hasWoofed,
+                actionIconRes = woofState.woofIconRes(),
+                actionContentDescription = stringResource(R.string.accessibility_woof),
+                actionColorRole = woofState.woofColorRole(),
                 onActionTap = onWoofTap,
             )
         },

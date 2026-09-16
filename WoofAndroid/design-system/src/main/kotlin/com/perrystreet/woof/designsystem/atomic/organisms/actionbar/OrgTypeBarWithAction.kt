@@ -1,5 +1,6 @@
 package com.perrystreet.woof.designsystem.atomic.organisms.actionbar
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -9,8 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.SpacingRoles
-import com.perrystreet.woof.designsystem.atomic.molecules.button.MolIconButton
-import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.IconButtonRole
+import com.perrystreet.woof.designsystem.atomic.atoms.button.AtomIconButton
+import com.perrystreet.woof.designsystem.atomic.atoms.button.roles.ButtonBackgroundRole
+import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
 import com.perrystreet.woof.designsystem.atomic.molecules.typebar.MolTypeBar
 
 @Composable
@@ -19,8 +21,9 @@ fun OrgTypeBarWithAction(
     placeholder: String,
     onTextChange: (String) -> Unit,
     onSubmit: () -> Unit,
-    actionRole: IconButtonRole,
-    isActionActive: Boolean,
+    @DrawableRes actionIconRes: Int,
+    actionContentDescription: String,
+    actionColorRole: IconColorRole,
     onActionTap: () -> Unit,
     isSubmitEnabled: Boolean = text.isNotBlank(),
 ) {
@@ -42,12 +45,12 @@ fun OrgTypeBarWithAction(
             isSubmitEnabled = isSubmitEnabled,
             modifier = Modifier.weight(1f),
         )
-        MolIconButton(
-            role = actionRole,
+        AtomIconButton(
+            iconRes = actionIconRes,
+            contentDescription = actionContentDescription,
+            colorRole = actionColorRole,
+            backgroundRole = ButtonBackgroundRole.ScrimContainer,
             onTap = onActionTap,
-            isActive = isActionActive,
-            isOnScrim = true,
-            hasBackground = true,
         )
     }
 }

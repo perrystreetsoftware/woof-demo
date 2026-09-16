@@ -21,10 +21,12 @@ public struct HomeScreen<TabContent: View>: View {
         TemplateBottomNavigation(
             selectedTab: state.selectedTab,
             items: state.tabs.map { tab in
-                OrgBottomNavigationItem(
-                    role: tab.toBottomNavigationRole(),
+                let isSelected = tab == state.selectedTab
+                return OrgBottomNavigationItem(
+                    icon: tab.icon(isSelected: isSelected),
+                    label: tab.label,
                     value: tab,
-                    isSelected: tab == state.selectedTab,
+                    isSelected: isSelected,
                     onTap: { onTabSelect(tab) }
                 )
             },

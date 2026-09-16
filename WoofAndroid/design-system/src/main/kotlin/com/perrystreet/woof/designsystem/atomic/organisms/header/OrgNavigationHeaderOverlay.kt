@@ -13,19 +13,23 @@ import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import com.perrystreet.woof.designsystem.atomic._tokens.sizing.SizingRoles
 import com.perrystreet.woof.designsystem.atomic._tokens.spacing.PaddingRoles
-import com.perrystreet.woof.designsystem.atomic.molecules.button.MolIconButton
-import com.perrystreet.woof.designsystem.atomic.molecules.button.roles.IconButtonRole
+import com.perrystreet.woof.designsystem.atomic.atoms.button.AtomIconButton
+import com.perrystreet.woof.designsystem.atomic.atoms.button.roles.ButtonBackgroundRole
+import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuButton
 import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.OrgOverflowMenuItem
+import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.state.OverflowMenuState
+import com.perrystreet.woof.resources.R
 
 @Composable
 fun OrgNavigationHeaderOverlay(
     onBackTap: () -> Unit,
     actions: List<OrgNavigationHeaderActionItem> = emptyList(),
     overflowItems: List<OrgOverflowMenuItem> = emptyList(),
-    isOverflowExpanded: Boolean = false,
+    overflowState: OverflowMenuState = OverflowMenuState.Default,
     onOverflowExpandedChange: (Boolean) -> Unit = {},
 ) {
     Row(
@@ -36,21 +40,27 @@ fun OrgNavigationHeaderOverlay(
             .padding(horizontal = PaddingRoles.Element.Compact.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        MolIconButton(role = IconButtonRole.Back, onTap = onBackTap, isOnScrim = true)
+        AtomIconButton(
+            iconRes = R.drawable.ic_arrow_back,
+            contentDescription = stringResource(R.string.accessibility_back),
+            colorRole = IconColorRole.OnScrim,
+            backgroundRole = ButtonBackgroundRole.None,
+            onTap = onBackTap,
+        )
         Spacer(modifier = Modifier.weight(1f))
         actions.forEach { action ->
-            MolIconButton(
-                role = action.role,
+            AtomIconButton(
+                iconRes = action.iconRes,
+                contentDescription = action.contentDescription,
+                colorRole = action.colorRole,
+                backgroundRole = ButtonBackgroundRole.None,
                 onTap = action.onTap,
-                isActive = action.isActive,
-                isOnScrim = true,
             )
         }
         OrgOverflowMenuButton(
             items = overflowItems,
-            isExpanded = isOverflowExpanded,
+            state = overflowState,
             onExpandedChange = onOverflowExpandedChange,
-            isOnScrim = true,
         )
     }
 }
