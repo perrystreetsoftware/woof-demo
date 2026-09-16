@@ -88,7 +88,7 @@ public struct ProfileViewScreen: View {
                     overflowItems: headerState.overflowItems.map { item in
                         item.toOverflowMenuItem(onTap: { onOverflowItemTap(item) })
                     },
-                    isOverflowExpanded: headerState.isOverflowExpanded,
+                    overflowState: headerState.overflowMenuState,
                     onOverflowExpandedChange: onOverflowExpandedChange
                 )
             },

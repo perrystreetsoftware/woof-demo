@@ -5,20 +5,20 @@ public struct OrgNavigationHeaderOverlay: View {
     private let onBackTap: () -> Void
     private let actions: [OrgNavigationHeaderActionItem]
     private let overflowItems: [OrgOverflowMenuItem]
-    private let isOverflowExpanded: Bool
+    private let overflowState: OverflowMenuState
     private let onOverflowExpandedChange: (Bool) -> Void
 
     public init(
         onBackTap: @escaping () -> Void,
         actions: [OrgNavigationHeaderActionItem] = [],
         overflowItems: [OrgOverflowMenuItem] = [],
-        isOverflowExpanded: Bool = false,
+        overflowState: OverflowMenuState = .default,
         onOverflowExpandedChange: @escaping (Bool) -> Void = { _ in }
     ) {
         self.onBackTap = onBackTap
         self.actions = actions
         self.overflowItems = overflowItems
-        self.isOverflowExpanded = isOverflowExpanded
+        self.overflowState = overflowState
         self.onOverflowExpandedChange = onOverflowExpandedChange
     }
 
@@ -43,9 +43,8 @@ public struct OrgNavigationHeaderOverlay: View {
             }
             OrgOverflowMenuButton(
                 items: overflowItems,
-                isExpanded: isOverflowExpanded,
-                onExpandedChange: onOverflowExpandedChange,
-                colorRole: .onScrim
+                state: overflowState,
+                onExpandedChange: onOverflowExpandedChange
             )
         }
         .padding(.horizontal, PaddingRoles.Element.compact.rawValue)

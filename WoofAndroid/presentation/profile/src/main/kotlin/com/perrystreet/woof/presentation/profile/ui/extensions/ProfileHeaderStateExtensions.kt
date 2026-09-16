@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.perrystreet.woof.designsystem.atomic.atoms.icon.roles.IconColorRole
+import com.perrystreet.woof.designsystem.atomic.organisms.overflowmenu.state.OverflowMenuState
 import com.perrystreet.woof.presentation.profile.viewmodel.ProfileHeaderViewModel
 import com.perrystreet.woof.resources.R
 
@@ -23,5 +24,10 @@ object ProfileHeaderStateExtensions {
     fun ProfileHeaderViewModel.State.favoriteColorRole(): IconColorRole = when (isFavorite) {
         true -> IconColorRole.Recent
         false -> IconColorRole.OnScrim
+    }
+
+    fun ProfileHeaderViewModel.State.overflowMenuState(): OverflowMenuState = when (isOverflowExpanded) {
+        true -> OverflowMenuState.Expanded
+        false -> OverflowMenuState.Default
     }
 }
