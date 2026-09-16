@@ -90,7 +90,7 @@ cd WoofIOS && bash scripts/run-unit-tests.sh
 
 ### Lint rules
 
-Architectural rules are BDD specs in the `konsist` module (Android) and the `HarmonizeRules` package (iOS). Every rule contains a `LintRuleMessage` explaining what it checks, why the rule exists, how to fix a violation, and a bad/good example.
+Architectural rules are BDD specs in the `konsist` module (Android) and the `HarmonizeRules` package (iOS). Every rule explains what it checks, why the rule exists, how to fix a violation, and a bad/good example.
 
 ```bash
 cd WoofAndroid && ./gradlew runKonsistTests
