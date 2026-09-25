@@ -26,7 +26,7 @@ public struct TemplateBottomNavigation<Value: Hashable, Content: View>: View {
                 Tab(value: item.value) {
                     content(item.value)
                 } label: {
-                    OrgBottomNavigationBarLabel(role: item.role, isSelected: item.isSelected)
+                    OrgBottomNavigationBarLabel(icon: item.icon, label: item.label, isSelected: item.isSelected)
                 }
             }
         }

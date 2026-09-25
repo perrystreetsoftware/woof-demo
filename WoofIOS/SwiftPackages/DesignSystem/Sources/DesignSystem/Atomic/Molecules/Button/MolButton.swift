@@ -16,58 +16,6 @@ public struct MolButton: View {
     }
 
     public var body: some View {
-        MolButtonContent(
-            text: text,
-            onTap: onTap,
-            role: role,
-            state: state,
-            minHeight: SizingRoles.InteractionHeight.comfort.rawValue,
-            textFontRole: .displayH4,
-            fillsWidth: true
-        )
-    }
-}
-
-public struct MolButtonCompact: View {
-    @Environment(\.theme) private var theme
-
-    private let text: String
-    private let onTap: () -> Void
-    private let role: ButtonRole
-    private let state: ButtonState
-
-    public init(text: String, onTap: @escaping () -> Void, role: ButtonRole = .primary, state: ButtonState = .enabled) {
-        self.text = text
-        self.onTap = onTap
-        self.role = role
-        self.state = state
-    }
-
-    public var body: some View {
-        MolButtonContent(
-            text: text,
-            onTap: onTap,
-            role: role,
-            state: state,
-            minHeight: SizingRoles.InteractionHeight.default.rawValue,
-            textFontRole: .displayH5,
-            fillsWidth: false
-        )
-    }
-}
-
-private struct MolButtonContent: View {
-    @Environment(\.theme) private var theme
-
-    let text: String
-    let onTap: () -> Void
-    let role: ButtonRole
-    let state: ButtonState
-    let minHeight: CGFloat
-    let textFontRole: TextFontRole
-    let fillsWidth: Bool
-
-    var body: some View {
         Button(action: onTap) {
             ZStack {
                 switch state.showsLoadingIndicator {
@@ -76,7 +24,7 @@ private struct MolButtonContent: View {
                 case false:
                     AtomText(
                         text: text,
-                        textFontRole: textFontRole,
+                        textFontRole: .displayH5,
                         colorRole: role.textColorRole,
                         maxLines: 1,
                         textAlign: .center
@@ -84,7 +32,7 @@ private struct MolButtonContent: View {
                 }
             }
             .padding(.horizontal, PaddingRoles.Element.expanded.rawValue)
-            .frame(maxWidth: fillsWidth ? .infinity : nil, minHeight: minHeight)
+            .frame(minWidth: SizingRoles.InteractionHeight.default.rawValue, minHeight: SizingRoles.InteractionHeight.default.rawValue)
             .background(role.surfaceColor(from: theme), in: RoundedRectangle(cornerRadius: theme.radius.m))
         }
         .buttonStyle(.plain)
