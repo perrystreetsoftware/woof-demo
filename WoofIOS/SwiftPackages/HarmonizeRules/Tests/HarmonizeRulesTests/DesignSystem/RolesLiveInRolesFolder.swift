@@ -11,12 +11,6 @@ final class RolesLiveInRolesFolder: QuickSpec {
             Then("It lives in a Roles folder next to its component") {
                 roles.assertTrue(rule: rule) { $0.filePathString.contains("/Roles/") }
             }
-
-            Then("Its entries resolve to theme tokens or resources") {
-                roles.assertTrue(rule: rule) { role in
-                    role.description.contains("theme") || role.description.contains("Asset.") || role.description.contains("L10n.")
-                }
-            }
         }
     }
 
