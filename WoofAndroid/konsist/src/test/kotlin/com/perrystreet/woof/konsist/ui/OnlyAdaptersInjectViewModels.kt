@@ -24,8 +24,8 @@ class OnlyAdaptersInjectViewModels : BehaviorSpec() {
                 previewed and reasoned about without dependency injection.
             """.trimIndent(),
             howToFix = "Inject the ViewModel in an Adapter and pass state and callbacks down to the Screen.",
-            badExample = "@Composable fun GridScreen(viewModel: GridViewModel = koinViewModel())",
-            goodExample = "@Composable fun GridAdapter(viewModel: GridViewModel = koinViewModel()) { GridScreen(state = ...) }",
+            badExample = "@Composable fun BrowseScreen(viewModel: BrowseViewModel = koinViewModel())",
+            goodExample = "@Composable fun BrowseAdapter(viewModel: BrowseViewModel = koinViewModel()) { BrowseScreen(state = ...) }",
         )
     }
 }

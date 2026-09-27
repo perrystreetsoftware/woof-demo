@@ -26,8 +26,8 @@ class AdaptersCallScreens : BehaviorSpec() {
             rule = "Every Adapter delegates rendering to a Screen composable.",
             why = "The Adapter/Screen split only works if the Adapter is a thin bridge: collect state, bind callbacks, render the Screen.",
             howToFix = "Move layout code into a *Screen composable and call it from the Adapter.",
-            badExample = "@Composable fun GridAdapter(viewModel: GridViewModel = koinViewModel()) { TemplateGrid(...) { ... } }",
-            goodExample = "@Composable fun GridAdapter(viewModel: GridViewModel = koinViewModel()) { GridScreen(state = state, onCellTap = ...) }",
+            badExample = "@Composable fun BrowseAdapter(viewModel: BrowseViewModel = koinViewModel()) { TemplateGrid(...) { ... } }",
+            goodExample = "@Composable fun BrowseAdapter(viewModel: BrowseViewModel = koinViewModel()) { BrowseScreen(state = state, onCellTap = ...) }",
         )
     }
 }

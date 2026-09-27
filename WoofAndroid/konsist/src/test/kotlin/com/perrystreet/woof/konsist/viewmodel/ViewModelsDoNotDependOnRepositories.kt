@@ -30,8 +30,8 @@ class ViewModelsDoNotDependOnRepositories : BehaviorSpec() {
                 layer spreads business rules across ViewModels and makes them untestable in isolation.
             """.trimIndent(),
             howToFix = "Wrap the repository call in a single-purpose UseCase and inject that instead.",
-            badExample = "class GridViewModel(private val dogsRepository: DogsRepository)",
-            goodExample = "class GridViewModel(private val getDogsFeedUseCase: GetDogsFeedUseCase)",
+            badExample = "class BrowseViewModel(private val dogsRepository: DogsRepository)",
+            goodExample = "class BrowseViewModel(private val getDogsFeedUseCase: GetDogsFeedUseCase)",
         )
     }
 }

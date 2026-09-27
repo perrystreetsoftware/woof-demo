@@ -28,8 +28,8 @@ class ViewModelsInheritFromBaseViewModels : BehaviorSpec() {
                 state contract. Extending androidx ViewModel directly loses all of that.
             """.trimIndent(),
             howToFix = "Pick StateProducingViewModel when the ViewModel mutates state, StateDerivingViewModel when state is combined from streams, StatelessViewModel otherwise.",
-            badExample = "class GridViewModel : ViewModel()",
-            goodExample = "class GridViewModel : StateProducingViewModel<GridViewModel.State>(State.Loading)",
+            badExample = "class BrowseViewModel : ViewModel()",
+            goodExample = "class BrowseViewModel : StateProducingViewModel<BrowseViewModel.State>(State.Loading)",
         )
     }
 }

@@ -41,8 +41,8 @@ class TestsUseBehaviorSpec : BehaviorSpec() {
                 The BDD structure reads as a spec, and InstancePerLeaf plus beforeEach gives every Then a clean slate.
             """.trimIndent(),
             howToFix = "Extend ViewModelBehaviorSpec, use Given/When/Then/And blocks, set up in beforeEach, and advance time with TimeAdvancingFactory().tick().",
-            badExample = "class GridViewModelTest : FunSpec({ test(\"loads\") { Thread.sleep(100) } })",
-            goodExample = "class GridViewModelTest : ViewModelBehaviorSpec() { init { Given(\"I open the grid\") { Then(\"...\") { ... } } } }",
+            badExample = "class BrowseViewModelTest : FunSpec({ test(\"loads\") { Thread.sleep(100) } })",
+            goodExample = "class BrowseViewModelTest : ViewModelBehaviorSpec() { init { Given(\"I open the grid\") { Then(\"...\") { ... } } } }",
         )
     }
 }

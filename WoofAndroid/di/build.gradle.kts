@@ -13,7 +13,7 @@ dependencies {
     implementation(projects.data.repositories)
     implementation(projects.domain.usecase)
     implementation(projects.presentation.navigation)
-    implementation(projects.presentation.grid)
+    implementation(projects.presentation.browse)
     implementation(projects.presentation.profile)
     implementation(projects.presentation.favorites)
     implementation(projects.presentation.account)

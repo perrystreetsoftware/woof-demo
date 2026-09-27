@@ -21,7 +21,7 @@ final class ViewModelsUseFactoryAnnotation: QuickSpec {
             DI graph stays uniform and nobody hand-edits containers when a ViewModel gains a dependency.
             """,
         fixHint: "Add @Factory to the ViewModel class and rerun scripts/SwinjectCodegen.",
-        badExample: "final class GridViewModel: StateProducingViewModel<GridViewModel.State, DogsError>",
-        goodExample: "@Factory\nfinal class GridViewModel: StateProducingViewModel<GridViewModel.State, DogsError>"
+        badExample: "final class BrowseViewModel: StateProducingViewModel<BrowseViewModel.State, DogsError>",
+        goodExample: "@Factory\nfinal class BrowseViewModel: StateProducingViewModel<BrowseViewModel.State, DogsError>"
     )
 }

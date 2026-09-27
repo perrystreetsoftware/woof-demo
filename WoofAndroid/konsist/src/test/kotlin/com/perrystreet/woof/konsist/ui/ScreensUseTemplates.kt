@@ -24,8 +24,8 @@ class ScreensUseTemplates : BehaviorSpec() {
             rule = "Screen composables use a Template* as their root layout.",
             why = "Templates own page structure (top bar, insets, paddings, scrolling). Screens only fill their slots, so every screen shares the same skeleton.",
             howToFix = "Wrap the screen content in an existing Template, or add a new Template to the design system.",
-            badExample = "@Composable fun GridScreen(state: State) { Scaffold { LazyVerticalGrid { ... } } }",
-            goodExample = "@Composable fun GridScreen(state: State) { TemplateGrid(topBar = { OrgNavigationHeaderBranded() }) { ... } }",
+            badExample = "@Composable fun BrowseScreen(state: State) { Scaffold { LazyVerticalGrid { ... } } }",
+            goodExample = "@Composable fun BrowseScreen(state: State) { TemplateGrid(topBar = { OrgNavigationHeaderBranded() }) { ... } }",
         )
     }
 }

@@ -23,7 +23,7 @@ final class ViewModelsDoNotDependOnRepositories: QuickSpec {
             layer spreads business rules across ViewModels and makes them untestable in isolation.
             """,
         fixHint: "Wrap the repository call in a single-purpose UseCase and inject that instead.",
-        badExample: "final class GridViewModel { private let dogsRepository: DogsRepository }",
-        goodExample: "final class GridViewModel { private let getDogsFeedUseCase: GetDogsFeedUseCase }"
+        badExample: "final class BrowseViewModel { private let dogsRepository: DogsRepository }",
+        goodExample: "final class BrowseViewModel { private let getDogsFeedUseCase: GetDogsFeedUseCase }"
     )
 }

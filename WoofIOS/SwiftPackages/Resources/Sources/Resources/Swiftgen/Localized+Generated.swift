@@ -35,10 +35,10 @@ public enum L10n {
         public static let title = L10n.tr("account_title")
     }
 
-    public enum Grid {
-        public static let errorTitle = L10n.tr("grid_error_title")
-        public static let errorMessage = L10n.tr("grid_error_message")
-        public static let errorRetry = L10n.tr("grid_error_retry")
+    public enum Browse {
+        public static let errorTitle = L10n.tr("browse_error_title")
+        public static let errorMessage = L10n.tr("browse_error_message")
+        public static let errorRetry = L10n.tr("browse_error_retry")
     }
 
     public enum Profile {

@@ -34,8 +34,8 @@ class ScreensHaveDevicePreviews : BehaviorSpec() {
             rule = "Every Screen has a private @PreviewDevices preview that takes its theme from ThemeProvider.",
             why = "Previews are how a screen is reviewed in every theme and form factor without running the app. ThemeProvider renders light and dark in one shot.",
             howToFix = "Add a private preview annotated with @PreviewDevices and a @PreviewParameter(ThemeProvider::class) theme parameter.",
-            badExample = "@Preview @Composable fun GridScreenPreview() { GridScreen(...) }",
-            goodExample = "@PreviewDevices @Composable private fun GridScreenPreview(@PreviewParameter(ThemeProvider::class) theme: ITheme) { ThemedScreenPreview(theme) { GridScreen(...) } }",
+            badExample = "@Preview @Composable fun BrowseScreenPreview() { BrowseScreen(...) }",
+            goodExample = "@PreviewDevices @Composable private fun BrowseScreenPreview(@PreviewParameter(ThemeProvider::class) theme: ITheme) { ThemedScreenPreview(theme) { BrowseScreen(...) } }",
         )
     }
 }

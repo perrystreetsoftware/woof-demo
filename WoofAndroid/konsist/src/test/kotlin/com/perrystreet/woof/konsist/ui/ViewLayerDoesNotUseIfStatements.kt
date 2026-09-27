@@ -17,13 +17,23 @@ class ViewLayerDoesNotUseIfStatements : BehaviorSpec() {
                 }
             }
         }
+
+        Given("A screen-layer extensions file") {
+            val extensions = KonsistUtils.presentationModules.files.filter { it.path.contains("/ui/extensions/") }
+
+            Then("It does not branch with if or ?.let") {
+                extensions.assertFalse(message = Message) { file ->
+                    IfRegex.containsMatchIn(file.text) || file.text.contains("?.let")
+                }
+            }
+        }
     }
 
     private companion object {
         private val IfRegex = Regex("""\bif\s*\(""")
 
         private val Message = LintRuleMessage(
-            rule = "Composables in presentation modules do not use if statements or ?.let.",
+            rule = "Composables and screen-layer extensions in presentation modules do not use if statements or ?.let.",
             why = """
                 Branching in the view hides state decisions from the ViewModel and its tests. Sealed state plus
                 exhaustive when, or an early guard, keeps every UI branch modelled and tested.
