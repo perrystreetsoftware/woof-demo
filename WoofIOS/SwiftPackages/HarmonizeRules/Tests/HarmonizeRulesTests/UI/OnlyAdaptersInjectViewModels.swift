@@ -23,7 +23,7 @@ final class OnlyAdaptersInjectViewModels: QuickSpec {
             previewed and reasoned about without dependency injection.
             """,
         fixHint: "Inject the ViewModel in an Adapter and pass state and callbacks down to the Screen.",
-        badExample: "struct GridScreen: View { @StateObject private var viewModel: GridViewModel }",
-        goodExample: "struct GridAdapter: View { @StateObject private var viewModel: GridViewModel\n    var body: some View { GridScreen(state: viewModel.state) } }"
+        badExample: "struct BrowseScreen: View { @StateObject private var viewModel: BrowseViewModel }",
+        goodExample: "struct BrowseAdapter: View { @StateObject private var viewModel: BrowseViewModel\n    var body: some View { BrowseScreen(state: viewModel.state) } }"
     )
 }

@@ -50,7 +50,7 @@ Each Android module has an equivalent Swift package with the same responsibility
 | `domain/usecase` | `SwiftPackages/Domain/UseCase` | Single-function use cases |
 | `presentation/common` | `SwiftPackages/Presentation/Common` | ViewModel base classes, error adapter, image loading bridge |
 | `presentation/navigation` | `SwiftPackages/Presentation/Navigation` | Destinations, back stack, navigator, router entries |
-| `presentation/grid` | `SwiftPackages/Presentation/Grid` | The dog grid feature: `ViewModel`, `UIModel`, `Mapper`, `UI` |
+| `presentation/browse` | `SwiftPackages/Presentation/Browse` | The Browse tab, a grid of dogs: `ViewModel`, `UIModel`, `Mapper`, `UI` |
 | `presentation/profile` | `SwiftPackages/Presentation/Profile` | The fullscreen profile feature, built from several small ViewModels |
 | `presentation/favorites` | `SwiftPackages/Presentation/Favorites` | The grid of favorited dogs |
 | `presentation/account` | `SwiftPackages/Presentation/Account` | The read-only account screen for your own dog |

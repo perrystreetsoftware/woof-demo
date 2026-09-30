@@ -40,7 +40,7 @@ final class TestsUseBehaviorSpec: QuickSpec {
             The BDD structure reads as a spec, and a fresh Container per beforeEach gives every Then a clean slate.
             """,
         fixHint: "Subclass QuickSpec, use Given/When/Then/And blocks, set up in beforeEach, act in justBeforeEach, and advance time with TimeAdvancingFactory(container).tick().",
-        badExample: "final class GridViewModelTest: XCTestCase { func testLoads() { sleep(1) } }",
-        goodExample: "final class GridViewModelTest: QuickSpec { override class func spec() { Given(\"I open the grid\") { Then(\"...\") { ... } } } }"
+        badExample: "final class BrowseViewModelTest: XCTestCase { func testLoads() { sleep(1) } }",
+        goodExample: "final class BrowseViewModelTest: QuickSpec { override class func spec() { Given(\"I open the grid\") { Then(\"...\") { ... } } } }"
     )
 }

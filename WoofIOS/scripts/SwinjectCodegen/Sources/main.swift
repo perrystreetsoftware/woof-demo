@@ -21,7 +21,7 @@ writeLayer(packageName: "Data/DataSource", layerName: "DataSourceFakes", additio
 writeLayer(packageName: "Data/Repositories", layerName: "Repositories")
 writeLayer(packageName: "Domain/UseCase", layerName: "UseCase")
 writeLayer(packageName: "Presentation/Navigation", layerName: "PresentationNavigation")
-writeLayer(packageName: "Presentation/Grid", layerName: "PresentationGrid")
+writeLayer(packageName: "Presentation/Browse", layerName: "PresentationBrowse")
 writeLayer(packageName: "Presentation/Profile", layerName: "PresentationProfile", additionalImports: ["PresentationNavigation"])
 writeLayer(packageName: "Presentation/Favorites", layerName: "PresentationFavorites")
 writeLayer(packageName: "Presentation/Account", layerName: "PresentationAccount")

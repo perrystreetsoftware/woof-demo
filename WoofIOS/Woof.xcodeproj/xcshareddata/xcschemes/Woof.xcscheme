@@ -28,10 +28,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "PresentationGridTests"
-               BuildableName = "PresentationGridTests"
-               BlueprintName = "PresentationGridTests"
-               ReferencedContainer = "container:SwiftPackages/Presentation/Grid">
+               BlueprintIdentifier = "PresentationBrowseTests"
+               BuildableName = "PresentationBrowseTests"
+               BlueprintName = "PresentationBrowseTests"
+               ReferencedContainer = "container:SwiftPackages/Presentation/Browse">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -102,10 +102,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "PresentationGridTests"
-               BuildableName = "PresentationGridTests"
-               BlueprintName = "PresentationGridTests"
-               ReferencedContainer = "container:SwiftPackages/Presentation/Grid">
+               BlueprintIdentifier = "PresentationBrowseTests"
+               BuildableName = "PresentationBrowseTests"
+               BlueprintName = "PresentationBrowseTests"
+               ReferencedContainer = "container:SwiftPackages/Presentation/Browse">
             </BuildableReference>
          </TestableReference>
          <TestableReference

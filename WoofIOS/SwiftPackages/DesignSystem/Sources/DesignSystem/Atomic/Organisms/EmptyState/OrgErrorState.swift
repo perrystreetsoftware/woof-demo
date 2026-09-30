@@ -15,14 +15,9 @@ public struct OrgErrorState: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-            AtomAppLogo(colorRole: .onSurfaceVariant)
-            AtomSpacer(spacing: .regular)
-            AtomText(text: title, textFontRole: .displayH2, textAlign: .center)
-            AtomSpacer(spacing: .compact)
-            AtomText(text: message, textFontRole: .bodyP1, colorRole: .onSurfaceVariant, textAlign: .center)
+            OrgEmptyState(title: title, message: message)
             AtomSpacer(spacing: .expanded)
             MolButton(text: actionText, onTap: onActionTap)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

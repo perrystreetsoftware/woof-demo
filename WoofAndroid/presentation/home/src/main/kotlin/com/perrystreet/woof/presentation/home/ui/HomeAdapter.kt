@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import com.perrystreet.woof.presentation.account.ui.AccountAdapter
 import com.perrystreet.woof.presentation.favorites.ui.FavoritesAdapter
-import com.perrystreet.woof.presentation.grid.ui.GridAdapter
+import com.perrystreet.woof.presentation.browse.ui.BrowseAdapter
 import com.perrystreet.woof.presentation.home.uimodel.HomeTabUIModel
 import com.perrystreet.woof.presentation.home.viewmodel.HomeViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -24,7 +24,7 @@ fun HomeAdapter(viewModel: HomeViewModel = koinViewModel()) {
     ) { tab ->
         saveableStateHolder.SaveableStateProvider(key = tab) {
             when (tab) {
-                HomeTabUIModel.Browse -> GridAdapter()
+                HomeTabUIModel.Browse -> BrowseAdapter()
                 HomeTabUIModel.Favorites -> FavoritesAdapter()
                 HomeTabUIModel.Account -> AccountAdapter()
             }

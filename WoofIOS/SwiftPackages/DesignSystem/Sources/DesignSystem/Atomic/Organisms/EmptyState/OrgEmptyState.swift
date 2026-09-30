@@ -17,6 +17,5 @@ public struct OrgEmptyState: View {
             AtomSpacer(spacing: .compact)
             AtomText(text: message, textFontRole: .bodyP1, colorRole: .onSurfaceVariant, textAlign: .center)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

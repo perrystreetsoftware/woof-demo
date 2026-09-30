@@ -1,6 +1,6 @@
 import PresentationAccount
 import PresentationFavorites
-import PresentationGrid
+import PresentationBrowse
 import SwiftUI
 
 public struct HomeAdapter: View {
@@ -16,7 +16,7 @@ public struct HomeAdapter: View {
             onTabSelect: viewModel.onTabSelect
         ) { tab in
             switch tab {
-            case .browse: GridAdapter()
+            case .browse: BrowseAdapter()
             case .favorites: FavoritesAdapter()
             case .account: AccountAdapter()
             }

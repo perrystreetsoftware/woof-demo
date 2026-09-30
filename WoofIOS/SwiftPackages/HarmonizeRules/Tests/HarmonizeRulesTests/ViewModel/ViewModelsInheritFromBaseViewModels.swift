@@ -25,7 +25,7 @@ final class ViewModelsInheritFromBaseViewModels: QuickSpec {
             state contract. Extending ObservableObject directly loses all of that.
             """,
         fixHint: "Pick StateProducingViewModel when the ViewModel mutates state, StateDerivingViewModel when state is combined from streams, StatelessViewModel otherwise.",
-        badExample: "final class GridViewModel: ObservableObject",
-        goodExample: "final class GridViewModel: StateProducingViewModel<GridViewModel.State, DogsError>"
+        badExample: "final class BrowseViewModel: ObservableObject",
+        goodExample: "final class BrowseViewModel: StateProducingViewModel<BrowseViewModel.State, DogsError>"
     )
 }

@@ -18,7 +18,7 @@ final class ViewModelsLiveInViewModelPackage: QuickSpec {
         description: "ViewModels live in Presentation/<Feature>/Sources/<Target>/ViewModel.",
         rationale: "Each feature package has the same four folders (ViewModel, UIModel, Mapper, UI), so anyone can find a class by convention.",
         fixHint: "Move the class to the ViewModel folder of its feature.",
-        badExample: "// Presentation/Grid/Sources/PresentationGrid/UI/GridViewModel.swift",
-        goodExample: "// Presentation/Grid/Sources/PresentationGrid/ViewModel/GridViewModel.swift"
+        badExample: "// Presentation/Browse/Sources/PresentationBrowse/UI/BrowseViewModel.swift",
+        goodExample: "// Presentation/Browse/Sources/PresentationBrowse/ViewModel/BrowseViewModel.swift"
     )
 }

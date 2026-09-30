@@ -24,8 +24,8 @@ class UsesKoinViewModelAnnotation : BehaviorSpec() {
                 DI graph stays uniform and nobody hand-edits modules when a ViewModel gains a dependency.
             """.trimIndent(),
             howToFix = "Add @KoinViewModel to the ViewModel class.",
-            badExample = "class GridViewModel(...) : StateProducingViewModel<State>(State.Loading)",
-            goodExample = "@KoinViewModel\nclass GridViewModel(...) : StateProducingViewModel<State>(State.Loading)",
+            badExample = "class BrowseViewModel(...) : StateProducingViewModel<State>(State.Loading)",
+            goodExample = "@KoinViewModel\nclass BrowseViewModel(...) : StateProducingViewModel<State>(State.Loading)",
         )
     }
 }

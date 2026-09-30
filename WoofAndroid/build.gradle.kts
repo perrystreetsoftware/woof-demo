@@ -1,5 +1,7 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.google.devtools.ksp.gradle.KspExtension
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -10,6 +12,17 @@ plugins {
 }
 
 subprojects {
+    tasks.withType<Test>().configureEach {
+        testLogging {
+            listOf(lifecycle, quiet).forEach { level ->
+                level.events(TestLogEvent.FAILED)
+                level.exceptionFormat = TestExceptionFormat.FULL
+                level.showStackTraces = false
+                level.showCauses = false
+            }
+        }
+    }
+
     plugins.withId("java-base") {
         extensions.configure<JavaPluginExtension> {
             toolchain.languageVersion.set(JavaLanguageVersion.of(libs.versions.java.get().toInt()))
@@ -46,11 +59,9 @@ subprojects {
 
 tasks.register("runUnitTests") {
     dependsOn(
-        ":presentation:grid:testDebugUnitTest",
-        ":presentation:profile:testDebugUnitTest",
-        ":presentation:favorites:testDebugUnitTest",
-        ":presentation:account:testDebugUnitTest",
-        ":presentation:home:testDebugUnitTest",
+        subprojects
+            .filter { it.path.startsWith(":presentation:") }
+            .map { "${it.path}:testDebugUnitTest" },
     )
 }
 

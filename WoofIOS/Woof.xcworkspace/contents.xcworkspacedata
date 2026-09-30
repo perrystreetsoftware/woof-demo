@@ -44,7 +44,7 @@
          location = "group:Presentation/Navigation">
       </FileRef>
       <FileRef
-         location = "group:Presentation/Grid">
+         location = "group:Presentation/Browse">
       </FileRef>
       <FileRef
          location = "group:Presentation/Profile">

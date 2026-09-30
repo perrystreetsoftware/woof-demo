@@ -20,9 +20,9 @@
 
     <string name="account_title">Account</string>
 
-    <string name="grid_error_title">The park is empty</string>
-    <string name="grid_error_message">We couldn\'t fetch the pack. Give it another try.</string>
-    <string name="grid_error_retry">Try again</string>
+    <string name="browse_error_title">The park is empty</string>
+    <string name="browse_error_message">We couldn\'t fetch the pack. Give it another try.</string>
+    <string name="browse_error_retry">Try again</string>
 
     <string name="profile_message_placeholder">Say hi to %1$s…</string>
     <string name="profile_summary">%1$s · %2$s · %3$s</string>

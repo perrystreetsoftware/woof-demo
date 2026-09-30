@@ -3,7 +3,7 @@ package com.perrystreet.woof.di
 import com.perrystreet.woof.datasource.di.DataSourceDIModule
 import com.perrystreet.woof.presentation.account.di.AccountDIModule
 import com.perrystreet.woof.presentation.favorites.di.FavoritesDIModule
-import com.perrystreet.woof.presentation.grid.di.GridDIModule
+import com.perrystreet.woof.presentation.browse.di.BrowseDIModule
 import com.perrystreet.woof.presentation.home.di.HomeDIModule
 import com.perrystreet.woof.presentation.navigation.di.NavigationDIModule
 import com.perrystreet.woof.presentation.profile.di.ProfileDIModule
@@ -19,7 +19,7 @@ object WoofKoinModules {
         RepositoriesDIModule().module,
         UseCaseDIModule().module,
         NavigationDIModule().module,
-        GridDIModule().module,
+        BrowseDIModule().module,
         ProfileDIModule().module,
         FavoritesDIModule().module,
         AccountDIModule().module,

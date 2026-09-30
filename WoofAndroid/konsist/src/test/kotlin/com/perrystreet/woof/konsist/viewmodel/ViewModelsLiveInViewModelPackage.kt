@@ -21,8 +21,8 @@ class ViewModelsLiveInViewModelPackage : BehaviorSpec() {
             rule = "ViewModels live in presentation/<feature>/viewmodel.",
             why = "Each feature module has the same four folders (viewmodel, uimodel, mapper, ui), so anyone can find a class by convention.",
             howToFix = "Move the class to the viewmodel package of its feature.",
-            badExample = "package com.perrystreet.woof.presentation.grid.ui\nclass GridViewModel",
-            goodExample = "package com.perrystreet.woof.presentation.grid.viewmodel\nclass GridViewModel",
+            badExample = "package com.perrystreet.woof.presentation.browse.ui\nclass BrowseViewModel",
+            goodExample = "package com.perrystreet.woof.presentation.browse.viewmodel\nclass BrowseViewModel",
         )
     }
 }

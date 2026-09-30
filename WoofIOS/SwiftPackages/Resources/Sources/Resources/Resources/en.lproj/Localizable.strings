@@ -19,9 +19,9 @@
 
 "account_title" = "Account";
 
-"grid_error_title" = "The park is empty";
-"grid_error_message" = "We couldn't fetch the pack. Give it another try.";
-"grid_error_retry" = "Try again";
+"browse_error_title" = "The park is empty";
+"browse_error_message" = "We couldn't fetch the pack. Give it another try.";
+"browse_error_retry" = "Try again";
 
 "profile_message_placeholder" = "Say hi to %@…";
 "profile_summary" = "%@ · %@ · %@";

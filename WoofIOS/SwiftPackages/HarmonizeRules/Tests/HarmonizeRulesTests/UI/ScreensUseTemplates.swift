@@ -20,7 +20,7 @@ final class ScreensUseTemplates: QuickSpec {
         description: "Screen views use a Template* as their root layout.",
         rationale: "Templates own page structure (top bar, insets, paddings, scrolling). Screens only fill their slots, so every screen shares the same skeleton.",
         fixHint: "Wrap the screen content in an existing Template, or add a new Template to the design system.",
-        badExample: "struct GridScreen: View { var body: some View { ScrollView { LazyVGrid { ... } } } }",
-        goodExample: "struct GridScreen: View { var body: some View { TemplateGrid(topBar: { OrgNavigationHeaderBranded() }) { ... } } }"
+        badExample: "struct BrowseScreen: View { var body: some View { ScrollView { LazyVGrid { ... } } } }",
+        goodExample: "struct BrowseScreen: View { var body: some View { TemplateGrid(topBar: { OrgNavigationHeaderBranded() }) { ... } } }"
     )
 }

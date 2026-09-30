@@ -20,7 +20,7 @@ final class AdaptersCallScreens: QuickSpec {
         description: "Every Adapter delegates rendering to a Screen view.",
         rationale: "The Adapter/Screen split only works if the Adapter is a thin bridge: observe state, bind callbacks, render the Screen.",
         fixHint: "Move layout code into a *Screen view and call it from the Adapter.",
-        badExample: "struct GridAdapter: View { var body: some View { TemplateGrid(...) { ... } } }",
-        goodExample: "struct GridAdapter: View { var body: some View { GridScreen(state: viewModel.state, onCellTap: ...) } }"
+        badExample: "struct BrowseAdapter: View { var body: some View { TemplateGrid(...) { ... } } }",
+        goodExample: "struct BrowseAdapter: View { var body: some View { BrowseScreen(state: viewModel.state, onCellTap: ...) } }"
     )
 }

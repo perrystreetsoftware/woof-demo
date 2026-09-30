@@ -13,7 +13,7 @@
 		0CA15DD830CB303ECDC93DBE /* UseCase in Frameworks */ = {isa = PBXBuildFile; productRef = 6F0A8434DB67A5E2C2649EE5 /* UseCase */; };
 		C6453D515CE36581F886F69A /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 2AE060E314EC9C30ACD28F6B /* DesignSystem */; };
 		96776C9B2A33474D676E46CC /* PresentationNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 795D21652AC90A9BC3B8400A /* PresentationNavigation */; };
-		2AE079E6369479DDDC26AAAB /* PresentationGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC00F5E419E2C1BF6354DE2 /* PresentationGrid */; };
+		2AE079E6369479DDDC26AAAB /* PresentationBrowse in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC00F5E419E2C1BF6354DE2 /* PresentationBrowse */; };
 		E20E148E365F29672CE73176 /* PresentationProfile in Frameworks */ = {isa = PBXBuildFile; productRef = 79689E0ECEA2634A8C2366F4 /* PresentationProfile */; };
 		2E5F39E3E0C4F002E8973EDB /* PresentationFavorites in Frameworks */ = {isa = PBXBuildFile; productRef = FB1AF134E1609D736868DF6F /* PresentationFavorites */; };
 		E10F57972A3CD0DE585A3A66 /* PresentationAccount in Frameworks */ = {isa = PBXBuildFile; productRef = 8E6ECB860A117F5FB6764D2D /* PresentationAccount */; };
@@ -44,7 +44,7 @@
 				0CA15DD830CB303ECDC93DBE /* UseCase in Frameworks */,
 				C6453D515CE36581F886F69A /* DesignSystem in Frameworks */,
 				96776C9B2A33474D676E46CC /* PresentationNavigation in Frameworks */,
-				2AE079E6369479DDDC26AAAB /* PresentationGrid in Frameworks */,
+				2AE079E6369479DDDC26AAAB /* PresentationBrowse in Frameworks */,
 				E20E148E365F29672CE73176 /* PresentationProfile in Frameworks */,
 				2E5F39E3E0C4F002E8973EDB /* PresentationFavorites in Frameworks */,
 				E10F57972A3CD0DE585A3A66 /* PresentationAccount in Frameworks */,
@@ -98,7 +98,7 @@
 				6F0A8434DB67A5E2C2649EE5 /* UseCase */,
 				2AE060E314EC9C30ACD28F6B /* DesignSystem */,
 				795D21652AC90A9BC3B8400A /* PresentationNavigation */,
-				3EC00F5E419E2C1BF6354DE2 /* PresentationGrid */,
+				3EC00F5E419E2C1BF6354DE2 /* PresentationBrowse */,
 				79689E0ECEA2634A8C2366F4 /* PresentationProfile */,
 				FB1AF134E1609D736868DF6F /* PresentationFavorites */,
 				8E6ECB860A117F5FB6764D2D /* PresentationAccount */,
@@ -382,9 +382,9 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = PresentationNavigation;
 		};
-		3EC00F5E419E2C1BF6354DE2 /* PresentationGrid */ = {
+		3EC00F5E419E2C1BF6354DE2 /* PresentationBrowse */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = PresentationGrid;
+			productName = PresentationBrowse;
 		};
 		79689E0ECEA2634A8C2366F4 /* PresentationProfile */ = {
 			isa = XCSwiftPackageProductDependency;

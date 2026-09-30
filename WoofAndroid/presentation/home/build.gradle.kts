@@ -15,7 +15,7 @@ android {
 dependencies {
     implementation(projects.presentation.common)
     implementation(projects.presentation.navigation)
-    implementation(projects.presentation.grid)
+    implementation(projects.presentation.browse)
     implementation(projects.presentation.favorites)
     implementation(projects.presentation.account)
     implementation(projects.resources)

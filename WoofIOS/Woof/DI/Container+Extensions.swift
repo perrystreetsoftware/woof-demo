@@ -1,7 +1,7 @@
 import DataSource
 import PresentationAccount
 import PresentationFavorites
-import PresentationGrid
+import PresentationBrowse
 import PresentationHome
 import PresentationNavigation
 import PresentationProfile
@@ -18,7 +18,7 @@ extension Container {
             .injectRepositoriesGenerated()
             .injectUseCaseGenerated()
             .injectPresentationNavigationGenerated()
-            .injectPresentationGridGenerated()
+            .injectPresentationBrowseGenerated()
             .injectPresentationProfileGenerated()
             .injectPresentationFavoritesGenerated()
             .injectPresentationAccountGenerated()

@@ -1,5 +1,6 @@
 import Combine
 import DI
+import DTO
 import DataSource
 import Foundation
 import Utils
@@ -7,6 +8,7 @@ import Utils
 @MockApi
 public final class FakeWoofsDataSource: WoofsDataSourceImplementing {
     public private(set) var woofedDogIds: [Int] = []
+    public var receivedWoofs: [ReceivedWoofDTO] = []
     public var sendWoofError: DataSourceError?
 
     private let scheduler: SchedulerProviding
@@ -22,5 +24,12 @@ public final class FakeWoofsDataSource: WoofsDataSourceImplementing {
         }
         .receive(on: scheduler.mainScheduler)
         .eraseToAnyPublisher()
+    }
+
+    public func getReceivedWoofs() -> AnyPublisher<[ReceivedWoofDTO], DataSourceError> {
+        Just(receivedWoofs)
+            .setFailureType(to: DataSourceError.self)
+            .receive(on: scheduler.mainScheduler)
+            .eraseToAnyPublisher()
     }
 }
