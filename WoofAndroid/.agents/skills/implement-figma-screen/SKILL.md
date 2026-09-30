@@ -6,7 +6,7 @@ hooks:
   Stop:
     - hooks:
         - type: command
-          command: "$CLAUDE_PROJECT_DIR/.claude/skills/implement-figma-screen/scripts/require-check.sh"
+          command: "$(git rev-parse --show-toplevel)/WoofAndroid/.agents/skills/implement-figma-screen/scripts/require-check.sh"
           timeout: 30
 ---
 
@@ -54,7 +54,7 @@ Derived flags live in the view model's `State`; extensions only map state to res
 ## 5. Check until it passes and matches the design
 
 ```bash
-.claude/skills/implement-figma-screen/scripts/check.sh <label> [<label>…]
+WoofAndroid/.agents/skills/implement-figma-screen/scripts/check.sh <label> [<label>…]
 ```
 
 Pass the labels a user taps, in order, to reach the new screen from the app's start. Run it in the foreground and read its whole output. It builds the app and runs the unit tests and Konsist rules; once those pass, it installs the app on the emulator, taps through the labels and saves a screenshot.

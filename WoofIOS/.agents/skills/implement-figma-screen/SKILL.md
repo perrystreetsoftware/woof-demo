@@ -1,12 +1,12 @@
 ---
-name: implement-figma-screen-ios
+name: implement-figma-screen
 description: Build a WoofIOS feature from a Figma frame — map the design to existing design-system components through its tokens, add new components at the right atomic layer, implement every layer from data to screen, and iterate on the Harmonize lint rules until they pass. Use whenever the user shares a figma.com link for an iOS screen, tab or feature, or asks to implement a design in WoofIOS.
 argument-hint: <figma frame url> [what the feature does]
 hooks:
   Stop:
     - hooks:
         - type: command
-          command: "$CLAUDE_PROJECT_DIR/.claude/skills/implement-figma-screen-ios/scripts/require-check.sh"
+          command: "$(git rev-parse --show-toplevel)/WoofIOS/.agents/skills/implement-figma-screen/scripts/require-check.sh"
           timeout: 30
 ---
 
@@ -54,7 +54,7 @@ Derived flags live in the view model's `State`; extensions only map state to res
 ## 5. Check until it passes
 
 ```bash
-.claude/skills/implement-figma-screen-ios/scripts/check.sh
+WoofIOS/.agents/skills/implement-figma-screen/scripts/check.sh
 ```
 
 Run it in the foreground and read its whole output. It builds the app, runs the unit tests on the simulator and then the Harmonize rules.
