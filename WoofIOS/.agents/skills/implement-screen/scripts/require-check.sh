@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Stop hook for /implement-figma-screen on iOS: the agent finishes once check.sh has passed on its latest changes.
+# Stop hook for /implement-screen on iOS: the agent finishes once check.sh has passed on its latest changes.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
-SCRIPTS=WoofIOS/.agents/skills/implement-figma-screen/scripts
+SCRIPTS=WoofIOS/.agents/skills/implement-screen/scripts
 OUT=WoofIOS/.build/check
 mkdir -p "$OUT"
 
