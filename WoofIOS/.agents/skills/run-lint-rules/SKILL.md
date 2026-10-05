@@ -1,6 +1,6 @@
 ---
 name: run-lint-rules
-description: Run WoofIOS's Harmonize lint rules and fix what they report, so the code follows Atomic Design and the app's architecture. Use before writing code in an area of WoofIOS, and after every change until the rules pass.
+description: Run WoofIOS's Harmonize lint rules and fix what they report, so the code follows Atomic Design and the app's architecture. Use before writing code in an area of WoofIOS, once the code is written, and again after every fix until the rules pass.
 ---
 
 # Run the lint rules

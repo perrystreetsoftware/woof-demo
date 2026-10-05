@@ -21,17 +21,13 @@ Load the atomic-design, run-lint-rules and android-cli skills before you start.
 
 With the Figma MCP, fetch the frame's design context (`get_design_context`, with `get_metadata` first if it's large), its variable bindings (`get_variable_defs`) and a screenshot (`get_screenshot`). Read any designer note next to it — it carries the intent the pixels don't.
 
-## 2. Map every element through its tokens, before writing code
+## 2. Map every Figma element to a component, before writing code
 
 Figma variables and text styles carry the same names as the tokens in `_tokens/` and the roles next to each component, so an element's tokens identify the component that draws it.
 
-For each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the existing component the way the atomic-design skill describes, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets.
+For each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the existing component the way the atomic-design skill describes, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets. Add each **new** one the way the atomic-design skill describes.
 
-## 3. Add new components at the right layer
-
-Add each **new** element the way the atomic-design skill describes.
-
-## 4. Build every layer
+## 3. Build every layer
 
 Data source, repository and use case follow the reference feature's data and domain modules. The presentation layer:
 
@@ -46,9 +42,9 @@ Data source, repository and use case follow the reference feature's data and dom
 
 Derived flags live in the view model's `State`. Wire DI, Gradle and navigation the way the reference feature does.
 
-## 5. Check until it passes and matches the design
+## 4. Check until it passes and matches the design
 
-After every change, run the lint rules with the run-lint-rules skill until they pass. Then run the full check:
+Once the code is written, run the lint rules with the run-lint-rules skill, and again after every fix until they pass. Then run the full check:
 
 ```bash
 WoofAndroid/.agents/skills/implement-screen/scripts/check.sh <label> [<label>…]
@@ -62,7 +58,7 @@ Pass the labels a user taps, in order, to reach the new screen from the app's st
 
 Run it again after every fix. The feature is done when the script passes and the screenshot matches the Figma screenshot.
 
-## 6. Report
+## 5. Report
 
 - The mapping table: what was reused, what is new and at which layer.
 - Each check run: what failed or differed from the design, and how the code changed.

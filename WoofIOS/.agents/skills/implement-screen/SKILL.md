@@ -21,17 +21,13 @@ Load the atomic-design and run-lint-rules skills before you start.
 
 With the Figma MCP, fetch the frame's design context (`get_design_context`, with `get_metadata` first if it's large), its variable bindings (`get_variable_defs`) and a screenshot (`get_screenshot`). Read any designer note next to it — it carries the intent the pixels don't.
 
-## 2. Map every element through its tokens, before writing code
+## 2. Map every Figma element to a component, before writing code
 
 Figma variables and text styles carry the same names as the tokens in `_Tokens/` and the roles next to each component, so an element's tokens identify the component that draws it.
 
-For each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the existing component the way the atomic-design skill describes, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets.
+For each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the existing component the way the atomic-design skill describes, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets. Add each **new** one the way the atomic-design skill describes.
 
-## 3. Add new components at the right layer
-
-Add each **new** element the way the atomic-design skill describes.
-
-## 4. Build every layer
+## 3. Build every layer
 
 Data source, repository and use case follow the reference feature's `Data` and `Domain` packages. The presentation package, `SwiftPackages/Presentation/<Feature>/Sources/Presentation<Feature>/`:
 
@@ -46,9 +42,9 @@ Data source, repository and use case follow the reference feature's `Data` and `
 
 Derived flags live in the view model's `State`. Register the new package everywhere the reference feature's package appears: the `Package.swift` files that depend on it, `Woof.xcworkspace`, `Woof.xcodeproj`, the Woof scheme's test targets, `scripts/SwinjectCodegen` and `Woof/DI/Container+Extensions.swift`. Regenerate the DI registrations with `swift run --package-path scripts/SwinjectCodegen` from `WoofIOS`.
 
-## 5. Check until it passes
+## 4. Check until it passes
 
-After every change, run the lint rules with the run-lint-rules skill until they pass. Then run the full check:
+Once the code is written, run the lint rules with the run-lint-rules skill, and again after every fix until they pass. Then run the full check:
 
 ```bash
 WoofIOS/.agents/skills/implement-screen/scripts/check.sh
@@ -60,7 +56,7 @@ Compile errors print with file and line. Fix a failing rule the way the run-lint
 
 Run it again after every fix. The feature is done when the script passes.
 
-## 6. Report
+## 5. Report
 
 - The mapping table: what was reused, what is new and at which layer.
 - Each check run: what failed, and how the code changed.
