@@ -1,12 +1,12 @@
 ---
-name: implement-figma-screen
-description: Build a WoofAndroid feature from a Figma frame — map the design to existing design-system components through its tokens, add new components at the right atomic layer, implement every layer from data to screen, and iterate on the Konsist lint rules until they pass. Use whenever the user shares a figma.com link for an Android screen, tab or feature, or asks to implement a design in Woof.
+name: implement-screen
+description: Build a WoofAndroid feature from a Figma frame — map the design to existing design-system components through its tokens, add new components at the right atomic layer, implement every layer from data to screen, and iterate on the Konsist lint rules until they pass, using the atomic-design and run-lint-rules skills. Use whenever the user shares a figma.com link for an Android screen, tab or feature, or asks to implement a design in Woof.
 argument-hint: <figma frame url> [what the feature does]
 hooks:
   Stop:
     - hooks:
         - type: command
-          command: "$(git rev-parse --show-toplevel)/WoofAndroid/.agents/skills/implement-figma-screen/scripts/require-check.sh"
+          command: "$(git rev-parse --show-toplevel)/WoofAndroid/.agents/skills/implement-screen/scripts/require-check.sh"
           timeout: 30
 ---
 
@@ -23,7 +23,7 @@ With the Figma MCP, fetch the frame's design context (`get_design_context`, with
 
 Figma variables and text styles carry the same names as the tokens in `_tokens/` and the roles next to each component, so an element's tokens identify the component that draws it.
 
-Take inventory of `design-system/.../atomic/` first: the folders are the layers, and each component's signature and tokens are in its code. Then, for each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the component that uses the same set, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets.
+Take inventory of the design system first, the way the atomic-design skill describes. Then, for each element, collect its tokens (fills, text style, padding, gap, radius, size) and the variants or states it shows, find the component that uses the same set, and confirm against the screenshot. Show the result as a table in your reply before writing any code — Figma element → tokens and states → existing component, or **new** — so every part of the design is either reused or knowingly added. Each component keeps its own sizing; pass it only what the design sets.
 
 ## 3. Add new components at the right layer
 
@@ -34,7 +34,7 @@ Take inventory of `design-system/.../atomic/` first: the folders are the layers,
 | Group of two or more atoms | `Mol*` |
 | One element on Compose primitives | `Atom*` |
 
-Name a new component by its shape and its parameters by the data they hold, since every feature can use it. A new visual variation of an existing component is a new entry in its `roles/` enum; a component's own status is a `state/` enum. The Konsist rules in `konsist/` define each layer and explain why — read the ones for the layer you add to.
+Build each new component the way the atomic-design skill describes.
 
 ## 4. Build every layer
 
@@ -53,13 +53,15 @@ Derived flags live in the view model's `State`; extensions only map state to res
 
 ## 5. Check until it passes and matches the design
 
+After every change, run the lint rules with the run-lint-rules skill until they pass. Then run the full check:
+
 ```bash
-WoofAndroid/.agents/skills/implement-figma-screen/scripts/check.sh <label> [<label>…]
+WoofAndroid/.agents/skills/implement-screen/scripts/check.sh <label> [<label>…]
 ```
 
 Pass the labels a user taps, in order, to reach the new screen from the app's start. Run it in the foreground and read its whole output. It builds the app and runs the unit tests and Konsist rules; once those pass, it installs the app on the emulator, taps through the labels and saves a screenshot.
 
-- Compile errors print with file and line. Every failing rule prints RULE / WHY / HOW TO FIX / BAD / GOOD: change the code the way HOW TO FIX says. Each rule encodes an architecture decision, so the code moves and the rules stay as they are.
+- Compile errors print with file and line. Fix a failing rule the way the run-lint-rules skill says.
 - A missing label or a crash means the screen isn't reachable or doesn't run: wire it the way the reference feature is wired, or fix the crash.
 - When it passes, open the Figma screenshot and the emulator screenshot, and for each row describe what each one actually shows (every element present or missing, its size, colour and state) before judging. Fix every difference.
 
