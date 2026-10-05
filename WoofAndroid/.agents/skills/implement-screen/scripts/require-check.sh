@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Stop hook for /implement-figma-screen: the agent finishes once check.sh has passed on its latest changes.
+# Stop hook for /implement-screen: the agent finishes once check.sh has passed on its latest changes.
 set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
-SCRIPTS=WoofAndroid/.agents/skills/implement-figma-screen/scripts
+SCRIPTS=WoofAndroid/.agents/skills/implement-screen/scripts
 OUT=WoofAndroid/build/emulator
 mkdir -p "$OUT"
 
