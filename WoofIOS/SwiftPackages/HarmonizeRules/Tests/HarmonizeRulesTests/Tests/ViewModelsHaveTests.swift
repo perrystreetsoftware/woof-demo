@@ -16,9 +16,10 @@ final class ViewModelsHaveTests: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Every ViewModel has a <Name>Test.",
+        title: "Every ViewModel has a <Name>Test.",
+        category: WoofRuleCategory.tests,
         rationale: "The ViewModel test is the single place where a feature's behaviour is specified end to end, from user action down to the fake data source.",
-        fixHint: "Add <Name>Test as a QuickSpec in the feature's test target.",
+        howToFix: "Add <Name>Test as a QuickSpec in the feature's test target.",
         badExample: "final class ProfileWoofViewModel  // no ProfileWoofViewModelTest",
         goodExample: "final class ProfileWoofViewModelTest: QuickSpec"
     )

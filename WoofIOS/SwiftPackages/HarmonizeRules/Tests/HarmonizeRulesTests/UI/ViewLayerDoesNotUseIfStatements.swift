@@ -29,12 +29,13 @@ final class ViewLayerDoesNotUseIfStatements: QuickSpec {
     private static let ifPattern = try! NSRegularExpression(pattern: #"\bif\s"#)
 
     private static let rule = Rule(
-        description: "Views and screen-layer extensions in presentation packages do not use if statements or optional map.",
+        title: "Views and screen-layer extensions in presentation packages do not use if statements or optional map.",
+        category: WoofRuleCategory.ui,
         rationale: """
             Branching in the view hides state decisions from the ViewModel and its tests. Enum state plus
             exhaustive switch, or an early viewGuard, keeps every UI branch modelled and tested.
             """,
-        fixHint: "Model the decision in the ViewModel state and switch on it, or use viewGuard(value) { ... } for nullability checks.",
+        howToFix: "Model the decision in the ViewModel state and switch on it, or use viewGuard(value) { ... } for nullability checks.",
         badExample: "if let dialog = state.dialog { OrgAlertDialog(...) }",
         goodExample: "viewGuard(state.dialog) { dialog in OrgAlertDialog(...) }"
     )

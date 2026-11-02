@@ -17,12 +17,13 @@ final class ViewModelsDoNotDependOnRepositories: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "ViewModels must not import repositories or data sources.",
+        title: "ViewModels must not import repositories or data sources.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             The flow is View -> ViewModel -> UseCase -> Repository -> DataSource. Skipping the use case
             layer spreads business rules across ViewModels and makes them untestable in isolation.
             """,
-        fixHint: "Wrap the repository call in a single-purpose UseCase and inject that instead.",
+        howToFix: "Wrap the repository call in a single-purpose UseCase and inject that instead.",
         badExample: "final class BrowseViewModel { private let dogsRepository: DogsRepository }",
         goodExample: "final class BrowseViewModel { private let getDogsFeedUseCase: GetDogsFeedUseCase }"
     )

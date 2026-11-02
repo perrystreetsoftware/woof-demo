@@ -19,12 +19,13 @@ final class TestsDoNotUseMocks: QuickSpec {
     private static let mockingLibraries = ["Cuckoo", "Mockingbird", "SwiftyMocky", "OCMock", "Mockolo"]
 
     private static let rule = Rule(
-        description: "Tests never use mocking libraries.",
+        title: "Tests never use mocking libraries.",
+        category: WoofRuleCategory.tests,
         rationale: """
             Mocks couple tests to implementation details and let broken collaborations pass. The data source layer
             has hand-written fakes configured through *DataSourceFactory builders, and everything above it runs for real.
             """,
-        fixHint: "Configure the fake data source with a factory, e.g. DogsDataSourceFactory(container).withDogs(count: 450).",
+        howToFix: "Configure the fake data source with a factory, e.g. DogsDataSourceFactory(container).withDogs(count: 450).",
         badExample: "let useCase = MockGetDogsFeedUseCase()",
         goodExample: "DogsDataSourceFactory(container).withDogs(count: 450)"
     )

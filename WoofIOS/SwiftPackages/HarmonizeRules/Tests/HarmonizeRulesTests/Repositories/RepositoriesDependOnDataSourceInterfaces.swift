@@ -22,12 +22,13 @@ final class RepositoriesDependOnDataSourceInterfaces: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Repositories depend on *DataSourceImplementing protocols and mappers, never on concrete data sources or other repositories.",
+        title: "Repositories depend on *DataSourceImplementing protocols and mappers, never on concrete data sources or other repositories.",
+        category: WoofRuleCategory.repositories,
         rationale: """
             Programming against the protocol is what lets tests swap the data source for a fake without
             mocks, and keeps repositories from reaching into each other's state.
             """,
-        fixHint: "Inject the *DataSourceImplementing protocol. Compose repositories in a UseCase instead of injecting one into another.",
+        howToFix: "Inject the *DataSourceImplementing protocol. Compose repositories in a UseCase instead of injecting one into another.",
         badExample: "final class DogsRepository { private let dataSource: DogsLocalDataSource; private let moderation: ModerationRepository }",
         goodExample: "final class DogsRepository { private let dataSource: DogsDataSourceImplementing; private let pageMapper: DogsPageDTOToDomainMapper }"
     )

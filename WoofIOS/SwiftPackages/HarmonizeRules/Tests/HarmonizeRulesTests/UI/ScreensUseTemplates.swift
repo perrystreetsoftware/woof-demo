@@ -17,9 +17,10 @@ final class ScreensUseTemplates: QuickSpec {
     private static let templateOrScreenCallPattern = try! NSRegularExpression(pattern: #"\b(Template\w+|[A-Z]\w*Screen)\("#)
 
     private static let rule = Rule(
-        description: "Screen views use a Template* as their root layout.",
+        title: "Screen views use a Template* as their root layout.",
+        category: WoofRuleCategory.ui,
         rationale: "Templates own page structure (top bar, insets, paddings, scrolling). Screens only fill their slots, so every screen shares the same skeleton.",
-        fixHint: "Wrap the screen content in an existing Template, or add a new Template to the design system.",
+        howToFix: "Wrap the screen content in an existing Template, or add a new Template to the design system.",
         badExample: "struct BrowseScreen: View { var body: some View { ScrollView { LazyVGrid { ... } } } }",
         goodExample: "struct BrowseScreen: View { var body: some View { TemplateGrid(topBar: { OrgNavigationHeaderBranded() }) { ... } } }"
     )

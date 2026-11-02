@@ -31,9 +31,10 @@ final class DoNotUseRolesForFeatureData: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Roles never carry feature data; they are enums whose entries resolve theme tokens.",
+        title: "Roles never carry feature data; they are enums whose entries resolve theme tokens.",
+        category: WoofRuleCategory.designSystem,
         rationale: "A role is a predefined style the caller picks from a closed set (ButtonRole.primary, IconColorRole.recent). Icons and text are feature data; a role that carries them (IconButtonRole.favorite) ties the design system to one feature.",
-        fixHint: "Keep only theme-backed styling in the role and pass feature data such as icons and content descriptions to the component as parameters.",
+        howToFix: "Keep only theme-backed styling in the role and pass feature data such as icons and content descriptions to the component as parameters.",
         badExample: """
         // Atoms/Button/Roles/IconButtonRole.swift
         enum IconButtonRole {

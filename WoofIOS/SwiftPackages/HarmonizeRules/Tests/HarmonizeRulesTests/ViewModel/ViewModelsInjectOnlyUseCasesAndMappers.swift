@@ -24,12 +24,13 @@ final class ViewModelsInjectOnlyUseCasesAndMappers: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "ViewModels may only inject UseCases, Mappers, NavigatorImplementing (for state-driven navigation), and @DIArgument values.",
+        title: "ViewModels may only inject UseCases, Mappers, NavigatorImplementing (for state-driven navigation), and @DIArgument values.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             ViewModels orchestrate use cases and shape their output for the UI. Any other dependency
             (repositories, data sources, framework classes) belongs to a lower layer.
             """,
-        fixHint: "Move the work into a UseCase or a Mapper and inject that.",
+        howToFix: "Move the work into a UseCase or a Mapper and inject that.",
         badExample: "final class ProfileWoofViewModel { private let woofsRepository: WoofsRepository }",
         goodExample: "final class ProfileWoofViewModel { @DIArgument private let dog: Dog; private let sendWoofUseCase: SendWoofUseCase }"
     )

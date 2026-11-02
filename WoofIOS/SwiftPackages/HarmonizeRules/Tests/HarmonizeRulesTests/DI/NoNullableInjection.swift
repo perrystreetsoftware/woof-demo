@@ -27,9 +27,10 @@ final class NoNullableInjection: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Swinject-managed classes never inject nullable dependencies.",
+        title: "Swinject-managed classes never inject nullable dependencies.",
+        category: WoofRuleCategory.di,
         rationale: "A nullable dependency is a missing registration in disguise. Either the dependency exists in the graph or the design is wrong.",
-        fixHint: "Make the dependency non-optional and provide it in the DI graph, or split the class.",
+        howToFix: "Make the dependency non-optional and provide it in the DI graph, or split the class.",
         badExample: "@Single\nfinal class DogsRepository { private let dataSource: DogsDataSourceImplementing? }",
         goodExample: "@Single\nfinal class DogsRepository { private let dataSource: DogsDataSourceImplementing }"
     )

@@ -25,9 +25,10 @@ final class MoleculesMustCombineAtLeastTwoAtoms: QuickSpec {
     private static let iterationPattern = try! NSRegularExpression(pattern: #"\bForEach\b"#)
 
     private static let rule = Rule(
-        description: "Molecules combine at least two atoms.",
+        title: "Molecules combine at least two atoms.",
+        category: WoofRuleCategory.designSystem,
         rationale: "A molecule exists to compose atoms. One atom in a wrapper adds nothing the atom did not already do.",
-        fixHint: "Combine a second atom, or delete the molecule and call the atom directly. The same atom repeated counts.",
+        howToFix: "Combine a second atom, or delete the molecule and call the atom directly. The same atom repeated counts.",
         badExample: """
         public struct MolTitle: View {
             public var body: some View {

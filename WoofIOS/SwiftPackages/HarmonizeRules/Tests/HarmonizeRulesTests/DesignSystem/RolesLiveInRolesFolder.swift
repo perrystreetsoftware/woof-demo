@@ -15,9 +15,10 @@ final class RolesLiveInRolesFolder: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Component roles live in a Roles folder next to their component.",
+        title: "Component roles live in a Roles folder next to their component.",
+        category: WoofRuleCategory.designSystem,
         rationale: "Roles are the vocabulary a component offers (TextFontRole.bodyP1, ButtonRole.primary); keeping them next to the component makes the API discoverable.",
-        fixHint: "Move the role into <Component>/Roles/.",
+        howToFix: "Move the role into <Component>/Roles/.",
         badExample: "// Atoms/Text/TextColorRole.swift\nenum TextColorRole { ... }",
         goodExample: "// Atoms/Text/Roles/TextColorRole.swift\nenum TextColorRole { ... }"
     )

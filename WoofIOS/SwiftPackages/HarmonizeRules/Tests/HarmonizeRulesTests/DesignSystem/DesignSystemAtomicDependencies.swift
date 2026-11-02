@@ -55,12 +55,13 @@ final class DesignSystemAtomicDependencies: QuickSpec {
     private static let templatePattern = try! NSRegularExpression(pattern: #"\bTemplate[A-Z]\w*\b"#)
 
     private static let rule = Rule(
-        description: "Atomic layers only depend on the layers below them: _Primitives -> _Tokens -> Atoms -> Molecules -> Organisms -> Templates.",
+        title: "Atomic layers only depend on the layers below them: _Primitives -> _Tokens -> Atoms -> Molecules -> Organisms -> Templates.",
+        category: WoofRuleCategory.designSystem,
         rationale: """
             Strict layering is what makes the design system composable: an atom can be reused anywhere because it
             depends on nothing above it, and a molecule never hides a whole organism inside.
             """,
-        fixHint: "Move shared code down (to atoms or tokens) or composition up (to organisms or templates) so references follow the dependency flow.",
+        howToFix: "Move shared code down (to atoms or tokens) or composition up (to organisms or templates) so references follow the dependency flow.",
         badExample: "// in Atoms/Text/AtomText.swift\nMolButton(text: text, onTap: onTap)",
         goodExample: "// in Molecules/Button/MolButton.swift\nAtomText(text: text, textFontRole: .displayH4)"
     )

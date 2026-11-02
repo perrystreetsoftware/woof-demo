@@ -4,3 +4,6 @@ excludes:
   - Macros
   - Package.swift
   - Package.resolved
+skills:
+  output: .agents/skills
+  name: harmonize

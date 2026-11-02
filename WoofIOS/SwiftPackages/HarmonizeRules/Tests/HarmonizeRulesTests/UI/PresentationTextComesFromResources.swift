@@ -22,9 +22,10 @@ final class PresentationTextComesFromResources: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Text the user sees comes from string resources, never from literals in presentation code.",
+        title: "Text the user sees comes from string resources, never from literals in presentation code.",
+        category: WoofRuleCategory.ui,
         rationale: "Resources are where text is translated, pluralised and reviewed in one place. A literal can't be localised, and any value it formats belongs in the mapper or view model, where it is tested.",
-        fixHint: "Add a string to Localizable.strings and read it through L10n. Compute the values the text shows in the mapper or view model and pass them to the resource.",
+        howToFix: "Add a string to Localizable.strings and read it through L10n. Compute the values the text shows in the mapper or view model and pass them to the resource.",
         badExample: "case .age(let ageInYears): return \"\\(ageInYears) years\"",
         goodExample: "case .age(let ageInYears): return L10n.Profile.age(ageInYears)"
     )

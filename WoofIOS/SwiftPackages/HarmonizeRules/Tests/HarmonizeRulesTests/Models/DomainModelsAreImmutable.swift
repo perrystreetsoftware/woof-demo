@@ -15,9 +15,10 @@ final class DomainModelsAreImmutable: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Domain models only have let properties.",
+        title: "Domain models only have let properties.",
+        category: WoofRuleCategory.models,
         rationale: "Domain models flow through Combine streams shared by several ViewModels. Mutable fields would let one consumer change what another is observing.",
-        fixHint: "Use let and build new instances to derive changes.",
+        howToFix: "Use let and build new instances to derive changes.",
         badExample: "struct Dog { var name: String }",
         goodExample: "struct Dog { let name: String }"
     )

@@ -15,9 +15,10 @@ final class UseCasesUseFactory: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "UseCases must be annotated with @Factory.",
+        title: "UseCases must be annotated with @Factory.",
+        category: WoofRuleCategory.useCase,
         rationale: "UseCases are stateless, so a new instance per injection is free and rules out accidental shared state.",
-        fixHint: "Add @Factory to the UseCase class.",
+        howToFix: "Add @Factory to the UseCase class.",
         badExample: "@Single\nfinal class SendWoofUseCase",
         goodExample: "@Factory\nfinal class SendWoofUseCase"
     )

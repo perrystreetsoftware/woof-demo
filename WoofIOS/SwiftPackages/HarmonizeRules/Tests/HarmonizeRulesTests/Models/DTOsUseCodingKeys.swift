@@ -21,9 +21,10 @@ final class DTOsUseCodingKeys: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "DTOs end with DTO, conform to Codable, and declare explicit CodingKeys for every property.",
+        title: "DTOs end with DTO, conform to Codable, and declare explicit CodingKeys for every property.",
+        category: WoofRuleCategory.models,
         rationale: "DTOs are the contract with the transport layer. Explicit JSON keys survive renames, and the suffix makes it obvious the type must be mapped before use.",
-        fixHint: "Add the DTO suffix, Codable conformance, and a CodingKeys enum.",
+        howToFix: "Add the DTO suffix, Codable conformance, and a CodingKeys enum.",
         badExample: "struct Dog { let id: Int; let photoUrl: String }",
         goodExample: "struct DogDTO: Codable { let id: Int; let photoUrl: String\n    enum CodingKeys: String, CodingKey { case id; case photoUrl = \"photo_url\" } }"
     )

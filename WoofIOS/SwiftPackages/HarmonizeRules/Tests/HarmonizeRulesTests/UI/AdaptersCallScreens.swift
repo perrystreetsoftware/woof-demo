@@ -17,9 +17,10 @@ final class AdaptersCallScreens: QuickSpec {
     private static let screenCallPattern = try! NSRegularExpression(pattern: #"\b[A-Z]\w*Screen\("#)
 
     private static let rule = Rule(
-        description: "Every Adapter delegates rendering to a Screen view.",
+        title: "Every Adapter delegates rendering to a Screen view.",
+        category: WoofRuleCategory.ui,
         rationale: "The Adapter/Screen split only works if the Adapter is a thin bridge: observe state, bind callbacks, render the Screen.",
-        fixHint: "Move layout code into a *Screen view and call it from the Adapter.",
+        howToFix: "Move layout code into a *Screen view and call it from the Adapter.",
         badExample: "struct BrowseAdapter: View { var body: some View { TemplateGrid(...) { ... } } }",
         goodExample: "struct BrowseAdapter: View { var body: some View { BrowseScreen(state: viewModel.state, onCellTap: ...) } }"
     )

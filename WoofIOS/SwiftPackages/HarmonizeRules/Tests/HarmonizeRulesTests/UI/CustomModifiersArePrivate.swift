@@ -37,9 +37,10 @@ final class CustomModifiersArePrivate: QuickSpec {
     ]
 
     private static let rule = Rule(
-        description: "Custom view modifiers are private.",
+        title: "Custom view modifiers are private.",
+        category: WoofRuleCategory.ui,
         rationale: "A public modifier spreads styling outside the component that owns it, so callers restyle one-off instead of picking a variant.",
-        fixHint: "Make the modifier private to its component. If several components need it, move them into that file as initializers of one component.",
+        howToFix: "Make the modifier private to its component. If several components need it, move them into that file as initializers of one component.",
         badExample: """
         public extension View {
             func atomPlaceholderShimmer() -> some View { modifier(AtomPlaceholderShimmer()) }

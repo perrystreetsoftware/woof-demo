@@ -100,6 +100,12 @@ cd WoofAndroid && ./gradlew runKonsistTests
 cd WoofIOS && bash scripts/run-harmonize.sh
 ```
 
+On iOS, Harmonize also generates an agent skill from the rules: `WoofIOS/.agents/skills/harmonize`. A pre-commit hook regenerates it when a commit contains a rule file. Install the hook with:
+
+```bash
+git config core.hooksPath .githooks
+```
+
 ### Static analysis
 
 `WoofAndroid` also follows general Compose best practices, checked by the [ktlint Compose ruleset](https://github.com/mrmans0n/compose-rules). It is configured in `WoofAndroid/.editorconfig` to fit the existing Konsist rules. To enable checks in Android Studio:

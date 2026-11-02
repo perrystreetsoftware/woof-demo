@@ -17,9 +17,10 @@ final class UseCasesDoNotImportDTOs: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "The domain layer must not know about DTOs or data sources.",
+        title: "The domain layer must not know about DTOs or data sources.",
+        category: WoofRuleCategory.useCase,
         rationale: "DTOs mirror a transport format. If the domain depended on them, every server change would ripple through business rules.",
-        fixHint: "Map the DTO to a domain model in the repository and consume the domain model.",
+        howToFix: "Map the DTO to a domain model in the repository and consume the domain model.",
         badExample: "func callAsFunction() -> AnyPublisher<DogsPageDTO, DogsError>",
         goodExample: "func callAsFunction() -> AnyPublisher<DogsPage, DogsError>"
     )

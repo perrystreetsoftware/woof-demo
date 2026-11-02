@@ -17,12 +17,13 @@ final class OnlyAdaptersInjectViewModels: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Only *Adapter views inject ViewModels.",
+        title: "Only *Adapter views inject ViewModels.",
+        category: WoofRuleCategory.ui,
         rationale: """
             Adapters bind ViewModels to Screens. Screens stay pure functions of state so they can be
             previewed and reasoned about without dependency injection.
             """,
-        fixHint: "Inject the ViewModel in an Adapter and pass state and callbacks down to the Screen.",
+        howToFix: "Inject the ViewModel in an Adapter and pass state and callbacks down to the Screen.",
         badExample: "struct BrowseScreen: View { @StateObject private var viewModel: BrowseViewModel }",
         goodExample: "struct BrowseAdapter: View { @StateObject private var viewModel: BrowseViewModel\n    var body: some View { BrowseScreen(state: viewModel.state) } }"
     )

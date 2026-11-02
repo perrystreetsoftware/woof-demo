@@ -29,8 +29,11 @@ final class OrganismsReuseExistingOrganisms: QuickSpec {
                 .map { (organism: organism.name, existing: $0.key) }
             }
 
-            Then("It calls every existing organism whose parts it contains") {
-                organisms.assertFalse(rule: rule(rebuilt: rebuilt)) { organism in
+            // The Rule text is static, so that the skill generator can read it.
+            // The pairs that fail go into the test name, which the failure shows.
+            let detail = rebuilt.map { "\($0.organism) rebuilds \($0.existing)" }.joined(separator: ", ")
+            Then("It calls every existing organism whose parts it contains" + (detail.isEmpty ? "" : " (\(detail))")) {
+                organisms.assertFalse(rule: rule) { organism in
                     rebuilt.contains { $0.organism == organism.name }
                 }
             }
@@ -54,12 +57,11 @@ final class OrganismsReuseExistingOrganisms: QuickSpec {
             .reduce(into: [:]) { counts, component in counts[component, default: 0] += 1 }
     }
 
-    private static func rule(rebuilt: [(organism: String, existing: String)]) -> Rule {
-        Rule(
-            description: "An organism that contains every part of an existing organism calls that organism instead of rebuilding it.",
+    private static let rule = Rule(
+            title: "An organism that contains every part of an existing organism calls that organism instead of rebuilding it.",
+            category: WoofRuleCategory.designSystem,
             rationale: "Two organisms made of the same parts drift apart: a fix or a new size lands in one and not the other, and the design system grows a near-twin for every screen. Calling the existing organism keeps one source for that shape.",
-            fixHint: "Call the existing organism inside the new one and add only what it lacks. Where the new one looks different, such as another size or typography, add a case to the existing organism's Roles enum and pass it. "
-                + rebuilt.map { "\($0.organism) rebuilds \($0.existing)." }.joined(separator: " "),
+            howToFix: "Call the existing organism inside the new one and add only what it lacks. Where the new one looks different, such as another size or typography, add a case to the existing organism's Roles enum and pass it. The test name lists which organism rebuilds which.",
             badExample: """
             struct OrgErrorState: View {
                 var body: some View {
@@ -81,6 +83,5 @@ final class OrganismsReuseExistingOrganisms: QuickSpec {
                 }
             }
             """
-        )
-    }
+    )
 }

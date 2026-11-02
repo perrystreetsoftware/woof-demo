@@ -20,9 +20,10 @@ final class RepositoryFunctionsDoNotReturnDTOs: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Repositories never expose DTOs.",
+        title: "Repositories never expose DTOs.",
+        category: WoofRuleCategory.repositories,
         rationale: "The repository is the boundary where transport data becomes domain data. Leaking a DTO pushes mapping into every caller.",
-        fixHint: "Map with a DTOToDomainMapper inside the repository and return the domain model.",
+        howToFix: "Map with a DTOToDomainMapper inside the repository and return the domain model.",
         badExample: "func getDogs() -> AnyPublisher<DogsPageDTO, DogsError>",
         goodExample: "func getDogs() -> AnyPublisher<DogsPage, DogsError> { dataSource.getDogs().map { pageMapper($0) } }"
     )

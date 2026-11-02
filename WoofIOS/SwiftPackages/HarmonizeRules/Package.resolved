@@ -1,5 +1,5 @@
 {
-  "originHash" : "66ede1aa6fcb70427bffd366edadb0dc08472dbd9a1d258d51a8b5790c370efd",
+  "originHash" : "2a9c10a8afd61030e457460b770b23b8ac3515a72ac3fd678981d8aacbd9d778",
   "pins" : [
     {
       "identity" : "cwlcatchexception",
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/perrystreetsoftware/Harmonize.git",
       "state" : {
-        "revision" : "41923397b3034b375dd1486139448eb1bc38ff22",
-        "version" : "1.3.0"
+        "revision" : "e56fd2dfda251a8879f06995e25d7b4ddf597047",
+        "version" : "2.0.0-beta.1"
       }
     },
     {

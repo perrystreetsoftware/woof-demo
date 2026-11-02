@@ -25,12 +25,13 @@ final class ScreensUseDesignSystemComponents: QuickSpec {
     private static let tokenPattern = try! NSRegularExpression(pattern: #"\b(ColorPrimitives|SpacingPrimitives|SizingPrimitives|SpacingRoles|SizingRoles|ColorRoles|TypographyRoles)\b|\btheme\."#)
 
     private static let rule = Rule(
-        description: "Feature UI only composes Template*, Org*, Mol*, and Atom* components and never touches layout modifiers or design tokens.",
+        title: "Feature UI only composes Template*, Org*, Mol*, and Atom* components and never touches layout modifiers or design tokens.",
+        category: WoofRuleCategory.ui,
         rationale: """
             If a screen reaches for Text, VStack, .padding, or theme.colors, styling decisions leak out of
             the design system and drift between features. The design system is the only place tokens are resolved.
             """,
-        fixHint: "Use the matching atomic component, or add a new one (or a new role) to the design system.",
+        howToFix: "Use the matching atomic component, or add a new one (or a new role) to the design system.",
         badExample: "Text(dog.name).foregroundStyle(theme.colors.onSurface).padding(8)",
         goodExample: "AtomText(text: dog.name, textFontRole: .subheadP2)"
     )

@@ -20,9 +20,10 @@ final class MappersExposeSingleInvoke: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Mappers are @Factory classes exposing exactly one callAsFunction().",
+        title: "Mappers are @Factory classes exposing exactly one callAsFunction().",
+        category: WoofRuleCategory.mappers,
         rationale: "A mapper converts one type into another and nothing else. Injecting it as a class (not a static helper) keeps nested mappers composable.",
-        fixHint: "Annotate with @Factory, name the conversion function callAsFunction, and split extra conversions into their own mappers.",
+        howToFix: "Annotate with @Factory, name the conversion function callAsFunction, and split extra conversions into their own mappers.",
         badExample: "enum DogMapper { static func toDomain(_ dto: DogDTO) -> Dog; static func toUIModel(_ dog: Dog) -> DogCellUIModel }",
         goodExample: "@Factory\nfinal class DogDTOToDomainMapper { func callAsFunction(_ dto: DogDTO) -> Dog }"
     )

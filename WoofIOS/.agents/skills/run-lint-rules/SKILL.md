@@ -1,24 +1,40 @@
 ---
 name: run-lint-rules
-description: Run WoofIOS's Harmonize lint rules and fix what they report, so the code follows Atomic Design and the app's architecture. Use before writing code in an area of WoofIOS, once the code is written, and again after every fix until the rules pass.
+description: Run WoofIOS's Harmonize lint rules and fix what they report, so the code follows Atomic Design and the app's architecture. Use after you write code in WoofIOS, and again after every fix until the rules pass.
 ---
 
 # Run the lint rules
 
-The rules live in `SwiftPackages/HarmonizeRules/Tests/HarmonizeRulesTests/`, one folder per part of the app. Before writing code in an area, read its rules: they say how that part is built.
+The rules live in `SwiftPackages/HarmonizeRules/Tests/HarmonizeRulesTests/`, one folder per layer of the app. Before you write code in a layer, use the `harmonize` skill. It lists the rules of each layer, with the rationale, the fix, and examples.
 
 ## 1. Run them
 
-From `WoofIOS/`, in the foreground, and read the whole output:
+From `WoofIOS/`, in the foreground. Wait until the script exits:
 
 ```bash
-scripts/run-harmonize.sh
+bash scripts/run-harmonize.sh                     # all rules
+bash scripts/run-harmonize.sh ViewModelsDoNotImportSwiftUI   # one rule, by test class name
 ```
 
-## 2. Fix what fails
+## 2. Read the result
 
-Every failing rule prints an `error:` line with its description, rationale, fix hint and bad and good examples. Change the code the way the fix hint says. Each rule encodes an architecture decision, so the code moves and the rules stay as they are.
+- **All rules pass:** the script prints the test summary and `HARMONIZE LINT RULES PASSED`.
+- **Rules fail:** the script prints one block per failing rule:
+  ```
+  Rule: <TestClassName> (<rule-id>)
+    RULE: <title>
+    WHY: <rationale>
+    HOW TO FIX: <fix>
+    Details: .agents/skills/harmonize/references/<layer>/<rule-id>.md
+    Violations:
+    - <file>:<line> <declaration>
+  ```
+- **Build failure:** the script prints the build errors. Fix them first.
 
-## 3. Repeat
+## 3. Fix what fails
 
-Run them again after every fix. The task is done when every rule passes.
+Read the `WHY` and `HOW TO FIX` lines. Open the `Details` page when you need the bad and good examples. Change the production code the way the fix says. Each rule encodes an architecture decision.
+
+## 4. Repeat
+
+Run the failed rule alone after each fix. Then run all rules. The task is done when every rule passes.
