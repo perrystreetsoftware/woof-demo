@@ -25,13 +25,14 @@ fi
 
 print_violations() {
     python3 -I - "$VIOLATIONS_DIR" "$RULES_DIR" "$SKILL_REFERENCES" \
-        "${GITHUB_WORKSPACE:-}" "${GITHUB_ACTIONS:-}" <<'PY'
+        "${GITHUB_WORKSPACE:-}" "${GITHUB_ACTIONS:-}" "$LOG" <<'PY'
 import glob
 import json
 import os
+import re
 import sys
 
-violations_dir, rules_dir, references_dir, workspace, in_actions = sys.argv[1:6]
+violations_dir, rules_dir, references_dir, workspace, in_actions, log_path = sys.argv[1:7]
 entries = []
 for path in sorted(glob.glob(os.path.join(violations_dir, "*.json"))):
     with open(path) as handle:
@@ -39,12 +40,27 @@ for path in sorted(glob.glob(os.path.join(violations_dir, "*.json"))):
 if not entries:
     sys.exit(3)
 
-# Map a rule id to the test class name: the rule file name without extension.
+# Map a rule id to the test class name. The default id is the file name in
+# kebab-case, so the file name without hyphens and case matches it. A rule
+# with an explicit id maps through the `id:` literal in its file.
 classes = {}
 for root, _, files in os.walk(rules_dir):
     for name in files:
-        if name.endswith(".swift"):
-            classes[name[:-6].replace("-", "").lower()] = name[:-6]
+        if not name.endswith(".swift"):
+            continue
+        test_class = name[:-6]
+        classes[test_class.replace("-", "").lower()] = test_class
+        with open(os.path.join(root, name)) as handle:
+            for explicit_id in re.findall(r'\bid:\s*"([a-z0-9-]+)"', handle.read()):
+                classes[explicit_id.replace("-", "").lower()] = test_class
+
+failed_tests = {}
+test_case = re.compile(r"Test Case '(?:-\[)?HarmonizeRulesTests\.(\w+)[ .](.+?)\]?' failed")
+with open(log_path, errors="replace") as handle:
+    for line in handle:
+        match = test_case.search(line)
+        if match and match.group(2) not in failed_tests.setdefault(match.group(1), []):
+            failed_tests[match.group(1)].append(match.group(2))
 
 
 def class_name(entry):
@@ -107,6 +123,8 @@ for key in order:
     pages = sorted(glob.glob(os.path.join(references_dir, "*", rule_id + ".md")))
     if pages:
         print("  Details: " + pages[0])
+    for test in failed_tests.get(name or "", []):
+        print("  Test: " + test)
     print("  Violations:")
     for entry in group:
         location = relative(entry["file"]) + ":" + str(entry["line"])
@@ -150,11 +168,11 @@ fi
 : > "$LOG"
 EXIT_CODE=0
 if [ "$(uname)" = "Linux" ]; then
+    # The Linux test executable takes test names as arguments. It has no --filter.
     CMD=("$BUNDLE")
-    if [ $# -gt 0 ]; then
-        FILTER_PATTERN=$(printf "%s|" "$@")
-        CMD+=(--filter "${FILTER_PATTERN%|}")
-    fi
+    for rule in "$@"; do
+        CMD+=("HarmonizeRulesTests.$rule")
+    done
     HARMONIZE_VIOLATIONS_FILE="$VIOLATIONS_DIR" "${CMD[@]}" >> "$LOG" 2>&1 || EXIT_CODE=$?
 elif [ $# -eq 0 ]; then
     HARMONIZE_VIOLATIONS_FILE="$VIOLATIONS_DIR" xcrun xctest "$BUNDLE" >> "$LOG" 2>&1 || EXIT_CODE=$?
@@ -164,17 +182,35 @@ else
     done
 fi
 
+# The totals of the run. Each test process prints one "All tests" or
+# "Selected tests" suite, so the sum also covers the per-rule loop.
+totals() {
+    grep -A1 -E "Test Suite '(All|Selected) tests' (passed|failed)" "$LOG" \
+    | awk '/Executed/ { t += $2; f += $5 } END { print t + 0, f + 0 }'
+}
+
+summary() {
+    totals | awk '{ printf "Executed %d tests, with %d failures\n", $1, $2 }'
+}
+
 if ! grep -qE "Test Suite .* passed|Test Suite .* failed|Executed .* test" "$LOG"; then
     echo "BUILD FAILURE: the tests did not run."
     echo ""
     grep -E "error:" "$LOG" | grep -v "^$" | head -50
-    exit "${EXIT_CODE:-1}"
+    [ "$EXIT_CODE" -ne 0 ] && exit "$EXIT_CODE"
+    exit 1
 fi
 
-summary() {
-    grep -A1 -E "Test Suite '(All|Selected) tests' (passed|failed)" "$LOG" \
-    | awk '/Executed/ { t += $2; f += $5 } END { printf "Executed %d tests, with %d failures\n", t, f }'
-}
+# A green run with no test is not a pass. A wrong rule name selects no test.
+if [ "$(totals | cut -d" " -f1)" -eq 0 ]; then
+    echo "ERROR: no test ran."
+    if [ $# -gt 0 ]; then
+        echo "Check the rule names: $*"
+        echo "A rule name is the test class name: the file name of the rule without .swift."
+    fi
+    [ "$EXIT_CODE" -ne 0 ] && exit "$EXIT_CODE"
+    exit 1
+fi
 
 if [ "$EXIT_CODE" -eq 0 ]; then
     summary
@@ -190,6 +226,8 @@ if print_violations; then
 fi
 
 echo "TEST FAILURE: the tests failed, but Harmonize reported no violation."
+echo "Failed tests:"
+grep -oE "Test Case '[^']+' failed" "$LOG" | sed -E "s/^Test Case '(-\[)?HarmonizeRulesTests\.//; s/\]?' failed\$//; s/^/  - /"
 echo "Errors from the test log:"
 echo ""
 grep -E "error:" "$LOG" | head -50

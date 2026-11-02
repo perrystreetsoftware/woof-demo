@@ -1,7 +1,6 @@
 import Foundation
 import Harmonize
 import Quick
-import XCTest
 
 final class RulesSelfExplain: QuickSpec {
     override class func spec() {
@@ -13,8 +12,23 @@ final class RulesSelfExplain: QuickSpec {
                 let violations = rules.filter { file in
                     let contents = (try? String(contentsOf: file, encoding: .utf8)) ?? ""
                     return !contents.contains("Rule(")
+                }.map { file in
+                    Violation(
+                        name: file.lastPathComponent,
+                        message: rule.rationale,
+                        filePath: file,
+                        line: 1,
+                        column: 1,
+                        fileID: "HarmonizeRulesTests/\(file.lastPathComponent)",
+                        rule: rule
+                    )
                 }
-                XCTAssertTrue(violations.isEmpty, "\(rule.formatted)\n\nViolating files:\n\(violations.map(\.lastPathComponent).joined(separator: "\n"))")
+                guard !violations.isEmpty else { return }
+                HarmonizeReporting.reporter.report(
+                    violations: violations,
+                    summary: rule.formatted,
+                    at: AssertionLocation(fileID: #fileID, filePath: #filePath, line: #line, column: #column)
+                )
             }
         }
     }

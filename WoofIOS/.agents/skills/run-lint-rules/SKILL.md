@@ -26,9 +26,11 @@ bash scripts/run-harmonize.sh ViewModelsDoNotImportSwiftUI   # one rule, by test
     WHY: <rationale>
     HOW TO FIX: <fix>
     Details: .agents/skills/harmonize/references/<layer>/<rule-id>.md
+    Test: <the failed test name; it can include additional details>
     Violations:
     - <file>:<line> <declaration>
   ```
+- **No test ran:** the script prints `ERROR: no test ran.` and fails. Check the rule names. A rule name is the test class name.
 - **Build failure:** the script prints the build errors. Fix them first.
 
 ## 3. Fix what fails
