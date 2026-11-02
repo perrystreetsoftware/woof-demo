@@ -34,12 +34,13 @@ final class TestsUseBehaviorSpec: QuickSpec {
     private static let rawDSLPattern = try! NSRegularExpression(pattern: #"^\s*(describe|context|it)\("#, options: [.anchorsMatchLines])
 
     private static let rule = Rule(
-        description: "Tests are QuickSpecs written as Given / When / Then with beforeEach setup and justBeforeEach actions.",
+        title: "Tests are QuickSpecs written as Given / When / Then with beforeEach setup and justBeforeEach actions.",
+        category: WoofRuleCategory.tests,
         rationale: """
             Tests target the ViewModel layer only, which exercises use cases and repositories underneath.
             The BDD structure reads as a spec, and a fresh Container per beforeEach gives every Then a clean slate.
             """,
-        fixHint: "Subclass QuickSpec, use Given/When/Then/And blocks, set up in beforeEach, act in justBeforeEach, and advance time with TimeAdvancingFactory(container).tick().",
+        howToFix: "Subclass QuickSpec, use Given/When/Then/And blocks, set up in beforeEach, act in justBeforeEach, and advance time with TimeAdvancingFactory(container).tick().",
         badExample: "final class BrowseViewModelTest: XCTestCase { func testLoads() { sleep(1) } }",
         goodExample: "final class BrowseViewModelTest: QuickSpec { override class func spec() { Given(\"I open the grid\") { Then(\"...\") { ... } } } }"
     )

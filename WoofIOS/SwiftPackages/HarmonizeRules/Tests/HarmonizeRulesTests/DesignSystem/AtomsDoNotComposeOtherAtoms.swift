@@ -19,9 +19,10 @@ final class AtomsDoNotComposeOtherAtoms: QuickSpec {
     private static let atomCallPattern = try! NSRegularExpression(pattern: #"\bAtom[A-Z]\w*\("#)
 
     private static let rule = Rule(
-        description: "Atoms are built from SwiftUI primitives only; they never call other atoms.",
+        title: "Atoms are built from SwiftUI primitives only; they never call other atoms.",
+        category: WoofRuleCategory.designSystem,
         rationale: "The moment two atoms combine, the result is a molecule. Keeping atoms leaf-level keeps the hierarchy honest and the dependency graph flat.",
-        fixHint: "Promote the composition to a Mol* component in Atomic/Molecules.",
+        howToFix: "Promote the composition to a Mol* component in Atomic/Molecules.",
         badExample: "struct AtomLabeledIcon: View { var body: some View { HStack { AtomIcon(...); AtomText(...) } } }",
         goodExample: "struct MolLabeledIcon: View { var body: some View { HStack { AtomIcon(...); AtomText(...) } } }"
     )

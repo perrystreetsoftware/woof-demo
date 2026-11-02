@@ -19,9 +19,10 @@ final class StateTypesAreEquatable: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "State types and UI models must be Equatable.",
+        title: "State types and UI models must be Equatable.",
+        category: WoofRuleCategory.models,
         rationale: "States mix enums with associated values and structs. Equatable gives every branch the same equality semantics, which keeps test assertions symmetric.",
-        fixHint: "Add Equatable (or Hashable) conformance to the type.",
+        howToFix: "Add Equatable (or Hashable) conformance to the type.",
         badExample: "public enum State { case loading }",
         goodExample: "public enum State: Equatable { case loading }"
     )

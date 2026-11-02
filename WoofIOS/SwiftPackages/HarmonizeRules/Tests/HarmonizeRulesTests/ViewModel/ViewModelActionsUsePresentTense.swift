@@ -15,12 +15,13 @@ final class ViewModelActionsUsePresentTense: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "ViewModel actions are named on<Something><Verb>, never in the past tense.",
+        title: "ViewModel actions are named on<Something><Verb>, never in the past tense.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             Actions describe what the user does right now (onWoofTap), not what already happened.
             One naming style keeps adapters and tests predictable.
             """,
-        fixHint: "Rename onButtonTapped to onButtonTap, onTextChanged to onTextChange.",
+        howToFix: "Rename onButtonTapped to onButtonTap, onTextChanged to onTextChange.",
         badExample: "func onWoofTapped()",
         goodExample: "func onWoofTap()"
     )

@@ -17,12 +17,13 @@ final class ViewModelsDoNotImportSwiftUI: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "ViewModels, UI models, and mappers must not import SwiftUI, design system, or resource types.",
+        title: "ViewModels, UI models, and mappers must not import SwiftUI, design system, or resource types.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             Presentation logic must be testable without a UI framework and reusable across views. Localized strings
             and views are view concerns and belong in screen-layer extensions.
             """,
-        fixHint: "Emit plain data in the UI model and map it to strings, icons, or colors in an extension under UI/Extensions.",
+        howToFix: "Emit plain data in the UI model and map it to strings, icons, or colors in an extension under UI/Extensions.",
         badExample: "struct ProfileToastUIModel { let message: LocalizedStringKey }",
         goodExample: "enum ProfileToastUIModel { case woofSent(name: String) }\nextension ProfileToastUIModel { var text: String { ... } }"
     )

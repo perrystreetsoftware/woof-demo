@@ -19,12 +19,13 @@ final class ViewModelsDoNotSubscribeInInitializers: QuickSpec {
     private static let subscriptionPattern = try! NSRegularExpression(pattern: #"\.(sink|pss_sink|store|assign)\("#)
 
     private static let rule = Rule(
-        description: "ViewModels must not start subscriptions in init.",
+        title: "ViewModels must not start subscriptions in init.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             init runs while Swinject constructs the ViewModel, before any view appears. Work started there
             cannot be tied to the screen lifecycle and makes tests set up state they never asked for.
             """,
-        fixHint: "Override onFirstAppear() for one-time setup or onEveryAppear() for recurring setup; derive state by passing a publisher to StateDerivingViewModel.",
+        howToFix: "Override onFirstAppear() for one-time setup or onEveryAppear() for recurring setup; derive state by passing a publisher to StateDerivingViewModel.",
         badExample: "init(...) { loadDogs().sink { ... }.store(in: &cancellables) }",
         goodExample: "override func onFirstAppear() { loadDogs().sink { ... }.store(in: &cancellables) }"
     )

@@ -20,9 +20,10 @@ final class DIModulesAreRegistered: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Every generated injection function is called in Container+Extensions.",
+        title: "Every generated injection function is called in Container+Extensions.",
+        category: WoofRuleCategory.di,
         rationale: "An unregistered package compiles and passes its own view-model tests, which register the package directly, then crashes on a missing registration the first time the screen opens.",
-        fixHint: "Add .inject<Name>Generated() to injectEverythingForProduction() in Woof/DI/Container+Extensions.swift and the package product to the Woof target.",
+        howToFix: "Add .inject<Name>Generated() to injectEverythingForProduction() in Woof/DI/Container+Extensions.swift and the package product to the Woof target.",
         badExample: """
         // Presentation/Favorites/Sources/PresentationFavorites/DI/Container+PresentationFavorites+Generated.swift
         func injectPresentationFavoritesGenerated() -> Container { ... }

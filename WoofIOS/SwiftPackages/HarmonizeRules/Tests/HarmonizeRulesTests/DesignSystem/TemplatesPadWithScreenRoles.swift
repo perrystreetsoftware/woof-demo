@@ -17,13 +17,14 @@ final class TemplatesPadWithScreenRoles: QuickSpec {
     private static let elementPaddingUsage = "PaddingRoles.Element"
 
     private static let rule = Rule(
-        description: "Templates pad with PaddingRoles.Screen, never PaddingRoles.Element.",
+        title: "Templates pad with PaddingRoles.Screen, never PaddingRoles.Element.",
+        category: WoofRuleCategory.designSystem,
         rationale: """
             Padding applied by a Template is always the gutter between page content and the screen,
             so it belongs on the Screen scale. Element padding describes space inside a component,
             and a Template has no components of its own — it only places the slots it is given.
             """,
-        fixHint: """
+        howToFix: """
             Use the Screen step that matches the gutter you want — extraCompact for a dense grid,
             compact under a bar, regular for page content, expanded for an overlay drop. Gaps
             between items stay on SpacingRoles.

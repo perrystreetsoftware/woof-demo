@@ -19,12 +19,13 @@ final class DesignSystemDoesNotDependOnAppLayers: QuickSpec {
     private static let forbiddenImports = ["Models", "UseCase", "Repositories", "DataSource", "DTO", "Swinject", "SwinjectAutoregistration", "DI", "Utils", "Kingfisher", "SDWebImage"]
 
     private static let rule = Rule(
-        description: "The design system knows nothing about domain models, UI models, DI, or image loaders.",
+        title: "The design system knows nothing about domain models, UI models, DI, or image loaders.",
+        category: WoofRuleCategory.designSystem,
         rationale: """
             Components take plain data (strings, images, roles). That is what makes them reusable across features
             and previewable without a running app. Image requests are built by the caller and passed in as an AsyncImageState.
             """,
-        fixHint: "Accept primitive values, roles, or AsyncImageState instead of feature models, and load images in the presentation layer.",
+        howToFix: "Accept primitive values, roles, or AsyncImageState instead of feature models, and load images in the presentation layer.",
         badExample: "public struct OrgPhotoCard: View { let dog: Dog }",
         goodExample: "public struct OrgPhotoCard: View { let title: String; let imageState: AsyncImageState; let onTap: () -> Void }"
     )

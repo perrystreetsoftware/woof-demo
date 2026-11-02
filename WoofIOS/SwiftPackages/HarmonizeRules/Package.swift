@@ -9,7 +9,7 @@ let package = Package(
         .library(name: "HarmonizeRules", targets: ["HarmonizeRules"])
     ],
     dependencies: [
-        .package(url: "https://github.com/perrystreetsoftware/Harmonize.git", from: "1.3.0"),
+        .package(url: "https://github.com/perrystreetsoftware/Harmonize.git", exact: "2.0.0-beta.2"),
         .package(url: "https://github.com/Quick/Quick.git", from: "7.6.2"),
         .package(url: "https://github.com/Quick/Nimble.git", from: "13.7.1"),
     ],

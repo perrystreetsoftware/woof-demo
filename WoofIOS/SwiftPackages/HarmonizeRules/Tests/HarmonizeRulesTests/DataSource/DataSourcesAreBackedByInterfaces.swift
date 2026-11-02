@@ -25,9 +25,10 @@ final class DataSourcesAreBackedByInterfaces: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Every data source is a *DataSourceImplementing protocol with local and fake implementations.",
+        title: "Every data source is a *DataSourceImplementing protocol with local and fake implementations.",
+        category: WoofRuleCategory.dataSource,
         rationale: "The protocol is the seam between the app and the outside world. Repositories, tests, and a future remote implementation all program against it.",
-        fixHint: "Declare protocol FooDataSourceImplementing, then make FooLocalDataSource and FakeFooDataSource conform to it.",
+        howToFix: "Declare protocol FooDataSourceImplementing, then make FooLocalDataSource and FakeFooDataSource conform to it.",
         badExample: "final class DogsLocalDataSource { func getDogs() -> AnyPublisher<DogsPageDTO, DataSourceError> }",
         goodExample: "protocol DogsDataSourceImplementing { func getDogs() -> AnyPublisher<DogsPageDTO, DataSourceError> }\nfinal class DogsLocalDataSource: DogsDataSourceImplementing"
     )

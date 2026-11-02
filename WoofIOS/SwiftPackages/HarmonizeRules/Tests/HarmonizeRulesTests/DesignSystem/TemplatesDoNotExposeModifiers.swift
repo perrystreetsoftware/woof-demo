@@ -25,9 +25,10 @@ final class TemplatesDoNotExposeModifiers: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Templates expose slots, never layout values.",
+        title: "Templates expose slots, never layout values.",
+        category: WoofRuleCategory.designSystem,
         rationale: "A template owns the page layout. If a screen could pass a padding or a size, paddings and sizes would again be decided outside the design system.",
-        fixHint: "Build layout parameters into the template and expose @ViewBuilder slots for content.",
+        howToFix: "Build layout parameters into the template and expose @ViewBuilder slots for content.",
         badExample: "public struct TemplateGrid<Content: View>: View { public init(padding: CGFloat, @ViewBuilder content: () -> Content) }",
         goodExample: "public struct TemplateGrid<TopBar: View, Content: View>: View { public init(@ViewBuilder topBar: () -> TopBar, @ViewBuilder content: () -> Content) }"
     )

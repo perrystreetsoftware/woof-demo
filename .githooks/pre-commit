@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Regenerates the Harmonize agent skill of WoofIOS when a commit contains a
+# lint rule file. It runs the built generator binary directly. It does not
+# start SwiftPM and it does not wait for a build. If the binary does not exist,
+# it shows a warning and allows the commit.
+#
+# Install with:
+#   git config core.hooksPath .githooks
+#
+# You need to build the generator manually for the first time from the repository root. The first build takes some minutes:
+#   swift package --package-path WoofIOS/SwiftPackages/HarmonizeRules \
+#     --allow-writing-to-package-directory --allow-writing-to-directory WoofIOS/.agents/skills harmonize-skills
+
+RULES_PACKAGE="WoofIOS/SwiftPackages/HarmonizeRules"   # the package that contains the rule tests
+HARMONIZE_CONFIG="WoofIOS/.harmonize.yaml"             # the Harmonize config of the iOS project
+SKILLS_DIR="WoofIOS/.agents/skills"                    # must match `skills.output` in the config
+SKILL_NAME="harmonize"                                 # must match `skills.name` in the config
+
+if git diff --cached --name-only --diff-filter=ADMR -- "$RULES_PACKAGE/Tests/*.swift" | grep -q .; then
+  SKILLS_TOOL=$(find "$RULES_PACKAGE/.build" -maxdepth 6 -type f -perm -u+x \
+    \( -name HarmonizeSkills -o -name HarmonizeSkills-tool \) -not -path "*.dSYM*" 2>/dev/null | head -1)
+
+  if [ -n "$SKILLS_TOOL" ]; then
+    SNAPSHOT=$(mktemp -d "${TMPDIR:-/tmp}/harmonize-skills.XXXXXX")
+    git ls-files -z -- "$HARMONIZE_CONFIG" "$RULES_PACKAGE/Tests" | git checkout-index -z --stdin --prefix="$SNAPSHOT/"
+
+    if "$SKILLS_TOOL" --package-dir "$SNAPSHOT/$RULES_PACKAGE" && [ -d "$SNAPSHOT/$SKILLS_DIR/$SKILL_NAME" ]; then
+      rm -rf "$SKILLS_DIR/$SKILL_NAME"
+      mkdir -p "$SKILLS_DIR"
+      cp -R "$SNAPSHOT/$SKILLS_DIR/$SKILL_NAME" "$SKILLS_DIR/"
+      rm -rf "$SNAPSHOT"
+      git add -A -- "$SKILLS_DIR/$SKILL_NAME"
+      if ! git diff --quiet -- "$RULES_PACKAGE/Tests" || git ls-files --others --exclude-standard -- "$RULES_PACKAGE/Tests" | grep -q .; then
+        echo "pre-commit: some rule files have unstaged changes. The skill was generated from the staged versions." >&2
+      fi
+    else
+      rm -rf "$SNAPSHOT"
+      echo "pre-commit: harmonize-skills failed. Fix the rule metadata and commit again." >&2
+      exit 1
+    fi
+  else
+    echo "pre-commit: WARNING: the harmonize-skills tool does not exist. The skill was not regenerated." >&2
+    echo "pre-commit: You need to build the generator manually for the first time from the repository root. The first build takes some minutes:" >&2
+    echo "  swift package --package-path $RULES_PACKAGE --allow-writing-to-package-directory --allow-writing-to-directory $SKILLS_DIR harmonize-skills" >&2
+  fi
+fi
+
+exit 0

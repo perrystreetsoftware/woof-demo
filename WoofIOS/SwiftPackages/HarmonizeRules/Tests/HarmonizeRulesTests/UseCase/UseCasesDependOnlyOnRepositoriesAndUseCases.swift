@@ -22,9 +22,10 @@ final class UseCasesDependOnlyOnRepositoriesAndUseCases: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "UseCases may only depend on Repositories and other UseCases.",
+        title: "UseCases may only depend on Repositories and other UseCases.",
+        category: WoofRuleCategory.useCase,
         rationale: "Use cases compose data access into business rules. Data sources, mappers, or view types would leak other layers into the domain.",
-        fixHint: "Inject a Repository that wraps the data source, or another UseCase.",
+        howToFix: "Inject a Repository that wraps the data source, or another UseCase.",
         badExample: "final class SendWoofUseCase { private let dataSource: WoofsDataSourceImplementing }",
         goodExample: "final class SendWoofUseCase { private let woofsRepository: WoofsRepository }"
     )

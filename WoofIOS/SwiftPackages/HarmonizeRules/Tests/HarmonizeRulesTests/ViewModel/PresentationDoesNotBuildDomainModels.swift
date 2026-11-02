@@ -17,9 +17,10 @@ final class PresentationDoesNotBuildDomainModels: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Presentation code receives domain models from use cases; only previews construct them.",
+        title: "Presentation code receives domain models from use cases; only previews construct them.",
+        category: WoofRuleCategory.viewModel,
         rationale: "Domain models come from a data source through a repository and a use case. A view model that builds its own list skips those layers, so the screen shows data the app never loads, and its tests check the literals instead of the behaviour.",
-        fixHint: "Add the data source, repository and use case the way the reference feature does, inject the use case into the view model and derive the state from it. Keep hand-made models in UI/Preview for previews and in DataSourceFakes for tests.",
+        howToFix: "Add the data source, repository and use case the way the reference feature does, inject the use case into the view model and derive the state from it. Keep hand-made models in UI/Preview for previews and in DataSourceFakes for tests.",
         badExample: "// FavoritesViewModel\nJust([Dog(id: 1, name: \"Rufus\", photoUrl: \"\")]).map { ... }",
         goodExample: "// FavoritesViewModel\ngetFavoriteDogsUseCase().map { dogs in ... }"
     )

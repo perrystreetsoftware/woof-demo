@@ -1,7 +1,6 @@
 import Foundation
 import Harmonize
 import Quick
-import XCTest
 
 final class RulesSelfExplain: QuickSpec {
     override class func spec() {
@@ -13,13 +12,28 @@ final class RulesSelfExplain: QuickSpec {
                 let violations = rules.filter { file in
                     let contents = (try? String(contentsOf: file, encoding: .utf8)) ?? ""
                     return !contents.contains("Rule(")
+                }.map { file in
+                    Violation(
+                        name: file.lastPathComponent,
+                        message: rule.rationale,
+                        filePath: file,
+                        line: 1,
+                        column: 1,
+                        fileID: "HarmonizeRulesTests/\(file.lastPathComponent)",
+                        rule: rule
+                    )
                 }
-                XCTAssertTrue(violations.isEmpty, "\(rule.message)\n\nViolating files:\n\(violations.map(\.lastPathComponent).joined(separator: "\n"))")
+                guard !violations.isEmpty else { return }
+                HarmonizeReporting.reporter.report(
+                    violations: violations,
+                    summary: rule.formatted,
+                    at: AssertionLocation(fileID: #fileID, filePath: #filePath, line: #line, column: #column)
+                )
             }
         }
     }
 
-    private static let infrastructure = ["GherkinUtils.swift", "HarmonizeUtils.swift"]
+    private static let infrastructure = ["GherkinUtils.swift", "HarmonizeUtils.swift", "WoofRuleCategory.swift"]
 
     private static func swiftFiles(in directory: URL) -> [URL] {
         let enumerator = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil)
@@ -27,9 +41,10 @@ final class RulesSelfExplain: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Every lint rule passes a Rule to its assertion.",
+        title: "Every lint rule passes a Rule to its assertion.",
+        category: WoofRuleCategory.meta,
         rationale: "A failing rule must explain why it exists and how to fix it, otherwise the next person works around it instead of fixing the code.",
-        fixHint: "Replace the raw string with a Rule(description, rationale, fixHint, badExample, goodExample).",
+        howToFix: "Replace the raw string with a Rule(title, category, rationale, howToFix, badExample, goodExample).",
         badExample: "classes.assertTrue(message: \"Use @Factory\") { ... }",
         goodExample: "classes.assertTrue(rule: rule) { ... }"
     )

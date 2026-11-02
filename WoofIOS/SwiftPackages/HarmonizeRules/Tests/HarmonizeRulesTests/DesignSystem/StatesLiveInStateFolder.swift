@@ -18,9 +18,10 @@ final class StatesLiveInStateFolder: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Component states live in a State folder next to their component.",
+        title: "Component states live in a State folder next to their component.",
+        category: WoofRuleCategory.designSystem,
         rationale: "A state is part of a component's API (ButtonState, OverflowMenuState); keeping it next to the component makes the API discoverable.",
-        fixHint: "Move the state into <Component>/State/.",
+        howToFix: "Move the state into <Component>/State/.",
         badExample: "// Molecules/Button/ButtonState.swift\nenum ButtonState { ... }",
         goodExample: "// Molecules/Button/State/ButtonState.swift\nenum ButtonState { ... }"
     )

@@ -17,13 +17,14 @@ final class ScreenPaddingIsOnlyUsedInTemplates: QuickSpec {
     private static let screenPaddingUsage = "PaddingRoles.Screen"
 
     private static let rule = Rule(
-        description: "Screen padding roles may only be applied by Templates.",
+        title: "Screen padding roles may only be applied by Templates.",
+        category: WoofRuleCategory.designSystem,
         rationale: """
             PaddingRoles.Screen describes the gutter between page content and the screen edge.
             Templates are the one layer that owns page level layout, so if an Atom, Molecule or
             Organism also applies it the gutter is added twice and drifts between screens.
             """,
-        fixHint: """
+        howToFix: """
             Let the Template apply the screen padding around its content, and use
             PaddingRoles.Element or SpacingRoles inside the component.
             """,

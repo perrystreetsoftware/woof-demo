@@ -60,9 +60,10 @@ final class DesignSystemIsFeatureAgnostic: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "The design system is feature-agnostic: names and the resources it references describe shape and data, never a feature.",
+        title: "The design system is feature-agnostic: names and the resources it references describe shape and data, never a feature.",
+        category: WoofRuleCategory.designSystem,
         rationale: "Every feature can use a design-system component, so it is named by what it looks like, its parameters by the data they hold, and its roles by the style they pick. A feature word in the design system, or a feature's string or icon inside a component, ties the component to one screen, and the next feature builds a twin instead of reusing it. Feature words are the feature package names and the domain model names.",
-        fixHint: "Rename the component, its folder, role case or parameter after its structure or what it carries. Pass a feature's text and icons in as parameters; the feature's own words and resources stay in its presentation package.",
+        howToFix: "Rename the component, its folder, role case or parameter after its structure or what it carries. Pass a feature's text and icons in as parameters; the feature's own words and resources stay in its presentation package.",
         badExample: "struct OrgFavoriteCard: View { init(dogName: String, photo: AsyncImageState, onFavoriteTap: @escaping () -> Void) }",
         goodExample: "struct OrgPhotoCard: View { init(title: String, imageState: AsyncImageState, contentDescription: String, onTap: @escaping () -> Void) }"
     )

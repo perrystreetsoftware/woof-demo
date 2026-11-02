@@ -24,12 +24,13 @@ final class UseCasesExposeSingleInvoke: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "UseCases expose exactly one callAsFunction() and no public state.",
+        title: "UseCases expose exactly one callAsFunction() and no public state.",
+        category: WoofRuleCategory.useCase,
         rationale: """
             One class, one use case. A single callAsFunction keeps the responsibility obvious and lets callers
             use the class like a function. Public state would turn it into a service.
             """,
-        fixHint: "Split additional public functions into their own UseCases; move state into a Repository.",
+        howToFix: "Split additional public functions into their own UseCases; move state into a Repository.",
         badExample: "final class DogsUseCase { func load() {}; func block() {} }",
         goodExample: "final class LoadNextDogsPageUseCase { func callAsFunction() -> AnyPublisher<DogsPage, DogsError> }"
     )

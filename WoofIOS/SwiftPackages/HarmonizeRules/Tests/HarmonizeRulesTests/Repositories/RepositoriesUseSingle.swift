@@ -15,9 +15,10 @@ final class RepositoriesUseSingle: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "Repositories must be annotated with @Single.",
+        title: "Repositories must be annotated with @Single.",
+        category: WoofRuleCategory.repositories,
         rationale: "Repositories hold the in-memory state every feature observes. A second instance would mean a second, out-of-sync source of truth.",
-        fixHint: "Add @Single to the Repository class.",
+        howToFix: "Add @Single to the Repository class.",
         badExample: "@Factory\nfinal class DogsRepository",
         goodExample: "@Single\nfinal class DogsRepository"
     )

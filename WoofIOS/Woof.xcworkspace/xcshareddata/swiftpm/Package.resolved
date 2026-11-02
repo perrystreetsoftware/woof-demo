@@ -1,5 +1,5 @@
 {
-  "originHash" : "13a9db2a5a31ded1b93b12aad95cd6daa2ccbeebe3a81ff4c713d913a41e1842",
+  "originHash" : "415c1d2b91e564cd019544cf496cb67eda65254b97164ae2f2078706b61bb80f",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/perrystreetsoftware/Harmonize.git",
       "state" : {
-        "revision" : "41923397b3034b375dd1486139448eb1bc38ff22",
-        "version" : "1.3.0"
+        "revision" : "02bdbb7c41b0803458809f414302470ef3140560",
+        "version" : "2.0.0-beta.2"
       }
     },
     {

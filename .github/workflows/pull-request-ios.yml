@@ -43,6 +43,17 @@
 #       - name: Run Harmonize lint rules
 #         run: bash scripts/run-harmonize.sh
 #
+#       - name: Check that the generated Harmonize skill is up to date
+#         run: |
+#           swift package --package-path SwiftPackages/HarmonizeRules \
+#             --allow-writing-to-package-directory --allow-writing-to-directory .agents/skills harmonize-skills
+#           git add -A -- .agents/skills/harmonize
+#           if ! git diff --cached --quiet; then
+#             echo "::error::The generated skill in WoofIOS/.agents/skills/harmonize is out of date. Run the command in this step and commit the result."
+#             git diff --cached --stat
+#             exit 1
+#           fi
+#
 #   build:
 #     name: Build app
 #     runs-on: macos-26

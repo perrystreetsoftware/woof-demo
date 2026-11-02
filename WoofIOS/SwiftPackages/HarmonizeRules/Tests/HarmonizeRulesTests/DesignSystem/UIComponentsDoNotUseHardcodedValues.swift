@@ -31,28 +31,31 @@ final class UIComponentsDoNotUseHardcodedValues: QuickSpec {
     private static let inlineGradientPattern = try! NSRegularExpression(pattern: #"\b(Linear|Radial|Angular|Elliptical)Gradient\s*\("#)
 
     private static let pointRule = Rule(
-        id: "UIComponentsDoNotUseHardcodedValuesPoint",
-        description: "Views never hardcode point values.",
+        id: "ui-components-do-not-use-hardcoded-values-point",
+        title: "Views never hardcode point values.",
+        category: WoofRuleCategory.designSystem,
         rationale: "Spacing, sizing, and radii are tokens tuned in one place. A literal point value bypasses that and drifts between components.",
-        fixHint: "Use PaddingRoles.*, SpacingRoles.*, SizingRoles.*, or theme.radius.* instead of the literal.",
+        howToFix: "Use PaddingRoles.*, SpacingRoles.*, SizingRoles.*, or theme.radius.* instead of the literal.",
         badExample: ".padding(16)",
         goodExample: ".padding(PaddingRoles.Element.regular.rawValue)"
     )
 
     private static let colorRule = Rule(
-        id: "UIComponentsDoNotUseHardcodedValuesColor",
-        description: "Views never hardcode colors.",
+        id: "ui-components-do-not-use-hardcoded-values-color",
+        title: "Views never hardcode colors.",
+        category: WoofRuleCategory.designSystem,
         rationale: "Colors come from the theme so light and dark variants stay in sync. A literal color ignores the active theme.",
-        fixHint: "Add a semantic color to Colors and read it through theme.colors or a *ColorRole.",
+        howToFix: "Add a semantic color to Colors and read it through theme.colors or a *ColorRole.",
         badExample: "Text(text).foregroundStyle(Color(hex: 0xFF7A29))",
         goodExample: "AtomText(text: text, textFontRole: .bodyP1, colorRole: .primary)"
     )
 
     private static let gradientRule = Rule(
-        id: "UIComponentsDoNotUseHardcodedValuesGradient",
-        description: "Views never build static gradients inline.",
+        id: "ui-components-do-not-use-hardcoded-values-gradient",
+        title: "Views never build static gradients inline.",
+        category: WoofRuleCategory.designSystem,
         rationale: "A gradient is a design decision: which colors, and where the ramp starts. Built inline it drifts between components, and its stop positions become literals no token can tune. Animated gradients driven by TimelineView are part of their component's motion and stay private to it.",
-        fixHint: "Add the gradient to GradientRoles and read it through theme.gradients.",
+        howToFix: "Add the gradient to GradientRoles and read it through theme.gradients.",
         badExample: "LinearGradient(colors: [Color.clear, theme.colors.scrimDim], startPoint: .top, endPoint: .bottom)",
         goodExample: "theme.gradients.scrimVertical"
     )

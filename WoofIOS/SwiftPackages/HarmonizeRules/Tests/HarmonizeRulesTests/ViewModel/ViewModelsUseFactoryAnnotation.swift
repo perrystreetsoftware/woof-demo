@@ -15,12 +15,13 @@ final class ViewModelsUseFactoryAnnotation: QuickSpec {
     }
 
     private static let rule = Rule(
-        description: "ViewModels must be annotated with @Factory.",
+        title: "ViewModels must be annotated with @Factory.",
+        category: WoofRuleCategory.viewModel,
         rationale: """
             The Swinject codegen scans @Factory and generates the registration, so the
             DI graph stays uniform and nobody hand-edits containers when a ViewModel gains a dependency.
             """,
-        fixHint: "Add @Factory to the ViewModel class and rerun scripts/SwinjectCodegen.",
+        howToFix: "Add @Factory to the ViewModel class and rerun scripts/SwinjectCodegen.",
         badExample: "final class BrowseViewModel: StateProducingViewModel<BrowseViewModel.State, DogsError>",
         goodExample: "@Factory\nfinal class BrowseViewModel: StateProducingViewModel<BrowseViewModel.State, DogsError>"
     )

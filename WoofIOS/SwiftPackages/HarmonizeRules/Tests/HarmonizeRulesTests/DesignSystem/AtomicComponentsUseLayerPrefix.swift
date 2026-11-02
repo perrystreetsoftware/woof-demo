@@ -21,9 +21,10 @@ final class AtomicComponentsUseLayerPrefix: QuickSpec {
     private static let layerPrefixes = [("Atoms", "Atom"), ("Molecules", "Mol"), ("Organisms", "Org"), ("Templates", "Template")]
 
     private static let rule = Rule(
-        description: "Public views are prefixed by their layer: Atom*, Mol*, Org*, Template*.",
+        title: "Public views are prefixed by their layer: Atom*, Mol*, Org*, Template*.",
+        category: WoofRuleCategory.designSystem,
         rationale: "The prefix tells the caller which layer they are composing with, so a Screen can be checked for using only Template/Org/Mol/Atom at a glance.",
-        fixHint: "Rename the view with the prefix of the folder it lives in, or move it to the right layer.",
+        howToFix: "Rename the view with the prefix of the folder it lives in, or move it to the right layer.",
         badExample: "// in Atomic/Molecules/Button/\npublic struct PrimaryButton: View",
         goodExample: "// in Atomic/Molecules/Button/\npublic struct MolButton: View"
     )
